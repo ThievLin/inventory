@@ -145,7 +145,7 @@
     </div>   
     <div class="w-full text-secondary-foreground py-16 mt-3 bg-blue-600 text-center">
         <p class="pb-1">BSI Inventory System version 1.0.0</p>
-        <h2 class="text-xl font-bold text-slate-50">ACCOUNTING PAGE</h2>
+        <h2 class="text-xl font-bold text-slate-50">REGISTER PAGE</h2>
       </div>           
     </body>
 </html>
