@@ -4,9 +4,9 @@
 
 <body class="bg-background text-foreground">
   <div class="min-h-screen">
-    <div class="flex flex-row items-center space-x-4">
+    <header class="flex flex-row items-center space-x-4">
       <div class="ml-5">
-        <img src="{{ asset('storage/images/official_logo.png') }}" alt="BSI Logo" class="h-8 w-10">
+        <img src="{{ asset('storage/images/official_logo.png') }}" alt="BSI Logo" class="h-8 w-10 rounded">
       </div>
       <div class="bg-primary p-4 shadow-md flex items-end justify-end flex-1">
         <div class="space-x-2 items-end justify-end">
@@ -16,7 +16,7 @@
       <div>
         <img src="{{ asset('storage/images/me.png') }}" alt="Admin Profile" class="h-10 w-10 rounded-full mr-5">
       </div>
-    </div>    
+    </header>    
 
     <!-- Main content section -->
     <main class="flex-grow flex items-center justify-center mt-10">
