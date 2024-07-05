@@ -3,18 +3,23 @@
 
 
 <body class="bg-background text-foreground">
-  <div class="min-h-screen flex flex-col">
-    <!-- Header section -->
-    <header class="bg-primary p-4 shadow-md flex items-center justify-between">
-      <img src="{{ asset('storage/images/official_logo.png') }}" alt="BSI Logo" class="h-8 w-10">
-      <div class="flex items-center space-x-2">
-        <h1 class="text-sm font-bold text-primary-foreground">BSI ADMIN</h1>
-        <img src="{{ asset('storage/images/me.png') }}" alt="Admin Profile" class="h-10 w-10 rounded-full">
+  <div class="min-h-screen">
+    <div class="flex flex-row items-center space-x-4">
+      <div class="ml-5">
+        <img src="{{ asset('storage/images/official_logo.png') }}" alt="BSI Logo" class="h-8 w-10">
       </div>
-    </header>
+      <div class="bg-primary p-4 shadow-md flex items-end justify-end flex-1">
+        <div class="space-x-2 items-end justify-end">
+          <h1 class="text-sm font-bold text-primary-foreground">BSI ADMIN</h1>
+        </div>
+      </div>
+      <div>
+        <img src="{{ asset('storage/images/me.png') }}" alt="Admin Profile" class="h-10 w-10 rounded-full mr-5">
+      </div>
+    </div>    
 
     <!-- Main content section -->
-    <main class="flex-grow flex items-center justify-center mt-4">
+    <main class="flex-grow flex items-center justify-center mt-10">
       <div class="p-8 w-4/5 mx-auto">
         <div class="grid grid-cols-4 gap-8">
           <!-- Dashboard -->
