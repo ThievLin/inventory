@@ -3,17 +3,17 @@
 
 
 <div class="min-h-screen bg-background text-foreground">
-  <header class="flex flex-row items-center space-x-4">
+  <header class="flex flex-row items-center space-x-4 mt-2">
     <div class="ml-5">
-      <img src="{{ asset('storage/images/official_logo.png') }}" alt="BSI Logo" class="h-8 w-10 rounded">
+      <img src="{{ asset('storage/images/official_logo.png') }}" alt="BSI Logo" class="h-10 w-12 rounded">
     </div>
-    <div class="bg-primary p-4 shadow-md flex items-end justify-end flex-1">
+    <div class="bg-primary p-3 shadow-md flex items-end justify-end flex-1">
       <div class="space-x-2 items-end justify-end">
         <h1 class="text-sm font-bold text-primary-foreground">BSI ADMIN</h1>
       </div>
     </div>
     <div>
-      <img src="{{ asset('storage/images/me.png') }}" alt="Admin Profile" class="h-10 w-10 rounded-full mr-5">
+      <img src="{{ asset('storage/images/me.png') }}" alt="Admin Profile" class="h-10 w-12 rounded-full mr-5">
     </div>
   </header>
   <div class="flex flex-col items-center py-6">
