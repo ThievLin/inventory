@@ -42,7 +42,10 @@ $menuItems = [
             </div>
         </div>
         <div class="relative">
-            <img src="images/user.jpg" alt="Admin Profile" class="h-10 w-10 rounded-full mr-5 cursor-pointer" id="profileDropdownToggle">
+            <img src="{{ Auth::user()->U_photo ? asset('storage/' . Auth::user()->U_photo) : asset('images/user.jpg') }}" 
+            alt="Admin Profile" 
+            class="h-10 w-10 rounded-full mr-5 cursor-pointer" 
+            id="profileDropdownToggle">
             <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg border-2 border-bsicolor z-10">
                 <div class="py-1">
                     <a href="dashboard" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900">Dashboard</a>

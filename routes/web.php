@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\POSController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\AddonsController;
@@ -95,3 +96,6 @@ Route::patch('/add-ons/{Addons_id}', [AddonsController::class, 'update'])->name(
 //register
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
+
+//User edit
+Route::patch('/profile/{U_id}', [UserController::class, 'update'])->name('home.update');
