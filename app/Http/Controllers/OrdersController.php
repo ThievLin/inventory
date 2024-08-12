@@ -112,8 +112,6 @@ class OrdersController extends Controller
         return redirect()->back()->with('success', 'Order created successfully!');
     }
     
-    
-    
 
     /**
      * Display the specified resource.
