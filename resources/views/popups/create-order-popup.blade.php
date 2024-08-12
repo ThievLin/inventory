@@ -11,7 +11,7 @@
                 <div class="w-full h-0.5 bg-yellow-400 rounded-sm mb-4"></div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Order_number" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Order Number</label>
-                    <input type="text" id="Order_number" name="Order_number" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="text" id="Order_number" name="Order_number" value="{{ $orderNumber ?? '' }}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" readonly >
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Reciept_image" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Receipt Image</label>

@@ -20,7 +20,7 @@
             <div class="mb-6">
                 <label for="editCate_Khname" class="block text-sm font-medium text-gray-900 mb-1">Unit of Measure</label>
                 <select id="editCate_Khname" name="Pro_Cate_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    <option value="">Select Category</option>
+                    <option value="">Select product category</option>
                     @foreach ($proCate as $data)
                     <option value="{{ $data->Pro_Cate_id }}" data-uom-name="{{ $data->Cate_Khname }}">
                         {{ $data->Cate_Khname }}

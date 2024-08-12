@@ -24,11 +24,15 @@ class OrderInfor extends Model
         'Sup_id',
         'inc_VAT',
         'order_date',
+        'Currency_id'
+        
 
     ];
         // Define the one-to-many relationship
         public function Orders()
         {
             return $this->hasMany(InvLocation::class, 'Order_Info_id', 'Order_Info_id');
+            
         }
+        
 }

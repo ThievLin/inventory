@@ -94,9 +94,6 @@
   document.getElementById('editItem_Khname').value = Item_Khname;
   document.getElementById('editItem_Engname').value = Item_Engname;
 
-  // // Set selected category
-  // const categorySelect = document.getElementById('editItem_Cate_Khname');
-  // categorySelect.value = iteamCategory; // Ensure this value matches the option values
 
 
   document.getElementById('editItem_Cate_Khname').addEventListener('change', function() {
