@@ -39,7 +39,7 @@
         <div class="flex flex-1">
             <!-- Sidebar Toggle Button -->
             <div class="relative z-9">
-                <button class="block lg:hidden p-2 ml-2 bg-yellow-400 text-gray-700" id="menu-toggle">
+                <button class="block lg:hidden p-2 ml-2 bg-bsicolor text-gray-700" id="menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
                 <!-- Menu Overlay -->
@@ -48,22 +48,22 @@
                 <aside class="text-gray-500 w-64 h-full p-6 bg-gray-200 fixed top-0 left-0 transform -translate-x-full transition-transform lg:transform-none lg:static lg:w-64 lg:h-full lg:p-6 lg:bg-gray-200 z-50" id="sidebar">
                     <nav class="flex flex-col py-4">
                         <!-- Navigation Links -->
-                        <a href="#shop" id="link-section1" onclick="showSection('section1');" class="nav-link flex items-center py-2 px-4 hover:bg-yellow-400 rounded-lg my-1">
+                        <a href="#shop" id="link-section1" onclick="showSection('section1');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
                             <i class="fas fa-store mr-2"></i> Shop
                         </a>
-                        <a href="#user" id="link-section3" onclick="showSection('section3');" class="nav-link flex items-center py-2 px-4 hover:bg-yellow-400 rounded-lg my-1">
+                        <a href="#user" id="link-section3" onclick="showSection('section3');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
                             <i class="fas fa-user mr-2"></i> User
                         </a>
-                        <a href="#category" id="link-section4" onclick="showSection('section4');" class="nav-link flex items-center py-2 px-4 hover:bg-yellow-400 rounded-lg my-1">
+                        <a href="#category" id="link-section4" onclick="showSection('section4');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
                             <i class="fas fa-list mr-2"></i> Category
                         </a>
-                        <a href="#module" id="link-section6" onclick="showSection('section6');" class="nav-link flex items-center py-2 px-4 hover:bg-yellow-400 rounded-lg my-1">
+                        <a href="#module" id="link-section6" onclick="showSection('section6');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
                             <i class="fas fa-puzzle-piece mr-2"></i> Module
                         </a>
-                        <a href="#product" id="link-section7" onclick="showSection('section7');" class="nav-link flex items-center py-2 px-4 hover:bg-yellow-400 rounded-lg my-1">
+                        <a href="#product" id="link-section7" onclick="showSection('section7');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
                             <i class="fas fa-box-open mr-2"></i> Product
                         </a>
-                        <a href="#uom-size" id="link-section9" onclick="showSection('section9');" class="nav-link flex items-center py-2 px-4 hover:bg-yellow-400 rounded-lg my-1">
+                        <a href="#uom-size" id="link-section9" onclick="showSection('section9');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
                             <i class="fas fa-ruler-combined mr-2"></i> UOM/Size
                         </a>
                     </nav>
@@ -117,9 +117,9 @@
         document.getElementById(sectionId).style.display = 'block';
 
         document.querySelectorAll('.nav-link').forEach(function(link) {
-          link.classList.remove('bg-yellow-400');
+          link.classList.remove('bg-bsicolor');
         });
-        document.querySelector(`[id="link-${sectionId}"]`).classList.add('bg-yellow-400');
+        document.querySelector(`[id="link-${sectionId}"]`).classList.add('bg-bsicolor');
       }
 
       document.addEventListener('DOMContentLoaded', function() {

@@ -17,7 +17,7 @@
     </div>
     <div class="bg-primary p-3 shadow-md flex items-end justify-end flex-1">
         <div class="space-x-2 items-end justify-end">
-            <h1 class="text-sm font-bold text-primary-foreground">BSI ADMIN</h1>
+            <h1 class="text-sm font-bold text-primary-foreground">{{ Auth::user()->U_name }}</h1>
         </div>
     </div>
     <div class="relative">

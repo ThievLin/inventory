@@ -6,7 +6,7 @@
       <form id="editOrderForm" class="p-6">
         <div class="flex flex-wrap -mx-2 mb-4">
             <h3 class="w-full text-lg font-bold text-gray-800 mb-2">Order Info</h3>
-            <div class="w-full h-0.5 bg-yellow-400 rounded-sm mb-4"></div>
+            <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
             <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                 <label for="input1" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Order Number</label>
                 <input type="text" id="input1" name="input1" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>

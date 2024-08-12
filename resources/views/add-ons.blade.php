@@ -14,7 +14,7 @@
         </form>
       </div>
     </div>
-    <div class="w-full md:w-4/5 border-2 border-yellow-400 p-2 font-times">
+    <div class="w-full md:w-4/5 border-2 border-bsicolor p-2 font-times">
       <div class="overflow-x-auto">
         <h4 class="text-center font-bold pb-4 text-lg">ADD-ONS INFORMATION</h4>
         <table class="min-w-full bg-white border-collapse">

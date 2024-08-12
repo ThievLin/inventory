@@ -43,7 +43,7 @@ $navItems = [
     <div class="flex flex-col items-center py-6 -mt-4 flex-grow">
         <!-- Hamburger Icon for Small Screens -->
         <button id="menuToggleButton" class="block md:hidden mb-1" onclick="toggleMenu()">
-            <i id="menuToggleIcon" class="fas fa-bars text-1xl bg-yellow-400 py-1 px-2"></i>
+            <i id="menuToggleIcon" class="fas fa-bars text-1xl bg-bsicolor py-1 px-2"></i>
         </button> 
 
         <div class="w-full flex flex-col items-center">
