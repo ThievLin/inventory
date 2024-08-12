@@ -89,8 +89,13 @@
     document.getElementById('editPro_id').value = Pro_id;
     document.getElementById('editPro_name_eng').value = Pro_name_eng;
     document.getElementById('editPro_name_kh').value = Pro_name_kh;
-    // Set the category correctly
-    document.getElementById('editCate_Khname').value = productCategory.Cate_Khname;
+
+    document.getElementById('editCate_Khname').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const uomName = selectedOption.getAttribute('data-uom-name');
+});
+
+    
     const imagePreview = document.getElementById('imagePreview');
     if (image) {
         imagePreview.src = `/storage/${image}`;

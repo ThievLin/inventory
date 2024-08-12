@@ -15,13 +15,13 @@
                 <label for="editItem_Engname" class="block text-sm font-medium text-gray-900 mb-1">Item English Name</label>
                 <input type="text" id="editItem_Engname" name="Item_Engname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
-            <div class="mb-4">
-                <label for="editItem_Cate_Khname" class="block text-sm font-medium text-gray-900 mb-1">Select Item Category</label>
-                <select id="editItem_Cate_Khname" name="Item_Cate_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    <option>Select a category</option>
-                    @foreach ($categories as $category)
-                    <option value="{{ $category->Item_Cate_id }}">
-                        {{ $category->Item_Cate_Khname }}
+            <div class="mb-6">
+                <label for="editItem_Cate_Khname" class="block text-sm font-medium text-gray-900 mb-1">Unit of Measure</label>
+                <select id="editItem_Cate_Khname" name="Item_Cate_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option value="">Select Category</option>
+                    @foreach ($categories as $data)
+                    <option value="{{ $data->Item_Cate_id }}" data-uom-name="{{ $data->Item_Cate_Khname }}">
+                        {{ $data->Item_Cate_Khname }}
                     </option>
                     @endforeach
                 </select>

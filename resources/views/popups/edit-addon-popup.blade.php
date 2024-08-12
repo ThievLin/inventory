@@ -22,14 +22,15 @@
             <div class="mb-6">
                 <label for="edituom" class="block text-sm font-medium text-gray-900 mb-1">Unit of Measure</label>
                 <select id="edituom" name="UOM_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    <option>Select UOM</option>
+                    <option value="">Select UOM</option>
                     @foreach ($uom as $data)
-                    <option value="{{ $data->UOM_id }}">
+                    <option value="{{ $data->UOM_id }}" data-uom-name="{{ $data->UOM_name }}">
                         {{ $data->UOM_name }}
                     </option>
                     @endforeach
                 </select>
             </div>
+            
             <div class="text-end">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Save Changes</button>
                 <button type="button" id="cancelEdit" class="bg-gray-300 hover:bg-gray-400 text-gray-900 px-4 py-2 rounded-md ml-2 focus:outline-none">Cancel</button>

@@ -90,24 +90,37 @@
       });
     });
     function openEditPopup(Item_id, Item_Khname, Item_Engname, iteamCategory, Expiry_date, image) {
-    document.getElementById('editItem_id').value = Item_id;
-    document.getElementById('editItem_Khname').value = Item_Khname;
-    document.getElementById('editItem_Engname').value = Item_Engname;
-    document.getElementById('editItem_Cate_Khname').value = iteamCategory; // Ensure it's the correct ID or value
-    document.getElementById('editExpiry_date').value = Expiry_date;
+  document.getElementById('editItem_id').value = Item_id;
+  document.getElementById('editItem_Khname').value = Item_Khname;
+  document.getElementById('editItem_Engname').value = Item_Engname;
 
-    const imagePreview = document.getElementById('imagePreview');
-    if (image) {
-        imagePreview.src = `/storage/${image}`;
-        imagePreview.classList.remove('hidden');
-    } else {
-        imagePreview.src = '';
-        imagePreview.classList.add('hidden');
-    }
+  // // Set selected category
+  // const categorySelect = document.getElementById('editItem_Cate_Khname');
+  // categorySelect.value = iteamCategory; // Ensure this value matches the option values
 
-    document.getElementById('editSupplierForm').action = `/items_update/${Item_id}`;
-    document.getElementById('editPopup').classList.remove('hidden');
+
+  document.getElementById('editItem_Cate_Khname').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const uomName = selectedOption.getAttribute('data-uom-name');
+});
+
+  
+
+  document.getElementById('editExpiry_date').value = Expiry_date;
+
+  const imagePreview = document.getElementById('imagePreview');
+  if (image) {
+    imagePreview.src = `/storage/${image}`;
+    imagePreview.classList.remove('hidden');
+  } else {
+    imagePreview.src = '';
+    imagePreview.classList.add('hidden');
+  }
+
+  document.getElementById('editSupplierForm').action = `/items_update/${Item_id}`;
+  document.getElementById('editPopup').classList.remove('hidden');
 }
+
 
     document.getElementById('closeItemPopup').addEventListener('click', function() {
         document.getElementById('popupItem').classList.add('hidden');

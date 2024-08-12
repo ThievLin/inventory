@@ -84,8 +84,13 @@
     document.getElementById('editAddons_name').value = Addons_name;
     document.getElementById('editPercentage').value = Percentage;
     document.getElementById('editQty').value = Qty;
-    document.getElementById('edituom').value = uom.UOM_name;
-    // Set the category correctly
+    // document.getElementById('edituom').value = uom.UOM_name;
+
+    document.getElementById('edituom').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const uomName = selectedOption.getAttribute('data-uom-name');
+});
+
 
     document.getElementById('editProductPopup').action = `/add-ons/${Addons_id}`;
     document.getElementById('editPopup').classList.remove('hidden');

@@ -126,7 +126,7 @@ public function update(Request $request, $id)
     }
     $item->save();
 
-    return redirect()->route('items')->with('success', 'Item updated successfully.');
+    return redirect()->route('items')->with('success', 'Item updated successfully.');  
 }
 
     
