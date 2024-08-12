@@ -2,10 +2,10 @@
     <div class="container mx-auto p-6">
         <div class="flex justify-between items-center mb-4 font-medium">
             <div class="flex-1 flex justify-center space-x-4 text-sm">
-                <button id="showAll" class="text-yellow-400 pb-2 border-b-2 border-primary hover:text-yellow-400">SHOW ALL</button>
-                <button id="itemsCategory" class="text-muted-foreground pb-2 hover:text-yellow-400">ITEMS CATEGORY</button>
-                <button id="productsCategory" class="text-muted-foreground pb-2 hover:text-yellow-400">PRODUCTS CATEGORY</button>
-                <button id="expensesCategory" class="text-muted-foreground pb-2 hover:text-yellow-400">EXPENSE CATEGORY</button>
+                <button id="showAll" class="text-bsicolor pb-2 border-b-2 border-primary hover:text-bsicolor">SHOW ALL</button>
+                <button id="itemsCategory" class="text-muted-foreground pb-2 hover:text-bsicolor">ITEMS CATEGORY</button>
+                <button id="productsCategory" class="text-muted-foreground pb-2 hover:text-bsicolor">PRODUCTS CATEGORY</button>
+                <button id="expensesCategory" class="text-muted-foreground pb-2 hover:text-bsicolor">EXPENSE CATEGORY</button>
             </div>
             <div class="relative inline-block">
                 <button id="createButton" class="bg-primary text-primary-foreground py-1 px-4 rounded-lg mb-2 text-sm">CREATE</button>
@@ -176,10 +176,10 @@
             }
 
             buttons.forEach(btn => {
-                btn.classList.remove('text-yellow-400', 'border-b-2', 'border-primary');
+                btn.classList.remove('text-bsicolor', 'border-b-2', 'border-primary');
                 btn.classList.add('text-muted-foreground');
             });
-            this.classList.add('text-yellow-400', 'border-b-2', 'border-primary');
+            this.classList.add('text-bsicolor', 'border-b-2', 'border-primary');
             this.classList.remove('text-muted-foreground');
         });
     });
