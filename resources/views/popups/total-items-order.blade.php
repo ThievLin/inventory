@@ -11,12 +11,14 @@
                     </tr>
                 </thead>
                 <tbody id="inventoryTableBody">
+                    @foreach($inventory as $data)
                     <tr class="bg-zinc-200 text-base border-t-4 border-white">
-                        <td class="py-2 px-2 border border-white">KK</td>
-                        <td class="py-2 px-2 border border-white">KK</td>
-                        <td class="py-2 px-2 border border-white">KK</td>
-                        <td class="py-2 px-2 border border-white">KK</td>
+                      <td class="py-3 px-4 border border-white">{{$data->Item_Name}}</td>
+                      <td class="py-3 px-4 border border-white">{{$data->Category}}</td>
+                      <td class="py-3 px-4 border border-white">{{$data->UOM}}</td>
+                      <td class="py-3 px-4 border border-white">{{$data->Expired_Date}}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

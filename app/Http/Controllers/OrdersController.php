@@ -6,12 +6,13 @@ use Carbon\Carbon;
 use App\Models\UOM;
 use App\Models\Items;
 use App\Models\Orders;
+use App\Models\Currency;
+use App\Models\Inventory;
 use App\Models\Suppliers;
 use App\Models\OrderInfor;
 use Illuminate\Http\Request;
 use App\Models\IteamCategory;
 use App\Http\Controllers\Controller;
-use App\Models\Currency;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
@@ -29,11 +30,12 @@ class OrdersController extends Controller
         $currency = Currency::all();
         $order = Orders::all();
         $order_inf = OrderInfor::all();
+        $inventory=Inventory::all();
         $categories = IteamCategory::all();
         $order_inf_counts = $order->groupBy('Order_Info_id')->map(function ($group) {
             return $group->count();
         });
-        return view('orders', compact('Supplier','items','uom','order_inf','categories','order_inf_counts','currency')); 
+        return view('orders', compact('Supplier','items','uom','order_inf','categories','order_inf_counts','currency','inventory')); 
    
     }
 
