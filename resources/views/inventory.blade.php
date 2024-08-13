@@ -10,10 +10,10 @@
           CREATE
           <i class="fas fa-caret-down ml-2"></i>
         </button>
-        <div id="dropdownMenu" class="absolute left-1 mt-2 w-60 bg-gray-300 rounded-md shadow-lg border-2 border-yellow-400 hidden z-10">
-          <a href="#" id="createSupplier" class="block px-4 py-2 text-blue-700 text-lg hover:bg-yellow-400 hover:text-blue-800 transition duration-150 ease-in-out border-b-2 border-yellow-400">Supplier</a>
-          <a href="#" id="createItem" class="block px-4 py-2 text-blue-700 text-lg hover:bg-yellow-400 hover:text-blue-800 transition duration-150 ease-in-out border-b-2 border-yellow-400">Item</a>
-          <a href="#" id="createOrder" class="block px-4 py-2 text-blue-700 text-lg hover:bg-yellow-400 hover:text-blue-800 transition duration-150 ease-in-out">Order</a>
+        <div id="dropdownMenu" class="absolute left-1 mt-2 w-60 bg-gray-300 rounded-md shadow-lg border-2 border-bsicolor hidden z-10">
+          <a href="#" id="createSupplier" class="block px-4 py-2 text-blue-700 text-lg hover:bg-bsicolor hover:text-blue-800 transition duration-150 ease-in-out border-b-2 border-bsicolor">Supplier</a>
+          <a href="#" id="createItem" class="block px-4 py-2 text-blue-700 text-lg hover:bg-bsicolor hover:text-blue-800 transition duration-150 ease-in-out border-b-2 border-bsicolor">Item</a>
+          <a href="#" id="createOrder" class="block px-4 py-2 text-blue-700 text-lg hover:bg-bsicolor hover:text-blue-800 transition duration-150 ease-in-out">Order</a>
         </div>
       </div>
       <div class="relative flex w-full md:w-auto">
@@ -25,7 +25,7 @@
         </form>
       </div>
     </div>
-    <div class="w-full md:w-4/5 border-2 border-yellow-400 p-2 font-times">
+    <div class="w-full md:w-4/5 border-2 border-bsicolor p-2 font-times">
       <div class="overflow-x-auto">
         <h4 class="text-center font-bold pb-4 text-lg">DETAIL INVENTORY INFORMATION</h4>
         <table class="min-w-full bg-white border-collapse text-center">

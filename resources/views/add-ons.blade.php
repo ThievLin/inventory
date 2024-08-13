@@ -14,7 +14,7 @@
         </form>
       </div>
     </div>
-    <div class="w-full md:w-4/5 border-2 border-yellow-400 p-2 font-times">
+    <div class="w-full md:w-4/5 border-2 border-bsicolor p-2 font-times">
       <div class="overflow-x-auto">
         <h4 class="text-center font-bold pb-4 text-lg">ADD-ONS INFORMATION</h4>
         <table class="min-w-full bg-white border-collapse">
@@ -84,8 +84,13 @@
     document.getElementById('editAddons_name').value = Addons_name;
     document.getElementById('editPercentage').value = Percentage;
     document.getElementById('editQty').value = Qty;
-    document.getElementById('edituom').value = uom.UOM_name;
-    // Set the category correctly
+    // document.getElementById('edituom').value = uom.UOM_name;
+
+    document.getElementById('edituom').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const uomName = selectedOption.getAttribute('data-uom-name');
+});
+
 
     document.getElementById('editProductPopup').action = `/add-ons/${Addons_id}`;
     document.getElementById('editPopup').classList.remove('hidden');

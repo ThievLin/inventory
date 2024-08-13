@@ -14,7 +14,7 @@
         </form>
       </div>
     </div>
-    <div class="w-full md:w-4/5 border-2 border-yellow-400 p-2 font-times">
+    <div class="w-full md:w-4/5 border-2 border-bsicolor p-2 font-times">
       <div class="overflow-x-auto">
         <h4 class="text-center font-bold pb-4 text-lg">SUPPLIERS INFORMATION</h4>
         <table class="min-w-full bg-white border-collapse">
@@ -84,16 +84,17 @@
     document.getElementById('editSupplierForm').action = `/suppliers_update/${Sup_id}`;
     document.getElementById('editPopup').classList.remove('hidden');
   }
-  document.getElementById('closeSupplierPopup').addEventListener('click', function() {
-        document.getElementById('popupSupplier').classList.add('hidden');
-    });
-    document.getElementById('cancelEdit').addEventListener('click', function() {
-        document.getElementById('editPopup').classList.add('hidden');
-    });
+
     const createButton = document.getElementById('createButton');
     const popupForm = document.getElementById('popupSupplier');
     createButton.addEventListener('click', () => {
       popupForm.classList.remove('hidden');
+    });
+    document.getElementById('closeSupplierPopup').addEventListener('click', function() {
+        document.getElementById('popupSupplier').classList.add('hidden');
+    });
+    document.getElementById('cancelEdit').addEventListener('click', function() {
+        document.getElementById('editPopup').classList.add('hidden');
     });
 </script>
 @endsection

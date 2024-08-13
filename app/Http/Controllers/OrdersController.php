@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\UOM;
 use App\Models\Items;
 use App\Models\Orders;
@@ -10,6 +11,7 @@ use App\Models\OrderInfor;
 use Illuminate\Http\Request;
 use App\Models\IteamCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
@@ -24,13 +26,14 @@ class OrdersController extends Controller
         $Supplier = Suppliers::all();
         $items = Items::all();
         $uom = UOM::all();
+        $currency = Currency::all();
         $order = Orders::all();
         $order_inf = OrderInfor::all();
         $categories = IteamCategory::all();
         $order_inf_counts = $order->groupBy('Order_Info_id')->map(function ($group) {
             return $group->count();
         });
-        return view('orders', compact('Supplier','items','uom','order_inf','categories','order_inf_counts')); 
+        return view('orders', compact('Supplier','items','uom','order_inf','categories','order_inf_counts','currency')); 
    
     }
 
@@ -52,9 +55,23 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
+        // Generate Order Number
+        $date = date('Y-m-d');
+    
+        // Retrieve the latest order based on the 'order_date' column
+        $latestOrder = OrderInfor::whereDate('order_date', '=', $date)
+                                 ->orderBy('order_date', 'desc')
+                                 ->first();
+    
+        if ($latestOrder) {
+            $lastOrderNumber = explode('_', $latestOrder->Order_number);
+            $sequence = (int) end($lastOrderNumber) + 1;
+        } else {
+            $sequence = 1;
+        }
+    
+        $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 3, '0', STR_PAD_LEFT);
         $request->validate([
-            'Order_number' => 'required|string|max:255',
             'Reciept_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'Total_Price' => 'required|numeric',
             'Sup_id' => 'required|integer',
@@ -64,37 +81,36 @@ class OrdersController extends Controller
         // Handle the receipt image upload
         if ($request->hasFile('Reciept_image')) {
             $imagePath = $request->file('Reciept_image')->store('receipt_images', 'public');
-            $validatedData['Reciept_image'] = $imagePath;
         }
     
         // Create the OrderInfo
         $order = OrderInfor::create([
-            'Order_number' => $request->Order_number,
+            'Order_number' => $orderNumber,
             'Reciept_image' => $imagePath,
             'Total_Price' => $request->Total_Price,
             'Sup_id' => $request->Sup_id,
             'S_id' => Auth::user()->invshop->S_id,
             'L_id' => Auth::user()->invLocation->L_id,
-            'inc_VAT' =>  $request->inc_VAT ? 1 : 0,
+            'inc_VAT' => $request->inc_VAT ? 1 : 0,
             'order_date' => $request->order_date,
-
+            'Currency_id' => $request->Currency_id ,
         ]);
     
         // Create the individual Orders
         $numberOfItems = $request->selectnum;
-
+    
         for ($i = 0; $i < $numberOfItems; $i++) {
             Orders::create([
                 'Order_Info_id' => $order->Order_Info_id,
                 'Item_id' => $request->input("inputSelectItem".($i+1)),
-                'Qty' => $request->input("Qty".($i+1)),
+                'Item_Qty' => $request->input("Item_Qty".($i+1)),
                 'UOM_id' => $request->input("inputSelectUOM".($i+1)),
+                'Order_Qty' => $request->input("Item_Qty".($i+1)),
                 'price' => $request->input("price".($i+1)),
-              
+                'Currency_id' => $request->input("inputSelectcurren".($i+1)),
             ]);
-   
         }
-
+    
         return redirect()->back()->with('success', 'Order created successfully!');
     }
     

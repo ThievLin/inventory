@@ -8,7 +8,7 @@
     <div class="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
         @foreach ($user as $data)
         <div class="relative bg-gray-100 rounded-lg shadow-lg overflow-hidden p-3">
-            <div class="border-b-2 border-yellow-400">
+            <div class="border-b-2 border-bsicolor">
                 <div class="rounded-lg">
                     <div class="relative">
                         <img src="images/user.png" alt="user image" class="rounded-full mb-4 h-32 w-32 object-cover shadow-lg m-auto">

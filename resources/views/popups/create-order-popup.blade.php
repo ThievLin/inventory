@@ -8,10 +8,10 @@
             @csrf
             <div class="flex flex-wrap -mx-2 mb-4">
                 <h3 class="w-full text-lg font-bold text-gray-800 mb-2">Order Info</h3>
-                <div class="w-full h-0.5 bg-yellow-400 rounded-sm mb-4"></div>
+                <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Order_number" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Order Number</label>
-                    <input type="text" id="Order_number" name="Order_number" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <input type="text" id="Order_number" name="Order_number" value="{{ $orderNumber ?? '' }}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" readonly >
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Reciept_image" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Receipt Image</label>
@@ -39,7 +39,18 @@
                 <div class="w-full sm:w-1/5 px-2 mb-8">
                     <label for="order_date" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Order Date</label>
                     <input type="date" id="order_date" name="order_date" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>                           
+                </div>
+                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                    <label for="Currency_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
+                    <select id="Currency_id" name="Currency_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option>Select a Supplier</option>
+                        @foreach ($currency as $data)
+                        <option value="{{ $data->Currency_id }}">
+                            {{ $data->Currency_name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>                         
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Order Number</label>
                     <select id="selectnum" name="selectnum" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
@@ -54,9 +65,14 @@
                 </div>
             </div>
             <h3 class="w-full text-xl font-bold text-gray-800 mb-2">Items</h3>
-            <div class="w-full h-0.5 bg-yellow-400 rounded-sm mb-4"></div>
-            <div id="itemsContainer" class="flex flex-wrap -mx-2 mb-4">
+            <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
+            <div id="itemsContainer" class="flex flex-wrap -mx-2 mb-2">
                 <!-- Item rows will be appended here -->
+            </div>
+
+            <div class="w-full flex justify-start mb-4 space-x-1">
+                <button type="button" id="subtractRowBtn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-400 hidden"><i class="fas fa-minus-circle"></i></button>
+                <button type="button" id="addMoreRowBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-400 hidden"><i class="fas fa-plus-circle"></i></button>
             </div>
             <div class="flex justify-end">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mr-2">Save</button>
@@ -65,74 +81,129 @@
         </form>
     </div>
 </div>
+
+@include('popups.create-item-popup')
+
 <!-- JavaScript to handle showing/hiding rows based on selection and calculating total price -->
 <script>
     document.getElementById('selectnum').addEventListener('change', function() {
-        var itemsContainer = document.getElementById('itemsContainer');
-        itemsContainer.innerHTML = ''; // Clear existing items
-        var selectedValue = parseInt(this.value);
+    var itemsContainer = document.getElementById('itemsContainer');
+    itemsContainer.innerHTML = '';
+    var selectedValue = parseInt(this.value);
 
-        for (var i = 0; i < selectedValue; i++) {
-            var itemRow = `
-                <div class="item-row w-full flex flex-wrap">
-                    <div class="w-full sm:w-1/5 px-2 mb-8">
-                        <label for="inputSelectItem${i+1}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Item</label>
-                        <select id="inputSelectItem${i+1}" name="inputSelectItem${i+1}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="">Select Item</option>
-                                <option id="createButton">Create Item</option>
-                                 @foreach ($items as $data)
-                                <option value="{{ $data->Item_id }}">
-                                    {{ $data->Item_Khname }}
-                                </option>
-                                @endforeach
-                        </select>
-                    </div>
-                    <div class="w-full sm:w-1/5 px-2 mb-8">
-                        <label for="inputSelectUOM${i+1}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select UOM</label>
-                        <select id="inputSelectUOM${i+1}" name="inputSelectUOM${i+1}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                            <option value="">Select UOM</option>
-                                 @foreach ($uom as $data)
-                                <option value="{{ $data->UOM_id }}">
-                                    {{ $data->UOM_name }}
-                                </option>
-                                @endforeach
-                        </select>
-                    </div>
-                    <div class="w-full sm:w-1/5 px-2 mb-8">
-                        <label for="Qty${i+1}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Qty</label>
-                        <input type="number" id="Qty${i+1}" name="Qty${i+1}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
-                    </div>
-                    <div class="w-full sm:w-1/5 px-2 mb-8">
-                        <label for="price${i+1}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Price</label>
-                        <input type="number" id="price${i+1}" name="price${i+1}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
-                    </div>
-                </div>
-            `;
-            itemsContainer.insertAdjacentHTML('beforeend', itemRow);
+    if (selectedValue > 0) {
+        addMoreRowBtn.classList.remove('hidden');
+        subtractRowBtn.classList.remove('hidden');
+    } else {
+        addMoreRowBtn.classList.add('hidden');
+        subtractRowBtn.classList.add('hidden');
+    }
+
+    for (var i = 0; i < selectedValue; i++) {
+        addItemRow(i + 1);
+    }
+});
+
+document.getElementById('addMoreRowBtn').addEventListener('click', function() {
+    var itemsContainer = document.getElementById('itemsContainer');
+    var currentRowCount = itemsContainer.children.length;
+    addItemRow(currentRowCount + 1);
+});
+
+document.getElementById('subtractRowBtn').addEventListener('click', function() {
+    var itemsContainer = document.getElementById('itemsContainer');
+    if (itemsContainer.children.length > 0) {
+        itemsContainer.removeChild(itemsContainer.lastElementChild);
+    }
+});
+
+function addItemRow(index) {
+    var itemRow = `
+        <div class="item-row w-full flex">
+            <div class="w-full sm:w-1/5 px-2 mb-6">
+                <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Item</label>
+                <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleItemSelect(event)">
+                    <option value="">Select Item</option>
+                    <option value="createButton">Create Item</option>
+                    @foreach ($items as $data)
+                    <option value="{{ $data->Item_id }}">
+                        {{ $data->Item_Khname }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="w-full sm:w-1/5 px-2 mb-8">
+                <label for="QtyItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Qty Items</label>
+                <input type="number" id="QtyItem${index}" name="QtyItem${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+            <div class="w-full sm:w-1/5 px-2 mb-8">
+                <label for="inputSelectUOM${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select UOM</label>
+                <select id="inputSelectUOM${index}" name="inputSelectUOM${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Select UOM</option>
+                    @foreach ($uom as $data)
+                    <option value="{{ $data->UOM_id }}">
+                        {{ $data->UOM_name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="w-full sm:w-1/5 px-2 mb-8">
+                <label for="Item_Qty${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Qty Price</label>
+                <input type="number" id="Item_Qty${index}" name="Item_Qty${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
+            </div>
+            <div class="w-full sm:w-1/5 px-2 mb-8">
+                <label for="price${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Price</label>
+                <input type="number" id="price${index}" name="price${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
+            </div>
+            <div class="w-full sm:w-1/5 px-2 mb-8">
+                <label for="inputSelectcurren${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
+                <select id="inputSelectcurren${index}" name="inputSelectcurren${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Select Currency</option>
+                    @foreach ($currency as $data)
+                    <option value="{{ $data->Currency_id }}">
+                        {{ $data->Currency_name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    `;
+    document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', itemRow);
+}
+
+function updateTotalPrice() {
+    var totalPriceField = document.getElementById('Total_Price');
+    var itemsContainer = document.getElementById('itemsContainer');
+    var priceInputs = itemsContainer.querySelectorAll('input[id^="price"]');
+    var qtyInputs = itemsContainer.querySelectorAll('input[id^="Qty"]');
+    var totalPrice = 0;
+
+    priceInputs.forEach(function(input, index) {
+        var price = parseFloat(input.value);
+        var qty = parseFloat(qtyInputs[index].value);
+        if (!isNaN(price)) {
+            totalPrice += price;
         }
     });
 
-    function updateTotalPrice() {
-        var totalPriceField = document.getElementById('Total_Price');
-        var itemsContainer = document.getElementById('itemsContainer');
-        var priceInputs = itemsContainer.querySelectorAll('input[id^="price"]');
-        var qtyInputs = itemsContainer.querySelectorAll('input[id^="Qty"]');
-        var totalPrice = 0;
+    totalPriceField.value = totalPrice;
+}
 
-        priceInputs.forEach(function(input, index) {
-            var price = parseFloat(input.value);
-            var qty = parseFloat(qtyInputs[index].value);
-            if (!isNaN(price) ) {
-                totalPrice += price ;
-            }
-        });
-
-        // Update the Total_Price field
-        totalPriceField.value = totalPrice;
+function handleItemSelect(event) {
+    var selectedValue = event.target.value;
+    if (selectedValue === 'createButton') {
+        togglePopup('popupItem');
     }
+}
 
-    function togglePopup(popupId) {
-        var popup = document.getElementById(popupId);
+function togglePopup(popupId) {
+        const popup = document.getElementById(popupId);
         popup.classList.toggle('hidden');
     }
+
+document.getElementById('closeItemPopup').addEventListener('click', function() {
+    togglePopup('popupItem');
+});
+
+
 </script>

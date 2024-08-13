@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\InvRole;
 use App\Models\Invshop;
 use App\Models\InvOwner;
+use Illuminate\Http\Request;
 use App\Models\InvLocation;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -61,6 +62,7 @@ class RegisterController extends Controller
             'sys_name' => ['required', 'string', 'max:255'],
             'U_contact' => ['required', 'string', 'max:255'],
             'R_id' => ['required', 'string', 'max:255'],
+            'U_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             
             //inventory shop``
             'S_name' => ['required', 'string', 'max:255'],
@@ -85,24 +87,29 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Handle S_logo (Shop Logo)
         $logoPath = null;
         if (isset($data['S_logo']) && $data['S_logo']->isValid()) {
             $logo = $data['S_logo'];
             $logoPath = $logo->store('logos', 'public'); // Store under 'public/storage/logos'
         }
         
+        // Create InvOwner
         $owner = InvOwner::create([
             'O_name' => $data['O_name'],
             'O_email' => $data['O_email'],
             'O_contact' => $data['O_contact'],
             'O_address' => $data['O_address'],
         ]);
-
+    
+        // Create Invshop
         $invshop = Invshop::create([
             'S_name' => $data['S_name'],
             'O_id' => $owner->O_id, 
             'S_logo' => $logoPath,
         ]);
+    
+        // Create InvLocation
         $InvLocation = InvLocation::create([
             'S_id' => $invshop->S_id,
             'L_name' => $data['L_name'],
@@ -110,6 +117,15 @@ class RegisterController extends Controller
             'L_contact' => $data['L_contact'],
             'status' => '',
         ]);
+    
+        // Handle U_photo (User Photo)
+        $photoPath = null;
+        if (isset($data['U_photo']) && $data['U_photo']->isValid()) {
+            $photo = $data['U_photo'];
+            $photoPath = $photo->store('user_photos', 'public'); // Store under 'public/storage/user_photos'
+        }
+    
+        // Create User
         $user = User::create([
             'U_name' => $data['U_name'],
             'R_id' => $data['R_id'],
@@ -118,14 +134,21 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'S_id' => $invshop->S_id,
             'L_id'=> $InvLocation->L_id,
-            'U_photo' => '',
+            'U_photo' => $photoPath, // Save the photo path if available
             'status' => '',
         ]);
+    
         return $user;
     }
+    
     public function showRegistrationForm()
     {
         $invRole = InvRole::all(); 
         return view('auth.register', compact('invRole')); 
     }
+    public function update(Request $request, $U_id)
+    {
+      dd('11111');
+    }
+    
 }

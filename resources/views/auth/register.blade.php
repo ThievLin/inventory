@@ -69,10 +69,10 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="S_logo">User Picture:</label>
+                            <label for="U_photo">User Photo:</label>
                             <div>
-                                <button class="select-logo">Browse</button>
-                                <input type='file' style="display:none">
+                                <button class="select-logo" onclick="document.getElementById('U_photo').click()">Browse</button>
+                                <input type='file' id="U_photo" name="U_photo" style="display:none">
                             </div>
                         </div>
                         <div class="form-group">

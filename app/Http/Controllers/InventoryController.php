@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UOM;
 use App\Models\Items;
+use App\Models\Currency;
 use App\Models\Inventory;
 use App\Models\Suppliers;
 use Illuminate\Http\Request;
@@ -24,11 +25,12 @@ class InventoryController extends Controller
         $Supplier = Suppliers::all();
         $items = Items::all();
         $uom = UOM::all();
+        $currency = Currency::all();
         $inventory = Inventory::with(['invShop', 'location'])
         ->where('S_id', Auth::user()->invshop->S_id)
         ->where('L_id', Auth::user()->invLocation->L_id)
         ->get();
-        return view('inventory', compact('categories','inventory','Supplier','items','uom')); 
+        return view('inventory', compact('categories','inventory','Supplier','items','uom','currency')); 
     }
     
 
