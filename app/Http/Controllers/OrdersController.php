@@ -11,6 +11,7 @@ use App\Models\OrderInfor;
 use Illuminate\Http\Request;
 use App\Models\IteamCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
 use Illuminate\Support\Facades\Auth;
 
 class OrdersController extends Controller
@@ -25,13 +26,14 @@ class OrdersController extends Controller
         $Supplier = Suppliers::all();
         $items = Items::all();
         $uom = UOM::all();
+        $currency = Currency::all();
         $order = Orders::all();
         $order_inf = OrderInfor::all();
         $categories = IteamCategory::all();
         $order_inf_counts = $order->groupBy('Order_Info_id')->map(function ($group) {
             return $group->count();
         });
-        return view('orders', compact('Supplier','items','uom','order_inf','categories','order_inf_counts')); 
+        return view('orders', compact('Supplier','items','uom','order_inf','categories','order_inf_counts','currency')); 
    
     }
 
@@ -69,8 +71,6 @@ class OrdersController extends Controller
         }
     
         $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 3, '0', STR_PAD_LEFT);
-    
-        // Validate the request data
         $request->validate([
             'Reciept_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'Total_Price' => 'required|numeric',
@@ -93,7 +93,7 @@ class OrdersController extends Controller
             'L_id' => Auth::user()->invLocation->L_id,
             'inc_VAT' => $request->inc_VAT ? 1 : 0,
             'order_date' => $request->order_date,
-            // 'Currency_id' => $request->Currency_id,
+            'Currency_id' => $request->Currency_id ,
         ]);
     
         // Create the individual Orders
@@ -103,9 +103,11 @@ class OrdersController extends Controller
             Orders::create([
                 'Order_Info_id' => $order->Order_Info_id,
                 'Item_id' => $request->input("inputSelectItem".($i+1)),
-                'Qty' => $request->input("Qty".($i+1)),
+                'Item_Qty' => $request->input("Item_Qty".($i+1)),
                 'UOM_id' => $request->input("inputSelectUOM".($i+1)),
+                'Order_Qty' => $request->input("Item_Qty".($i+1)),
                 'price' => $request->input("price".($i+1)),
+                'Currency_id' => $request->input("inputSelectcurren".($i+1)),
             ]);
         }
     

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Orders;
+use App\Models\Currency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,5 +32,9 @@ class OrderInfor extends Model
         public function Orders()
         {
             return $this->hasMany(InvLocation::class, 'Order_Info_id', 'Order_Info_id');       
+        }
+        public function currency()
+        {
+            return $this->belongsTo(Currency::class, 'Currency_id', 'Currency_id');
         }
 }

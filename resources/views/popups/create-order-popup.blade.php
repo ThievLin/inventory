@@ -39,7 +39,18 @@
                 <div class="w-full sm:w-1/5 px-2 mb-8">
                     <label for="order_date" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Order Date</label>
                     <input type="date" id="order_date" name="order_date" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>                           
+                </div>
+                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                    <label for="Currency_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
+                    <select id="Currency_id" name="Currency_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option>Select a Supplier</option>
+                        @foreach ($currency as $data)
+                        <option value="{{ $data->Currency_id }}">
+                            {{ $data->Currency_name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>                         
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Order Number</label>
                     <select id="selectnum" name="selectnum" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
@@ -137,19 +148,22 @@ function addItemRow(index) {
                 </select>
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
-                <label for="Qty${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Qty Price</label>
-                <input type="number" id="Qty${index}" name="Qty${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
+                <label for="Item_Qty${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Qty Price</label>
+                <input type="number" id="Item_Qty${index}" name="Item_Qty${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
                 <label for="price${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Price</label>
                 <input type="number" id="price${index}" name="price${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
-                <label for="inputSelectCurrency${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
-                <select id="inputSelectCurrency${index}" name="inputSelectCurrency${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <label for="inputSelectcurren${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
+                <select id="inputSelectcurren${index}" name="inputSelectcurren${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Select Currency</option>
-                    <option value="Riel">Riel</option>
-                    <option value="USD">USD</option>
+                    @foreach ($currency as $data)
+                    <option value="{{ $data->Currency_id }}">
+                        {{ $data->Currency_name }}
+                    </option>
+                    @endforeach
                 </select>
             </div>
         </div>

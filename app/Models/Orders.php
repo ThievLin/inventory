@@ -19,9 +19,11 @@ class Orders extends Model
     protected $fillable = [
         'Order_Info_id',
         'Item_id',
-        'Qty',
+        'Item_Qty',
         'UOM_id',
+        'Order_Qty',
         'price',
+        'Currency_id'
 
     ];
      // Define the inverse of the one-to-many relationship
