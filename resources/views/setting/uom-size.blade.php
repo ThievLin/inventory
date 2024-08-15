@@ -3,23 +3,12 @@
         <a href="#" id="createUOMButton" class="bg-primary text-primary-foreground py-1 px-4 rounded-lg text-sm">CREATE</a>
     </div>
     <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        @foreach($uom as $data)
         <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
-            <h3 class="text-xl font-semibold mb-2">Kilogram</h3>
-            <p class="text-gray-500 text-lg">kg</p>
+            <h3 class="text-xl font-semibold mb-2">{{$data->UOM_name}}</h3>
+            <p class="text-gray-500 text-lg">{{$data->UOM_abb}}</p>
         </div>
-        <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
-            <h3 class="text-xl font-semibold mb-2">Gram</h3>
-            <p class="text-gray-500 text-lg">g</p>
-        </div>
-        <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
-            <h3 class="text-xl font-semibold mb-2">Meter</h3>
-            <p class="text-gray-500 text-lg">m</p>
-        </div>
-        <div class="bg-white rounded-lg shadow-lg p-4 flex flex-col items-center">
-            <h3 class="text-xl font-semibold mb-2">Liter</h3>
-            <p class="text-gray-500 text-lg">L</p>
-        </div>
-        <!-- Add more UOM cards as needed -->
+        @endforeach
     </div>
     @include('popups.create-uom-popup')
 </div>

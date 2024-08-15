@@ -52,7 +52,7 @@ $navItems = [
                 <div id="navMenu" class="flex flex-wrap justify-center space-x-2 hidden md:flex">
                     @foreach($navItems as $item)
                         @if(in_array(Auth::user()->InvRole->R_id, $item['roles']))
-                            <a href="{{ $item['route'] }}" class="{{ request()->is($item['route']) ? 'bg-primary text-white text-' : 'bg-bsicolor text-primary' }} rounded-lg px-4 py-2 text-sm mb-2 font-bold">
+                            <a href="{{ $item['route'] }}" class="{{ request()->is($item['route']) ? 'bg-primary text-white text-' : 'bg-bsicolor text-white' }} rounded-lg px-4 py-2 text-sm mb-2 font-bold">
                                 {{ $item['label'] }}
                             </a>
                         @endif

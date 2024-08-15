@@ -33,6 +33,10 @@ class InventoryController extends Controller
         return view('inventory', compact('categories','inventory','Supplier','items','uom','currency')); 
     }
     
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the form for creating a new resource.

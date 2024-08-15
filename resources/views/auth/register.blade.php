@@ -15,12 +15,12 @@
                             <input type="text" class="form-control" id="S_name" name="S_name" value="{{ old('S_name') }}" placeholder="Name of your shop" required>
                         </div>
                         <div class="form-group">
-                            <label for="L_address">Address:</label>
-                            <input type="text" class="form-control" id="L_address" name="L_address" placeholder="Shop address" required>
+                            <label for="L_name">Brand Name:</label>
+                            <input type="text" class="form-control" id="L_name" name="L_name" value="{{ old('L_name') }}" placeholder="Location name" required>
                         </div>
                         <div class="form-group">
-                            <label for="L_name">Location Name:</label>
-                            <input type="text" class="form-control" id="L_name" name="L_name" value="{{ old('L_name') }}" placeholder="Location name" required>
+                            <label for="L_address">Address:</label>
+                            <input type="text" class="form-control" id="L_address" name="L_address" placeholder="Shop address" required>
                         </div>
                         <div class="form-group">
                             <label for="L_contact">Location Contact:</label>
