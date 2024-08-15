@@ -37,7 +37,7 @@ class SettingController extends Controller
         $role = InvRole::all();
         $module = SysModule::all();
         $moduleInf = Module::all();
-        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','module','moduleInf')); 
+        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','module','moduleInf','uom')); 
 
     }
 
