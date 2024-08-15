@@ -69,7 +69,7 @@ Route::get('/orders/search', [OrdersController::class, 'search'])->name('orders.
 
 //orders page
 Route::get('/pos', [POSController::class, 'index'])->name('pos');
-
+Route::post('/pos/store', [PosController::class, 'store'])->name('pos.store');
 //Report page
 Route::get('/reports', [ReportsController::class, 'index'])->name('reports');
 

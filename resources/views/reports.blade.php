@@ -82,10 +82,10 @@
           <div class="w-full lg:w-3/4">
             <div class="flex flex-col lg:flex-row items-center mb-6">
               <label class="mr-2 font-semibold">Start Date:</label>
-              <input type="date" class="border border-input p-2 rounded-lg mb-4 lg:mb-0 lg:mr-4 w-full lg:w-auto" />
+              <input type="date" class="border border-input p-1 rounded-lg mb-4 lg:mb-0 lg:mr-4 w-full lg:w-auto" />
               <label class="mr-2 font-semibold">End Date:</label>
-              <input type="date" class="border border-input p-2 rounded-lg mb-4 lg:mb-0 lg:mr-4 w-full lg:w-auto" />
-              <button class="bg-primary text-primary-foreground p-2 px-4 rounded-lg w-full lg:w-auto">SEARCH</button>
+              <input type="date" class="border border-input p-1 rounded-lg mb-4 lg:mb-0 lg:mr-4 w-full lg:w-auto" />
+              <button class="bg-primary text-primary-foreground p-1 px-4 rounded-lg w-full lg:w-auto">SEARCH</button>
             </div>
             <div class="flex flex-col lg:flex-row">
               <div class="w-full lg:w-2/3 pr-0 lg:pr-4 mb-4 lg:mb-0">

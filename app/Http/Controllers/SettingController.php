@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UOM;
 use App\Models\User;
 use App\Models\InvRole;
 use App\Models\Invshop;
@@ -14,6 +15,10 @@ use App\Http\Controllers\Controller;
 
 class SettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,10 +29,11 @@ class SettingController extends Controller
         $itemCate = IteamCategory::all();
         $productCate = invProductCate::all();
         $user = User::all();
+        $uom = UOM::all();
         $invProduct = Products::paginate(12);
         $shop = Invshop::paginate(2);
         $role = InvRole::all();
-        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role')); 
+        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','uom')); 
     }
 
     /**
