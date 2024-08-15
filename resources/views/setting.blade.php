@@ -81,7 +81,7 @@
         @include('setting.category', ['itemCate' => $itemCate, 'productCate' => $productCate])
     </div>
       <div id="section6" class="content-section max-w-screen-lg mx-auto grid-cols-1 md:grid-cols-2 gap-8 flex flex-row" style="display: none;">
-        @include('setting.module')
+        @include('setting.module',['module'=>$module])
       </div>
       <div id="section7" class="content-section max-w-screen-lg mx-auto grid-cols-1 md:grid-cols-2 gap-8 flex flex-row" style="display: none;">
         @include('setting.product',['invProduct'=>$invProduct])

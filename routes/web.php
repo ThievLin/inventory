@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\AddonsController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\SettingController;
@@ -99,3 +100,4 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 //User edit
 Route::patch('/profile/{U_id}', [UserController::class, 'update'])->name('home.update');
+Route::post('/setting/update', [ModuleController::class, 'update'])->name('setting.update');
