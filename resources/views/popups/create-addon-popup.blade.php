@@ -7,19 +7,28 @@
             @csrf
             <div class="mb-4">
                 <label for="Addons_name" class="block text-sm font-medium text-gray-900 mb-1">Add-ons Name</label>
-                <input type="text" id="Addons_name" name="Addons_name" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="text" id="Addons_name" name="Addons_name" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
+                @error('Addons_name')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
             </div>
             <div class="mb-4">
                 <label for="Percentage" class="block text-sm font-medium text-gray-900 mb-1">Percentage</label>
-                <input type="text" id="Percentage" name="Percentage" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="text" id="Percentage" name="Percentage" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
+                @error('Percentage')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
             </div>
             <div class="mb-4">
                 <label for="Qty" class="block text-sm font-medium text-gray-900 mb-1">Qty</label>
-                <input type="text" id="Qty" name="Qty" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="text" id="Qty" name="Qty" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
+                @error('Qty')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
             </div>
             <div class="mb-6">
                 <label for="UOM_id" class="block text-sm font-medium text-gray-900 mb-1">UOM</label>
-                <select id="UOM_id" name="UOM_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <select id="UOM_id" name="UOM_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
                     <option value="">Select a UOM</option>
                     @foreach ($uom as $data)
                     <option value="{{ $data->UOM_id }}">
@@ -27,6 +36,9 @@
                     </option>
                     @endforeach
                 </select>
+                @error('UOM_id')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
             </div>
             <div class="text-end">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Save</button>
@@ -35,3 +47,29 @@
         </form>
     </div>
 </div>
+<script>
+    document.getElementById('cancelCre').addEventListener('click', function() {
+        document.getElementById('popupcreate').classList.add('hidden');
+    });
+
+    // Display the popup if validation errors are present
+    if ("{{ $errors->any() }}") {
+        document.getElementById('popupcreate').classList.remove('hidden');
+        const firstInvalid = document.querySelector('.is-invalid');
+        if (firstInvalid) {
+            firstInvalid.focus({ preventScroll: true });
+        }
+    }
+</script>
+
+<style>
+    .is-invalid {
+        border-color: #dc3545;
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+</style>

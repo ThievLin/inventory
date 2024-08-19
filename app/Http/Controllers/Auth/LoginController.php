@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'U_name'; // Return the field name used for username
+        return 'sys_name'; // Return the field name used for username
     }
 
     protected function attemptLogin(Request $request)

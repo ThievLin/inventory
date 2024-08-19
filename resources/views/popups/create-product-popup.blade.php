@@ -7,15 +7,21 @@
             @csrf
             <div class="mb-4">
                 <label for="Pro_name_eng" class="block text-sm font-medium text-gray-900 mb-1">Product Name Eng</label>
-                <input type="text" id="Pro_name_eng" name="Pro_name_eng" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="text" id="Pro_name_eng" name="Pro_name_eng" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
+                @error('Pro_name_eng')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
             <div class="mb-4">
                 <label for="Pro_name_kh" class="block text-sm font-medium text-gray-900 mb-1">Product Name Kh</label>
-                <input type="text" id="Pro_name_kh" name="Pro_name_kh" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <input type="text" id="Pro_name_kh" name="Pro_name_kh" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
+                @error('Pro_name_kh')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                @enderror
             </div>
             <div class="mb-6">
                 <label for="Pro_Cate_id" class="block text-sm font-medium text-gray-900 mb-1">Product Category</label>
-                <select id="Pro_Cate_id" name="Pro_Cate_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <select id="Pro_Cate_id" name="Pro_Cate_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
                     <option value="">Select product category</option>
                     @foreach ($proCate as $data)
                     <option value="{{ $data->Pro_Cate_id }}">
@@ -23,6 +29,9 @@
                     </option>
                     @endforeach
                 </select>
+                @error('Pro_Cate_id')
+                <span class="invalid-feedback">{{ $message }}</span>
+            @enderror
             </div>
             <div class="mb-6">
                 <label for="image" class="block text-sm font-medium text-gray-900 mb-1">Item Image</label>
@@ -38,3 +47,29 @@
         </form>
     </div>
 </div>
+<script>
+    document.getElementById('cancelCre').addEventListener('click', function() {
+        document.getElementById('popupcreate').classList.add('hidden');
+    });
+
+    // Display the popup if validation errors are present
+    if ("{{ $errors->any() }}") {
+        document.getElementById('popupcreate').classList.remove('hidden');
+        const firstInvalid = document.querySelector('.is-invalid');
+        if (firstInvalid) {
+            firstInvalid.focus({ preventScroll: true });
+        }
+    }
+</script>
+
+<style>
+    .is-invalid {
+        border-color: #dc3545;
+    }
+
+    .invalid-feedback {
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+</style>

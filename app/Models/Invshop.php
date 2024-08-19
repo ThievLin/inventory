@@ -30,4 +30,8 @@ class Invshop extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function locations()
+    {
+        return $this->hasMany(InvLocation::class, 'S_id', 'S_id');
+    }
 }

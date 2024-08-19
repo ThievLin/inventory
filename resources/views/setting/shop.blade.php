@@ -18,16 +18,13 @@
                 </div>
                 <h1 class="text-2xl font-semibold mb-2 text-center text-primary">WELCOME, {{strtoupper($data->S_name)}}</h1>
                 <div class="flex">
+                    @foreach ($data->locations as $location)
                     <div class="flex flex-col items-start p-4 bg-gray-200 rounded-lg m-2 w-full">
-                        <h2 class="text-lg font-medium mb-4">Address 1:</h2>
-                        <p class="text-gray-600 mb-4">រាជធានី, Street 1972, Phnom Penh 120801</p>
+                        <h2 class="text-lg font-medium mb-4">Address :</h2>
+                        <p class="text-gray-600 mb-4">{{ $location->L_address }}</p>
                         <a href="#" class="text-blue-500">Manage your location</a>
                     </div>
-                    <div class="flex flex-col items-start p-4 bg-gray-200 rounded-lg m-2 w-full">
-                        <h2 class="text-lg font-medium mb-4">Address 2:</h2>
-                        <p class="text-gray-600 mb-4">រាជធានី, Street 1972, Phnom Penh 120801</p>
-                        <a href="#" class="text-blue-500">Manage your location</a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

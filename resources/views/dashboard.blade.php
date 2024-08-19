@@ -55,55 +55,25 @@
         <div class="border-2 border-yellow-500 rounded-lg p-3 bg-white shadow-lg w-full">
           <h2 class="text-2xl font-bold text-center mb-4">PRODUCT LIST</h2>
           <div class="border-t-2 border-yellow-500 my-4"></div>
-          <table class="w-full border-collapse">
-            <thead>
-              <tr>
-                <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Pro 1</th>
-                <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Pro 2</th>
-                <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Pro 3</th>
-                <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Pro 4</th>
-                <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Pro 5</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">1</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">1</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">1</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">1</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">1</td>
-              </tr>
-              <tr>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">2</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">2</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">2</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">2</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">2</td>
-              </tr>
-              <tr>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">3</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">3</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">3</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">3</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">3</td>
-              </tr>
-              <tr>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">4</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">4</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">4</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">4</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-300">4</td>
-              </tr>
-              <tr>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">5</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">5</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">5</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">5</td>
-                <td class="border border-yellow-500 p-4 bg-zinc-200">5</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          <div class="overflow-y-auto" style="max-height: 400px;">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr>
+                  <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Product Name ENG</th>
+                  <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Product Name KH</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($product as $data)
+                <tr>
+                  <td class="border border-yellow-500 p-4 bg-zinc-300">{{$data->Pro_name_eng}}</td>
+                  <td class="border border-yellow-500 p-4 bg-zinc-300">{{$data->Pro_name_kh}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>        
       </div>      
 </div>
 @endsection

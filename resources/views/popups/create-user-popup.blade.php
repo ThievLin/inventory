@@ -7,54 +7,78 @@
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
             <h2 class="text-2xl font-bold text-white">Create User</h2>
         </div>
-        <form id="Create-user-form" class="space-y-4 px-6 py-2">
+        <form  action="{{ route('setting.user') }}" method="POST" enctype="multipart/form-data" id="Create-user-form" class="space-y-4 px-6 py-2">
+            @csrf
             <div class="relative text-center">
-                <label for="profile-pic" class="block mb-1 font-semibold">Profile Picture:</label>
+                <label for="U_photo" class="block mb-1 font-semibold">Profile Picture:</label>
                 <div class="relative inline-block">
                     <img src="images/user.png" class="h-32 w-32 rounded-full" alt="Profile">
                     <div class="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 rounded-full">
-                        <div class="p-2 cursor-pointer hover:bg-opacity-75 transition rounded-full" onclick="document.getElementById('profile-pic').click();">
+                        <div class="p-2 cursor-pointer hover:bg-opacity-75 transition rounded-full" onclick="document.getElementById('U_photo').click();">
                             <i class="fas fa-edit text-white"></i>
                         </div>
                     </div>
                 </div>
-                <input type="file" id="profile-pic" class="hidden">
+                <input type="file" id="U_photo" name="U_photo" class="hidden">
+                
             </div>                      
             <div class="flex px-4">
                 <div class="p-2 w-full">
                     <div class="mb-4">
-                        <label for="username" class="block mb-1">Username:</label>
-                        <input type="text" id="username" name="username" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label for="U_name" class="block mb-1">Username:</label>
+                        <input type="text" id="U_name" name="U_name" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="mb-4">
-                        <label for="role" class="block mb-1">Role:</label>
-                        <select class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <label for="R_id" class="block mb-1">Role:</label>
+                        <select  id="R_id" name="R_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                             <option value="" disabled selected>Select a role</option>
-                            <option value="">Admin</option>
-                            <option value="">Owner</option>
-                            <option value="">Inventory</option>
-                            <option value="">Seller</option>
+                            @foreach ($role as $role)
+                            <option value="{{ $role->R_id }}">{{ $role->R_type }}</option>
+                            @endforeach
                         </select>
                     </div>
+                    <div class="mb-4">
+                        <label for="L_id" class="block">Location :</label>
+                        <select id="L_id" name="L_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="" disabled selected>Select a Location</option>
+                            @foreach ($location as $data)
+                            <option value="{{ $data->L_id }}">
+                                {{ $data->L_address }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
                 </div>
                 <div class="p-2 w-full">
                     <div class="mb-4">
-                        <label for="Systemname" class="block mb-1">System Name:</label>
-                        <input type="text" id="Systemname" name="Systemname" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label for="sys_name" class="block mb-1">System Name:</label>
+                        <input type="text" id="sys_name" name="sys_name" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="mb-4">
-                        <label for="usercontact" class="block mb-1">User Contact:</label>
-                        <input type="text" id="usercontact" name="usercontact" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label for="U_contact" class="block mb-1">User Contact:</label>
+                        <input type="text" id="U_contact" name="U_contact" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
+
                 </div>
+
                 <div class="p-2 w-full">
+
                     <div class="mb-4">
-                        <label for="oldpassword" class="block mb-1">Password:</label>
+                        <label for="S_id" class="block mb-1">Shop</label>
+                        <select  id="S_id" name="S_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                            <option value="" disabled selected>Select a Shop</option>
+                            @foreach ($shop_se as $data)
+                            <option value="{{ $data->S_id }}">
+                                {{ $data->S_name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="password" class="block mb-1">Password:</label>
                         <input type="password" id="password" name="password" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div class="mb-4">
-                        <label for="newpassword" class="block mb-1">Confirm Password:</label>
-                        <input type="password" id="cfpassword" name="cfpassword" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
             </div>

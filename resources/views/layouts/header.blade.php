@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Inventory Management System</title>
+    
+    <!-- Favicon -->
+    {{-- <link rel="icon" href="{{ asset('storage/' . Auth::user()->invshop->S_logo) }}" type="image/x-icon"> --}}
+
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/header.css" rel="stylesheet">

@@ -80,4 +80,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo(InvLocation::class, 'L_id', 'L_id');
     }
+    public function invOwner()
+    {
+        return $this->belongsTo(InvOwner::class);
+    }
 }

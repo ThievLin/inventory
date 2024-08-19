@@ -24,7 +24,6 @@
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Sup_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Supplier</label>
                     <select id="Sup_id" name="Sup_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option>Select a Supplier</option>
                         @foreach ($Supplier as $data)
                         <option value="{{ $data->Sup_id }}">
                             {{ $data->Sup_name }}
@@ -43,7 +42,7 @@
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Currency_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
                     <select id="Currency_id" name="Currency_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option>Select a Supplier</option>
+
                         @foreach ($currency as $data)
                         <option value="{{ $data->Currency_id }}">
                             {{ $data->Currency_name }}

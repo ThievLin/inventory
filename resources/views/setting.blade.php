@@ -48,7 +48,7 @@
                 <aside class="text-gray-500 w-64 h-full p-6 bg-gray-200 fixed top-0 left-0 transform -translate-x-full transition-transform lg:transform-none lg:static lg:w-64 lg:h-full lg:p-6 lg:bg-gray-200 z-50" id="sidebar">
                     <nav class="flex flex-col py-4">
                         <!-- Navigation Links -->
-                        <a href="#shop" id="link-section1" onclick="showSection('section1');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
+                        <a href="/setting" id="link-section1" onclick="showSection('section1');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">
                             <i class="fas fa-store mr-2"></i> Shop
                         </a>
                         <a href="#user" id="link-section3" onclick="showSection('section3');" class="nav-link flex items-center py-2 px-4 hover:bg-bsicolor rounded-lg my-1">

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use App\Models\Dashboard;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
@@ -19,7 +20,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $product = Products::all();
+        return view('dashboard', compact('product'));
     }
 
     /**

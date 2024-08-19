@@ -101,3 +101,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 //User edit
 Route::patch('/profile/{U_id}', [UserController::class, 'update'])->name('home.update');
 Route::post('/setting/update', [ModuleController::class, 'update'])->name('setting.update');
+
+//shop
+Route::post('/setting', [SettingController::class, 'store'])->name('setting.store');
+Route::post('/setting/location', [SettingController::class, 'location'])->name('setting.location');
+Route::post('/setting/user', [SettingController::class, 'user'])->name('setting.user');

@@ -20,4 +20,8 @@ class InvLocation extends Model
         'L_contact',
         'status'
     ];
+    public function shop()
+    {
+        return $this->belongsTo(InvShop::class, 'S_id', 'S_id');
+    }
 }

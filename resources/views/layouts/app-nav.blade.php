@@ -11,6 +11,7 @@ $navItems = [
 ];
 @endphp
 @vite('resources/css/app.css')
+{{-- <link rel="icon" href="{{ asset('storage/' . Auth::user()->invshop->S_logo) }}" type="image/x-icon"> --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <div class="min-h-screen flex flex-col bg-background text-foreground">
     <header class="flex flex-row items-center space-x-4 mt-2">
@@ -30,7 +31,7 @@ $navItems = [
 
         <div class="bg-primary p-3 shadow-md flex items-end justify-end flex-1">
             <div class="space-x-2 items-end justify-end">
-                <h1 class="text-sm font-bold text-primary-foreground">{{ Auth::user()->U_name }}</h1>
+                <h1 class="text-sm font-bold text-primary-foreground">{{ Auth::user()->sys_name }}</h1>
             </div>
         </div>
         
