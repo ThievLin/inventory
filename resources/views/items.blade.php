@@ -22,9 +22,24 @@
           <thead>
             <tr class="bg-primary text-primary-foreground text-lg">
               <th class="py-4 px-4 border border-white">Item ID</th>
-              <th class="py-4 px-4 border border-white">Item Khname</th>
-              <th class="py-4 px-4 border border-white">Item Engname</th>
-              <th class="py-4 px-4 border border-white">Item Category</th>
+              <th class="py-4 px-4 border border-white">
+                <a href="{{ url('/items?sortColumn=Item_Khname&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
+                  Item Khname
+                  <i class="fas fa-xs {{ request('sortColumn') == 'Item_Khname' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
+                </a>
+              </th>
+              <th class="py-4 px-4 border border-white">
+                <a href="{{ url('/items?sortColumn=Item_Engname&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
+                  Item Engname
+                  <i class="fas fa-xs {{ request('sortColumn') == 'Item_Engname' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
+                </a>
+              </th>
+              <th class="py-4 px-4 border border-white">
+                <a href="{{ url('/items?sortColumn=category_name&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
+                  Item Category
+                  <i class="fas fa-xs {{ request('sortColumn') == 'category_name' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
+                </a>
+              </th>
               <th class="py-4 px-4 border border-white">Expiry Date</th>
               <th class="py-4 px-4 border border-white">Image</th>
               <th class="py-4 px-4 border border-white">Action</th>
