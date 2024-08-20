@@ -146,6 +146,24 @@ class SettingController extends Controller
         // Redirect back with success message
         return redirect()->back()->with('success', 'User created successfully!');
     }
+    public function category(Request $request){
+        // Validate the input data
+        $validatedData = $request->validate([
+            'Item_Cate_Khname' => ['required', 'string', 'max:255'],
+            'Item_Cate_Engname' => ['nullable', 'string', 'max:255'], // Add validation rule for English name
+        ]);
+    
+        // Create the item category record in the database
+        IteamCategory::create([
+            'Item_Cate_Khname' => $validatedData['Item_Cate_Khname'],
+            'Item_Cate_Engname' => $request->input('Item_Cate_Engname'), // Use request input directly
+            'item_Cate_type' => '',
+            'status' => 'Active',
+        ]);
+    
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Category created successfully!');
+    }
     
     
     /**

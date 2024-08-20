@@ -11,12 +11,13 @@
         <div class="shop-card relative bg-white rounded-lg shadow-lg overflow-hidden col-span-full sm:col-span-1">
             <div class="p-6 bg-gray-100 rounded-lg">
                 <div class="relative flex justify-center items-center">
-                    <img src="{{ asset('storage/' . $data->S_logo) }}" alt="Shop Image" class="rounded-full h-52 w-52 object-cover mx-auto shadow-lg mb-4">
+                    <img src="{{ $data->S_logo ? asset('storage/' . $data->S_logo) : asset('images/shop.jpg') }}" 
+                         alt="Shop Image" class="rounded-full h-52 w-52 object-cover mx-auto shadow-lg mb-4">
                     <div class="edit-button-shop absolute bottom-2 right-2 bg-gray-900 bg-opacity-50 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition duration-300">
                         <i class="fas fa-edit text-white"></i>
                     </div>
                 </div>
-                <h1 class="text-2xl font-semibold mb-2 text-center text-primary">WELCOME, {{strtoupper($data->S_name)}}</h1>
+                <h1 class="text-2xl font-semibold mb-2 text-center text-primary">WELCOME, {{ strtoupper($data->S_name) }}</h1>
                 <div class="flex">
                     @foreach ($data->locations as $location)
                     <div class="flex flex-col items-start p-4 bg-gray-200 rounded-lg m-2 w-full">
@@ -28,6 +29,7 @@
                 </div>
             </div>
         </div>
+        
         @endforeach
    <!-- Add more shop cards here as needed -->
     </div>

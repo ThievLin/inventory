@@ -105,4 +105,7 @@ Route::post('/setting/update', [ModuleController::class, 'update'])->name('setti
 //shop
 Route::post('/setting', [SettingController::class, 'store'])->name('setting.store');
 Route::post('/setting/location', [SettingController::class, 'location'])->name('setting.location');
+
 Route::post('/setting/user', [SettingController::class, 'user'])->name('setting.user');
+//add category items
+Route::post('/setting/category', [SettingController::class, 'category'])->name('setting.category');
