@@ -109,7 +109,7 @@ class OrdersController extends Controller
             Orders::create([
                 'Order_Info_id' => $order->Order_Info_id,
                 'Item_id' => $request->input("inputSelectItem".($i+1)),
-                'Item_Qty' => $request->input("Item_Qty".($i+1)),
+                'Item_Qty' => $request->input("QtyItem".($i+1)),
                 'UOM_id' => $request->input("inputSelectUOM".($i+1)),
                 'Order_Qty' => $request->input("Item_Qty".($i+1)),
                 'price' => $request->input("price".($i+1)),
