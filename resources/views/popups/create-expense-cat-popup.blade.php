@@ -4,14 +4,15 @@
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
             <h2 class="text-2xl font-bold text-white mb-2">Create new Expense Category</h2>
         </div>
-        <form id="itemCatForm" enctype="multipart/form-data" class="p-6">
+        <form id="itemCatForm" action="{{ route('setting.expense_cate') }}" method="POST" enctype="multipart/form-data" class="p-6">
+            @csrf
             <div class="mb-4">
-                <label for="Expense_Khname" class="block text-sm font-medium text-gray-900 mb-1">Expense Cate Khname</label>
-                <input type="text" id="Expense_Khname" name="Expense_Khname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label for="IEC_Khname" class="block text-sm font-medium text-gray-900 mb-1">Expense Cate Khname</label>
+                <input type="text" id="IEC_Khname" name="IEC_Khname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
             <div class="mb-4">
-                <label for="Expense_Engname" class="block text-sm font-medium text-gray-900 mb-1">Expense Cate Enname</label>
-                <input type="text" id="Expense_Engname" name="Expense_Engname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                <label for="IEC_Engname" class="block text-sm font-medium text-gray-900 mb-1">Expense Cate Enname</label>
+                <input type="text" id="IEC_Engname" name="IEC_Engname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
             </div>
             <div class="text-end">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Save</button>

@@ -78,12 +78,13 @@
                     </div>
                 </div>
                 @endforeach
+                @foreach ($expense as $data )
                 <div class="category-expenses hidden bg-white p-2 rounded-lg shadow-md">
                     <div class="w-full h-20 flex items-center justify-center bg-gray-200 rounded-lg">
                         <i class="fas fa-money-bill text-gray-600 text-6xl"></i>
                     </div>
                     <div class="p-2">
-                        <h2 class="text-lg text-gray-800 mb-3">Order</h2>
+                        <h2 class="text-lg text-gray-800 mb-3">{{$data->IEC_Engname}}</h2>
                         <div class="flex justify-between">
                             <div class="relative group">
                                 <button class="bg-blue-500 text-white px-2 py-1 text-xs rounded hover:bg-blue-600">
@@ -106,34 +107,7 @@
                         </div>                        
                     </div>
                 </div>
-                <div class="category-expenses hidden bg-white p-2 rounded-lg shadow-md">
-                    <div class="w-full h-20 flex items-center justify-center bg-gray-200 rounded-lg">
-                        <i class="fas fa-money-bill text-gray-600 text-6xl"></i>
-                    </div>
-                    <div class="p-2">
-                        <h2 class="text-lg text-gray-800 mb-3">Daily</h2>
-                        <div class="flex justify-between">
-                            <div class="relative group">
-                                <button class="bg-blue-500 text-white px-2 py-1 text-xs rounded hover:bg-blue-600">
-                                    <i class="fas fa-edit"></i>
-                                    <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 text-xs text-white bg-gray-600 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Edit</span>
-                                </button>
-                            </div>
-                            <div class="relative group">
-                                <button class="bg-red-500 text-white px-2 py-1 text-xs rounded hover:bg-red-600">
-                                    <i class="fas fa-trash-alt"></i>
-                                    <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 text-xs text-white bg-gray-600 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Delete</span>
-                                </button>
-                            </div>
-                            <div class="relative group">
-                                <button class="bg-green-500 text-white px-2 py-1 text-xs rounded hover:bg-green-600">
-                                    <i class="fas fa-toggle-on"></i>
-                                    <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 text-xs text-white bg-gray-600 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Active</span>
-                                </button>
-                            </div>
-                        </div>                        
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
         @include('popups.create-item-cat-popup')

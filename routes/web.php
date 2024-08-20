@@ -107,5 +107,8 @@ Route::post('/setting', [SettingController::class, 'store'])->name('setting.stor
 Route::post('/setting/location', [SettingController::class, 'location'])->name('setting.location');
 
 Route::post('/setting/user', [SettingController::class, 'user'])->name('setting.user');
-//add category items
+//add category items on setting
 Route::post('/setting/category', [SettingController::class, 'category'])->name('setting.category');
+Route::post('/setting/product_cate', [SettingController::class, 'product_cate'])->name('setting.product_cate');
+Route::post('/setting/expense_cate', [SettingController::class, 'expense_cate'])->name('setting.expense_cate');
+Route::post('/setting/uom', [SettingController::class, 'uom'])->name('setting.uom');

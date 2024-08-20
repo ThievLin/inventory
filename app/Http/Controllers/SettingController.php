@@ -10,7 +10,9 @@ use App\Models\Invshop;
 use App\Models\Setting;
 use App\Models\Products;
 use App\Models\SysModule;
+use App\Models\ExpenseCate;
 use App\Models\InvLocation;
+use App\Models\ProductGroup;
 use Illuminate\Http\Request;
 use App\Models\IteamCategory;
 use App\Models\invProductCate;
@@ -42,7 +44,9 @@ class SettingController extends Controller
         $module = SysModule::all();
         $moduleInf = Module::all();
         $location = InvLocation::all();
-        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','module','moduleInf','uom','shop_se','location')); 
+        $group = ProductGroup::all();
+        $expense = ExpenseCate::all();
+        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','module','moduleInf','uom','shop_se','location','group','expense')); 
 
     }
 
@@ -165,7 +169,58 @@ class SettingController extends Controller
         return redirect()->back()->with('success', 'Category created successfully!');
     }
     
+    public function product_cate(Request $request){
+        $validatedData = $request->validate([
+            'Cate_Khname' => ['required', 'string', 'max:255'],
+            'Cate_Engname' => ['required', 'string', 'max:255'], // Add validation rule for English name
+            'IPG_id' => 'required|integer',
+        ]);
+        
+        // Create the item category record in the database
+        invProductCate::create([
+            'Cate_Khname' => $validatedData['Cate_Khname'],
+            'Cate_Engname' =>  $validatedData['Cate_Engname'], // Use request input directly
+            'IPG_id' => $validatedData['IPG_id'],
+            'status' => 'Active',
+        ]);
     
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Category created successfully!');
+    }
+    public function expense_cate(Request $request){
+        $validatedData = $request->validate([
+            'IEC_Khname' => ['required', 'string', 'max:255'],
+            'IEC_Engname' => ['required', 'string', 'max:255'], // Add validation rule for English name
+      
+        ]);
+        
+        // Create the item category record in the database
+        ExpenseCate::create([
+            'IEC_Khname' => $validatedData['IEC_Khname'],
+            'IEC_Engname' =>  $validatedData['IEC_Engname'], // Use request input directly
+            'status' => 'Active',
+        ]);
+    
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Category created successfully!');
+    }
+    public function uom(Request $request){
+        $validatedData = $request->validate([
+            'UOM_name' => ['required', 'string', 'max:255'],
+            'UOM_abb' => ['required', 'string', 'max:255'], // Add validation rule for English name
+      
+        ]);
+        
+        // Create the item category record in the database
+        UOM::create([
+            'UOM_name' => $validatedData['UOM_name'],
+            'UOM_abb' =>  $validatedData['UOM_abb'], // Use request input directly
+            'status' => 'Active',
+        ]);
+    
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Category created successfully!');
+    }
     /**
      * Display the specified resource.
      *

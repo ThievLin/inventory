@@ -23,14 +23,5 @@ document.getElementById('createUOMButton').addEventListener('click', function(e)
 document.getElementById('closeCreateUOMPopup').addEventListener('click', function() {
     document.getElementById('createUOMPopup').classList.add('hidden');
 });
-
-// Optionally handle form submission here
-document.getElementById('createUOMForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Add logic to handle form submission, e.g., sending data to the server
-    alert('UOM Created!');
-    document.getElementById('createUOMPopup').classList.add('hidden');
-});
-
 </script>
 
