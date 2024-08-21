@@ -1,18 +1,21 @@
 @extends('layouts.app-nav')
 @section('content')
-
 <div class="flex justify-center items-center mt-4">
     <div id="dashboard" class="p-2 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-8 w-full mb-14 mt-1 md:w-4/5 lg:w-4/5">
         <div class="w-full">
           <div class="border-2 border-yellow-500 rounded-lg p-14 text-center shadow-lg">
             <h2 class="text-xl font-bold mb-2">DAILY SALE</h2>
             <div class="border-t-2 border-yellow-500 my-6 mt-1"></div>
-            <p class="text-xl font-bold ">123</p>
+            <p class="text-xl font-bold ">{{$totalDailySales}}</p>
           </div>
           <div class="border-2 border-yellow-500 rounded-lg p-14 text-center mt-4 shadow-lg">
             <h2 class="text-xl font-bold">TOP PRODUCT</h2>
             <div class="border-t-2 border-yellow-500 my-6 mt-1"></div>
-            <p class="text-xl font-bold">1. Iced Green Tea</p>
+              @if ($topProduct)
+                  <p class="text-xl font-bold">{{ $topProduct->Product_name_eng }}: {{ $topProduct->total_qty }}</p>
+              @else
+                  <p class="text-xl font-bold">No products sold today</p>
+              @endif
           </div>
         </div>
         <div class="border-2 border-yellow-500 rounded-lg p-10 w-full shadow-lg">

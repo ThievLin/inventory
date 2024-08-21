@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sales;
 use App\Models\Products;
 use App\Models\Dashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
@@ -20,8 +23,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $today = Carbon::today();
+
+        // Sum the price for all records that occurred today
+        $totalDailySales = Sales::whereDate('Sale_date', $today)
+                                 ->sum('price');
+        $topProduct = Sales::select('Product_name_eng', DB::raw('SUM(Qty) as total_qty'))
+                                 ->whereDate('Sale_date', $today)
+                                 ->groupBy('Product_name_eng')
+                                 ->orderBy('total_qty', 'desc')
+                                 ->first(); // Fetch only the top product
         $product = Products::all();
-        return view('dashboard', compact('product'));
+        return view('dashboard', compact('product','totalDailySales','topProduct'));
     }
 
     /**
