@@ -19,12 +19,30 @@ class ItemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $categories = IteamCategory::all();
-        $items = Items::with('iteamCategory')->paginate(8); 
-        return view('items', compact('items','categories')); 
+    public function index(Request $request)
+{
+    // Retrieve sorting parameters from the request or set default values
+    $sortColumn = $request->input('sortColumn', 'Item_id'); // Default sorting column
+    $sortOrder = $request->input('sortOrder', 'asc'); // Default sorting order
+
+    // Validate column names to prevent SQL injection
+    $validColumns = ['Item_id', 'Item_Khname', 'Item_Engname', 'Item_Category', 'Expiry_date'];
+    if (!in_array($sortColumn, $validColumns)) {
+        $sortColumn = 'Item_id'; // Default column if invalid
     }
+
+    // Fetch categories
+    $categories = IteamCategory::all();
+
+    // Fetch items with sorting
+    $items = Items::with('iteamCategory')
+        ->orderBy($sortColumn, $sortOrder)
+        ->paginate(8);
+
+    // Pass variables to the view
+    return view('items', compact('items', 'categories', 'sortColumn', 'sortOrder'));
+}
+
 
     /**
      * Show the form for creating a new resource.

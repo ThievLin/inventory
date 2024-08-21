@@ -19,12 +19,47 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $proCate = invProductCate::all();
-        $products = Products::with('productCategory')->paginate(8); 
-        return view('products', compact('products','proCate')); 
+    public function index(Request $request)
+{
+    $proCate = invProductCate::all();
+
+    // Get sorting parameters or default to 'Pro_id' and 'asc'
+    $sortColumn = $request->input('sortColumn', 'Pro_id');
+    $sortOrder = $request->input('sortOrder', 'asc');
+
+    // Validate sort column and order
+    $validColumns = ['Pro_name_eng', 'Pro_name_kh', 'Pro_id', 'Cate_Khname'];
+    $sortColumn = in_array($sortColumn, $validColumns) ? $sortColumn : 'Pro_id';
+    $sortOrder = $sortOrder === 'desc' ? 'desc' : 'asc';
+
+    // Get search parameters
+    $searchTerm = $request->input('search', '');
+
+    // Build the query
+    $query = Products::with('productCategory')
+        ->where(function ($query) use ($searchTerm) {
+            $query->where('Pro_name_eng', 'like', "%{$searchTerm}%")
+                ->orWhere('Pro_name_kh', 'like', "%{$searchTerm}%")
+                ->orWhereHas('productCategory', function ($query) use ($searchTerm) {
+                    $query->where('Cate_Khname', 'like', "%{$searchTerm}%");
+                });
+        });
+
+    // Apply sorting based on the column
+    if ($sortColumn === 'Cate_Khname') {
+        $query->join('product_categories', 'products.category_id', '=', 'product_categories.id')
+            ->orderBy('product_categories.Cate_Khname', $sortOrder);
+    } else {
+        $query->orderBy($sortColumn, $sortOrder);
     }
+
+    // Paginate results
+    $products = $query->paginate(8); // Adjust pagination as needed
+
+    return view('products', compact('products', 'proCate', 'sortColumn', 'sortOrder', 'searchTerm'));
+}
+
+
 
     /**
      * Show the form for creating a new resource.

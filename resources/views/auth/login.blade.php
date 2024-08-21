@@ -10,8 +10,8 @@
             <div class="flex flex-col sm:flex-row lg:items-center lg:justify-between p-4">
                 <div class="w-full flex flex-col items-center justify-center space-y-2 lg:w-1/2">
                     <img src="images/official_logo.png" alt="Company Logo" class="rounded-lg" style="max-width: 150px; height: auto;" />
-                    <h2 class="text-lg font-semibold">HOMETOWN CAFÉ</h2>
-                    <p class="text-muted-foreground">Address:</p>
+                    <h2 class="text-lg font-semibold text-center">HOMETOWN CAFÉ</h2>
+                    <p class="text-muted-foreground text-center">#178E0E1, Street 1972, Phnom Penh Thmey, Sen Sok 120801 , Cambodia</p>
                 </div>
                 <div class="w-full lg:w-3/5 sm:pl-4">
                     <div class="w-full border border-border p-2 rounded-lg">
