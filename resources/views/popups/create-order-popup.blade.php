@@ -1,4 +1,26 @@
 <!-- Popup form -->
+@php
+use App\Models\OrderInfor;
+
+$date = date('Y-m-d');
+
+// Retrieve the latest order number for the current date
+$latestOrder = OrderInfor::whereDate('order_date', '=', $date)
+                         ->orderBy('order_date', 'desc')
+                         ->orderBy('Order_number', 'desc')
+                         ->first();
+
+if ($latestOrder) {
+    $lastOrderNumber = $latestOrder->Order_number;
+    // Extract the sequence number from the last order number
+    $parts = explode('_', $lastOrderNumber);
+    $sequence = (int) end($parts) + 1;
+} else {
+    $sequence = 1;
+}
+
+$orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 3, '0', STR_PAD_LEFT);
+@endphp
 <div id="popupOrder" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center hidden z-20">
     <div class="bg-white rounded-lg shadow-lg max-w-5xl w-full mx-4 max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
@@ -19,7 +41,7 @@
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Total_Price" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Total Price</label>
-                    <input type="number" id="Total_Price" name="Total_Price" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="number" id="Total_Price" name="Total_Price" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" step="any">
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Sup_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Supplier</label>
@@ -152,24 +174,19 @@ function addItemRow(index) {
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
                 <label for="price${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Price</label>
-                <input type="number" id="price${index}" name="price${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
-            </div>
-            <div class="w-full sm:w-1/5 px-2 mb-8">
-                <label for="inputSelectcurren${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
-                <select id="inputSelectcurren${index}" name="inputSelectcurren${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">Select Currency</option>
-                    @foreach ($currency as $data)
-                    <option value="{{ $data->Currency_id }}">
-                        {{ $data->Currency_name }}
-                    </option>
-                    @endforeach
-                </select>
+                <input type="number" id="price${index}" name="price${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" step="any" oninput="updateTotalPrice()">
             </div>
         </div>
     `;
     document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', itemRow);
 }
+var orderDateField = document.getElementById('order_date');
+    var today = new Date().toISOString().split('T')[0];
+    orderDateField.value = today;
 
+var today = new Date().toISOString().split('T')[0];
+var orderNumberField = document.getElementById('Order_number');
+orderNumberField.value = $orderNumber;
 function updateTotalPrice() {
     var totalPriceField = document.getElementById('Total_Price');
     var itemsContainer = document.getElementById('itemsContainer');

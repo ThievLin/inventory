@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Items;
 use App\Models\Sales;
 use App\Models\Products;
 use App\Models\Dashboard;
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\InHand;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -34,7 +38,9 @@ class DashboardController extends Controller
                                  ->orderBy('total_qty', 'desc')
                                  ->first(); // Fetch only the top product
         $product = Products::all();
-        return view('dashboard', compact('product','totalDailySales','topProduct'));
+        $item = Items::all();
+        $inhand =InHand::all();
+        return view('dashboard', compact('product','totalDailySales','topProduct','item','inhand'));
     }
 
     /**

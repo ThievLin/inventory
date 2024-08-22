@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\InHand;
 use App\Models\IteamCategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,5 +26,9 @@ class Items extends Model
     public function iteamCategory()
     {
         return $this->belongsTo(IteamCategory::class, 'Item_Cate_id', 'Item_Cate_id');
+    }
+    public function inhand()
+    {
+        return $this->belongsTo(InHand::class, 'Item_id', 'Item_id');
     }
 }
