@@ -19,7 +19,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="file" id="U_photo" name="U_photo" class="hidden">
+                <input type="file" id="U_photo" name="U_photo" hidden>
                 
             </div>                      
             <div class="flex px-4">

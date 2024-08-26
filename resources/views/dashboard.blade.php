@@ -2,12 +2,13 @@
 @section('content')
 <div class="flex justify-center items-center mt-4">
     <div id="dashboard" class="p-2 grid grid-cols-1 md:grid-cols-2 gap-8 w-full mb-14 mt-1 md:w-4/5 lg:w-4/5">
+        <!-- DAILY SALE & TOP PRODUCT SECTIONS -->
         <div class="w-full">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="border-2 border-yellow-500 rounded-lg p-14 text-center shadow-lg">
                     <h2 class="text-xl font-bold mb-2">DAILY SALE</h2>
                     <div class="border-t-2 border-yellow-500 my-6 mt-1"></div>
-                    <p class="text-xl font-bold">{{$totalDailySales}}</p>
+                    <p class="text-xl font-bold">{{ number_format($totalDailySales, 2) }}</p>
                 </div>
                 <div class="border-2 border-yellow-500 rounded-lg p-14 text-center shadow-lg">
                     <h2 class="text-xl font-bold">TOP PRODUCT</h2>
@@ -19,15 +20,16 @@
                     @endif
                 </div>
             </div>
+
+            <!-- STOCK ON HAND SECTION -->
             <div class="border-2 border-yellow-500 rounded-lg p-10 w-full shadow-lg bg-white mt-4">
               <h2 class="text-xl font-bold text-center mb-4 text-yellow-600">STOCK ON HAND</h2>
               <div class="border-t-2 border-yellow-500 my-6"></div>
               <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
-                  @foreach ($item as $data)
-                 
+                  @foreach ($invView as $data)
                   <div class="border border-yellow-500 rounded-lg p-4 bg-gray-100">
-                      <p class="text-sm font-bold mb-2">{{$data->Item_Engname}}</p>
-                      <p class="text-xs text-gray-700">{{$data->InHand->Total_StockIn ?? 'null'}}</p>
+                      <p class="text-sm font-bold mb-2">{{$data->Item_Name}}</p>
+                      <p class="text-xs text-gray-700">{{$data->Total_StockIn ?? 'null'}}</p>
                   </div>
                   @endforeach
               </div>
@@ -36,10 +38,13 @@
           
         </div>
         
+        <!-- PRODUCT LIST SECTION -->
         <div class="border-2 border-yellow-500 rounded-lg p-3 bg-white shadow-lg w-full">
             <h2 class="text-2xl font-bold text-center mb-4">PRODUCT LIST</h2>
-            <div class="border-t-2 border-yellow-500 my-4"></div>
-            <div class="overflow-y-auto" style="max-height: 800px;">
+            <div class="border-t-2 border-yellow-500 my-4 " ></div>
+            
+            <!-- Scrollable container for the table -->
+            <div class="overflow-auto" style="max-height: 650px;">
                 <table class="w-full border-collapse">
                     <thead>
                         <tr>
@@ -57,6 +62,7 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>      
 </div>

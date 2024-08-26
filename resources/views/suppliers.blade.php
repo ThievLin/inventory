@@ -43,10 +43,11 @@
                   <i class="fas fa-trash-alt fa-xs"></i>
                   <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 px-2 py-1 text-xs text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">Delete</span>
                 </button>
-                <button class="relative bg-green-500 hover:bg-green-600 active:bg-green-700 text-white py-2 px-4 rounded-md focus:outline-none transition duration-150 ease-in-out group">
-                    <i class="fas fa-toggle-on fa-xs"></i>
-                    <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 px-2 py-1 text-xs text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">Active</span>
-                </button>
+                <button class="relative bg-green-500 hover:bg-green-600 active:bg-green-700 text-white py-2 px-4 rounded-md focus:outline-none transition duration-150 ease-in-out group" 
+                onclick="toggleActive(this)">
+                <i class="fas fa-toggle-on fa-xs"></i>
+                <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 px-2 py-1 text-xs text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">Active</span>
+            </button>
               </td>
             </tr>
             @endforeach
@@ -93,5 +94,24 @@
     document.getElementById('cancelEdit').addEventListener('click', function() {
         document.getElementById('editPopup').classList.add('hidden');
     });
+
+    function toggleActive(button) {
+    // Toggle the active state
+    if (button.classList.contains('active')) {
+        // Change to inactive state
+        console.log(123);       
+        button.classList.remove('active');
+        button.style.backgroundColor = '#FF0000'; // Red color for inactive
+        button.innerHTML = '<i class="fas fa-toggle-off fa-xs"></i>';
+    } else {
+      console.log(678);       
+
+        // Change to active state
+        button.classList.add('active');
+        button.style.backgroundColor = '#008000'; // Green color for active
+        button.innerHTML = '<i class="fas fa-toggle-on fa-xs"></i>';
+    }
+}
+
 </script>
 @endsection

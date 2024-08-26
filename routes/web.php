@@ -104,6 +104,9 @@ Route::post('/setting/update', [ModuleController::class, 'update'])->name('setti
 
 //shop
 Route::post('/setting', [SettingController::class, 'store'])->name('setting.store');
+Route::patch('/setting/{S_id}', [SettingController::class, 'update'])->name('setting.update');
+
+
 Route::post('/setting/location', [SettingController::class, 'location'])->name('setting.location');
 
 Route::post('/setting/user', [SettingController::class, 'user'])->name('setting.user');

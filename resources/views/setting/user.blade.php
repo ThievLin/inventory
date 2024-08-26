@@ -11,7 +11,7 @@
             <div class="border-b-2 border-bsicolor">
                 <div class="rounded-lg">
                     <div class="relative">
-                        <img src="images/user.png" alt="user image" class="rounded-full mb-4 h-32 w-32 object-cover shadow-lg m-auto">
+                        <img src="{{ $data->U_photo ? asset('storage/' . $data->U_photo) : asset('images/shop.jpg') }}" alt="user image" class="rounded-full mb-4 h-32 w-32 object-cover shadow-lg m-auto">
                     </div>
                     <h1 class="text-xl font-semibold mb-2 text-center text-primary">{{ strtoupper($data->U_name) }} ({{ strtoupper($data->InvRole->R_type) }})</h1>
                 </div>

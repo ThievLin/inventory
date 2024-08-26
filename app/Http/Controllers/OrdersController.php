@@ -61,7 +61,7 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        // Validate the request
         $request->validate([
             'Reciept_image' => '|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'Total_Price' => 'required|numeric',
@@ -84,16 +84,27 @@ class OrdersController extends Controller
             'L_id' => Auth::user()->invLocation->L_id,
             'inc_VAT' => $request->inc_VAT ? 1 : 0,
             'order_date' => $request->order_date,
-            'Currency_id' => $request->Currency_id ,
+            'Currency_id' => $request->Currency_id,
         ]);
     
-        // Create the individual Orders
+        // Create the individual Orders and update expiry dates
         $numberOfItems = $request->selectnum;
     
         for ($i = 0; $i < $numberOfItems; $i++) {
+            $itemId = $request->input("inputSelectItem".($i+1));
+            $expiryDate = $request->input("expired_Date".($i+1));
+    
+            // Update the Expiry Date in the Items table if the item exists
+            $item = Items::find($itemId);
+            if ($item) {
+                $item->Expiry_date = $expiryDate;
+                $item->save();
+            }
+    
+            // Create the Order
             Orders::create([
                 'Order_Info_id' => $order->Order_Info_id,
-                'Item_id' => $request->input("inputSelectItem".($i+1)),
+                'Item_id' => $itemId,
                 'Item_Qty' => $request->input("QtyItem".($i+1)),
                 'UOM_id' => $request->input("inputSelectUOM".($i+1)),
                 'Order_Qty' => $request->input("Item_Qty".($i+1)),

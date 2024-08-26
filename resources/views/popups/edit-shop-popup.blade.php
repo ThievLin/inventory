@@ -7,11 +7,14 @@
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-4 py-3">
             <h2 class="text-2xl font-bold text-white">Edit Shop</h2>
         </div>
-        <form id="edit-shop-form" class="space-y-3 px-6 py-2">
+        <form id="editshopForm" class="space-y-3 px-6 py-2" method="POST" enctype="multipart/form-data">
+            @csrf <!-- Laravel CSRF token -->
+            <input type="hidden" name="_method" value="PATCH"> <!-- Method Spoofing -->
+            
             <label class="block mb-1 font-semibold text-center text-lg">Shop Image:</label>
             <div class="relative">
                 <img src="images/shop.jpg" id="shop-pic-preview" class="mt-2 h-48 w-full rounded-md mx-auto object-cover shadow-lg" alt="Shop Picture Preview">
-                <input type="file" id="shop-pic" class="hidden">
+                <input type="file" id="shop-pic" class="hidden" name="S_logo">
                 <div class="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 rounded-md opacity-0 transition-opacity duration-300 hover:opacity-100 cursor-pointer" onclick="document.getElementById('shop-pic').click();">
                     <i class="fas fa-edit text-white text-3xl"></i>
                 </div>
@@ -19,16 +22,16 @@
             <div class="py-2 w-full text-start">
                 <div class="mb-3">
                     <label for="shop-name" class="block mb-1">Shop Name:</label>
-                    <input type="text" id="shop-name" name="shop-name" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <input type="text" id="shop-name" name="S_name" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="flex justify-between space-x-3 mb-3">
                     <div class="flex-1">
                         <label for="location-name1" class="block mb-1">Address 1:</label>
-                        <textarea id="location-name1" name="location-name1" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3">រាជធានី, Street 1972, Phnom Penh 120801</textarea>
+                        <textarea id="location-name1" name="" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
                     </div>
                     <div class="flex-1">
                         <label for="location-name2" class="block mb-1">Address 2:</label>
-                        <textarea id="location-name2" name="location-name2" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3">រាជធានី, Street 1972, Phnom Penh 120801</textarea>
+                        <textarea id="location-name2" name="" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
                     </div>
                 </div>
             </div>            
@@ -41,39 +44,57 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const popup = document.querySelector('.edit-popup-shop');
-        const overlay = document.querySelector('.edit-popup-shop-overlay');
-        const closeBtn = document.getElementById('close-popup-shop');
-        const fileInput = document.getElementById('shop-pic');
-        const form = document.getElementById('edit-shop-form');
+document.addEventListener('DOMContentLoaded', () => {
+    const editPopup = document.querySelector('.edit-popup-shop');
+    const overlay = document.querySelector('.edit-popup-shop-overlay');
+    const closeBtn = document.getElementById('close-popup-shop');
+    const fileInput = document.getElementById('shop-pic');
+    const previewImage = document.getElementById('shop-pic-preview');
+    const form = document.getElementById('editshopForm');
 
-        document.querySelectorAll('.edit-button-shop').forEach(button => 
-            button.addEventListener('click', () => {
-                popup.classList.remove('hidden');
-                overlay.classList.remove('hidden');
-                document.getElementById('shop-name').value = button.dataset.shopName || '';
-                document.getElementById('location-name1').value = button.dataset.locationName1 || 'រាជធានី, Street 1972, Phnom Penh 120801';
-                document.getElementById('location-name2').value = button.dataset.locationName2 || 'រាជធានី, Street 1972, Phnom Penh 120801';
-            })
-        );
+    document.querySelectorAll('.edit-button-shop').forEach(button => {
+        button.addEventListener('click', () => {
+            const shopId = button.dataset.s_id;
+            const shopName = button.dataset.shopName || '';
+            const locationName1 = button.dataset.locationName1 || '';
+            const locationName2 = button.dataset.locationName2 || '';
+            const shopImage = button.dataset.shopImage || 'images/shop.jpg'; // Use default image if none provided
 
-        closeBtn.addEventListener('click', () => {
-            popup.classList.add('hidden');
-            overlay.classList.add('hidden');
-        });
+            // Set form action dynamically
+            form.action = `/setting/${shopId}`;
+            
+            // Populate form fields
+            document.getElementById('shop-name').value = shopName;
+            document.getElementById('location-name1').value = locationName1;
+            document.getElementById('location-name2').value = locationName2;
 
-        fileInput.addEventListener('change', event => {
-            const reader = new FileReader();
-            reader.onload = () => document.getElementById('shop-pic-preview').src = reader.result;
-            reader.readAsDataURL(event.target.files[0]);
-        });
+            // Set the preview image
+            previewImage.src = shopImage;
 
-        form.addEventListener('submit', event => {
-            event.preventDefault();
-            // Handle form submission logic
-            popup.classList.add('hidden');
-            overlay.classList.add('hidden');
+            // Show the edit popup
+            editPopup.classList.remove('hidden');
+            overlay.classList.remove('hidden');
         });
     });
+
+    closeBtn.addEventListener('click', () => {
+        editPopup.classList.add('hidden');
+        overlay.classList.add('hidden');
+    });
+
+    fileInput.addEventListener('change', event => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => previewImage.src = reader.result;
+            reader.readAsDataURL(file);
+        }
+    });
+
+    form.addEventListener('submit', () => {
+        editPopup.classList.add('hidden');
+        overlay.classList.add('hidden');
+    });
+});
+
 </script>

@@ -11,7 +11,7 @@ class IteamCategory extends Model
     use HasFactory;
     protected $table = 'inv_item_cate';
     public $timestamps = false;
-    protected $primaryKey = 'inv_item_cate';
+    protected $primaryKey = 'Item_Cate_id';
     public $incrementing = true;
     protected $keyType = 'int'; 
     protected $fillable = [

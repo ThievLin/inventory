@@ -11,8 +11,8 @@
             <div class="relative text-center">
                 <label for="profile-pic" class="block mb-1 font-semibold">Profile Picture:</label>
                 <div class="relative mt-2 h-64 w-64 mx-auto group">
-                    <img src="images/user.png" class="h-64 w-64 rounded-full" alt="Profile Picture Preview">
-                    <input type="file" id="profile-pic" class="hidden">
+                    <img src="{{ $data->U_photo ? asset('storage/' . $data->U_photo) : 'images/user.png' }}" class="h-64 w-64 rounded-full" alt="Profile Picture Preview">
+                    <input type="file" id="profile-pic" name="profile_pic" class="hidden">
                     <div class="absolute bottom-0 left-0 right-0 h-64 w-64 bg-gray-900 bg-opacity-50 rounded-full flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer" onclick="document.getElementById('profile-pic').click();">
                         <i class="fas fa-edit text-white"></i>
                     </div>

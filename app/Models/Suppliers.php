@@ -17,5 +17,6 @@ class Suppliers extends Model
         'Sup_name',
         'Sup_contact',
         'Sup_address',
+        'status',
     ];
 }

@@ -8,6 +8,7 @@ $navItems = [
     ['route' => 'products', 'label' => 'PRODUCT', 'roles' => [1, 2, 4]],
     ['route' => 'add-ons', 'label' => 'ADD-ONS', 'roles' => [1, 2, 4]],
     ['route' => 'reports', 'label' => 'REPORTS', 'roles' => [1, 3, 4]],
+    ['route' => 'accounting', 'label' => 'ACCOUNT', 'roles' => [1, 3, 4]],
 ];
 @endphp
 @vite('resources/css/app.css')

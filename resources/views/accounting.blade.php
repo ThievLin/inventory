@@ -1,41 +1,8 @@
 @vite('resources/css/app.css')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<div class="min-h-screen flex flex-col bg-background text-foreground">
-  <header class="flex flex-row items-center space-x-4 mt-2 flex-grow">
-    <div class="ml-5">
-      <div class="ml-0">
-        @if(Auth::check() && Auth::user()->invshop && Auth::user()->invshop->S_logo)
-            <a href="/home">
-                <img src="{{ asset('storage/' . Auth::user()->invshop->S_logo) }}" alt="Shop Logo" class="h-10 w-12 rounded">
-            </a>
-        @else
-            <a href="/home">
-                <img src="{{ asset('images/official_logo.png') }}" alt="Default Logo" class="h-10 w-12 rounded">
-            </a>
-        @endif
-      </div>    
-    </div>
-    <div class="bg-primary p-3 shadow-md flex items-end justify-end flex-1">
-        <div class="space-x-2 items-end justify-end">
-            <h1 class="text-sm font-bold text-primary-foreground">{{ Auth::user()->U_name }}</h1>
-        </div>
-    </div>
-    <div class="relative">
-      @include('profile.profile')
-  </div>
-    @include('popups.edit-profile-popup')
-  </header>
-  
-  <div class="flex-grow">
-    <div class="flex flex-col items-center py-6">
-      <div class="flex space-x-2 -mt-4">
-        <a href="accounting" class="bg-primary text-white rounded-lg px-4 py-2 text-sm">
-          ACCOUNTING
-        </a>
-      </div>
-      <hr class=" w-10 h-1 bg-gray-500 mt-2 rounded-sm"></hr>
-    </div>
+@extends('layouts.app-nav')
 
+@section('content')
+  <div class="flex-grow">
     <div class="bg-background flex flex-col items-center mb-4">
         <div class="flex flex-col sm:flex-row justify-between items-center w-full sm:w-4/5 px-4 sm:px-0">
           <a href="#" class="bg-primary text-primary-foreground py-1 px-8 rounded-lg text-sm mb-4 sm:mb-0">CREATE</a>
@@ -50,7 +17,6 @@
           </div>
         </div>
       </div>        
-
       <div class="bg-background text-foreground p-2 flex flex-col items-center justify-center">
         <div class="w-full md:w-4/5">
           <div class="flex flex-col md:flex-row gap-4 mb-6">
@@ -103,5 +69,5 @@
         </div>
       </div>     
   </div> 
-  @include('layouts.footer')
-</div>
+
+@endsection

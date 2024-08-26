@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\UOM;
 use App\Models\User;
 use App\Models\Module;
@@ -112,28 +113,27 @@ class SettingController extends Controller
         return redirect()->back()->with('success', 'Location created successfully!');
     }
     public function user(Request $request) {
-        // Validate the request data
+
         $data = $request->validate([
             'U_name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
             'sys_name' => ['required', 'string', 'max:255'],
             'U_contact' => ['required', 'string', 'max:255'],
-            'R_id' =>'required|integer',
+            'R_id' => 'required|integer',
             'S_id' => 'required|integer',
             'L_id' => 'required|integer',
-            'U_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            // 'U_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-        
-        // Debug the validated data
-        dd($data);
-    
+        // dd($request->all());
         // Handle the file upload
         $photoPath = null;
-        if (isset($data['U_photo']) && $data['U_photo']->isValid()) {
-            $photo = $data['U_photo'];
-            $photoPath = $photo->store('user_photos', 'public');
+        if ($request->hasFile('U_photo')) {
+            $photo = $request->file('U_photo');
+            if ($photo->isValid()) {
+                $photoPath = $photo->store('user_photos', 'public');
+            }
         }
-    
+        
         // Create the user
         User::create([
             'U_name' => $data['U_name'],
@@ -146,10 +146,11 @@ class SettingController extends Controller
             'U_photo' => $photoPath,
             'status' => '', // This field seems to be required but isn't being set. Verify if needed.
         ]);
-    
+        
         // Redirect back with success message
         return redirect()->back()->with('success', 'User created successfully!');
     }
+    
     public function category(Request $request){
         // Validate the input data
         $validatedData = $request->validate([
@@ -250,10 +251,40 @@ class SettingController extends Controller
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, $S_id)
     {
-        //
+       
+        // Validate the input data
+        $validatedData = $request->validate([
+            'S_name' => 'required|string|max:255',
+            'S_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+   
+        // Find the shop record by ID
+        $shop = Invshop::findOrFail($S_id);
+        // Update the shop name
+        $shop->S_name = $validatedData['S_name'];
+    
+        // Handle the image upload if a new image is provided
+        if ($request->hasFile('S_logo') && $request->file('S_logo')->isValid()) {
+            // Delete the old image if it exists
+            if ($shop->S_logo && Storage::disk('public')->exists($shop->S_logo)) {
+                Storage::disk('public')->delete($shop->S_logo);
+            }
+    
+            // Store the new image and update the S_logo field
+            $s_logo = $request->file('S_logo');
+            $imagePath = $s_logo->store('logos', 'public');
+            $shop->S_logo = $imagePath;
+        }
+    
+        // Save the updated shop record
+        $shop->save();
+    
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Shop updated successfully!');
     }
+    
 
     /**
      * Remove the specified resource from storage.

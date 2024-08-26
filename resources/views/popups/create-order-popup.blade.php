@@ -176,6 +176,10 @@ function addItemRow(index) {
                 <label for="price${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Price</label>
                 <input type="number" id="price${index}" name="price${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" step="any" oninput="updateTotalPrice()">
             </div>
+                <div class="w-full sm:w-1/5 px-2 mb-8">
+                    <label for="expired_Date${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Expired Date</label>
+                    <input type="date" id="expired_Date${index}" name="expired_Date${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
         </div>
     `;
     document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', itemRow);
