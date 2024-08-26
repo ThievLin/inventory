@@ -67,7 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('shop-name').value = shopName;
             document.getElementById('location-name1').value = locationName1;
             document.getElementById('location-name2').value = locationName2;
+            if (!locationName1) {
+                document.getElementById('location-name1').parentElement.classList.add('hidden');
+            } else {
+                document.getElementById('location-name1').parentElement.classList.remove('hidden');
+            }
 
+            if (!locationName2) {
+                document.getElementById('location-name2').parentElement.classList.add('hidden');
+            } else {
+                document.getElementById('location-name2').parentElement.classList.remove('hidden');
+            }
             // Set the preview image
             previewImage.src = shopImage;
 
