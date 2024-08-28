@@ -21,28 +21,28 @@
         <table class="min-w-full bg-white border-collapse">
           <thead>
             <tr class="bg-primary text-primary-foreground text-lg">
-              <th class="py-4 px-4 border border-white">Item ID</th>
+              <th class="py-4 px-4 border border-white">NO.</th>
               <th class="py-4 px-4 border border-white">
                 <a href="{{ url('/items?sortColumn=Item_Khname&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
-                  Item Khname
+                  KHMER NAME
                   <i class="fas fa-xs {{ request('sortColumn') == 'Item_Khname' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
                 </a>
               </th>
               <th class="py-4 px-4 border border-white">
                 <a href="{{ url('/items?sortColumn=Item_Engname&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
-                  Item Engname
+                  ENGLISH NAME
                   <i class="fas fa-xs {{ request('sortColumn') == 'Item_Engname' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
                 </a>
               </th>
               <th class="py-4 px-4 border border-white">
                 <a href="{{ url('/items?sortColumn=category_name&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
-                  Item Category
+                  CATEGORY
                   <i class="fas fa-xs {{ request('sortColumn') == 'category_name' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
                 </a>
               </th>
-              <th class="py-4 px-4 border border-white">Expiry Date</th>
-              <th class="py-4 px-4 border border-white">Image</th>
-              <th class="py-4 px-4 border border-white">Action</th>
+              <th class="py-4 px-4 border border-white">EXPIRY DATE</th>
+              <th class="py-4 px-4 border border-white">IMAGE</th>
+              <th class="py-4 px-4 border border-white">ACTION</th>
             </tr>
           </thead>
           <tbody id="inventoryTableBody">
