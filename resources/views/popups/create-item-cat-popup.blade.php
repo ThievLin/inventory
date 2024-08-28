@@ -2,16 +2,16 @@
 <div id="createItemCatPopup"   class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center hidden z-60">
     <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
-            <h2 class="text-2xl font-bold text-white mb-2">Create new Item Category</h2>
+            <h2 class="text-2xl font-bold text-white mb-2">NEW ITEM CATEGORY</h2>
         </div>
         <form id="itemCatForm" action="{{ route('setting.category') }}" method="POST" enctype="multipart/form-data" class="p-6">
             @csrf
             <div class="mb-4">
-                <label for="Item_Cate_Khname" class="block text-sm font-medium text-gray-900 mb-1">Item Cate Khname</label>
+                <label for="Item_Cate_Khname" class="block text-sm font-medium text-gray-900 mb-1">NAME IN KHMER</label>
                 <input type="text" id="Item_Cate_Khname" name="Item_Cate_Khname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
             </div>
             <div class="mb-4">
-                <label for="Item_Cate_Engname" class="block text-sm font-medium text-gray-900 mb-1">Item Cate Enname</label>
+                <label for="Item_Cate_Engname" class="block text-sm font-medium text-gray-900 mb-1">NAME IN ENGLISH</label>
                 <input type="text" id="Item_Cate_Engname" name="Item_Cate_Engname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
             </div>
             
