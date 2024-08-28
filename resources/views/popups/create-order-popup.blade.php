@@ -222,7 +222,7 @@ function updateTotalPrice() {
     totalPriceField.value = totalPrice;
 }
 
-function handleItemSelect(event) {
+function handleSelect(event) {
     var selectedValue = event.target.value;
     if (selectedValue === 'createnewITEM') {
         togglePopup('popupItem');
