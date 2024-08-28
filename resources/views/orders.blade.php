@@ -20,12 +20,12 @@
         <table class="min-w-full bg-white border-collapse text-center overflow-x-auto">
           <thead>
             <tr class="bg-primary text-primary-foreground text-sm sm:text-base lg:text-lg">
-              <th class="py-4 px-1 border border-white">Order ID</th>
-              <th class="py-4 border border-white">Order Number</th>
-              <th class="py-4 border border-white">Reciept Image</th>
-              <th class="py-4 border border-white">Total Price</th>
-              <th class="py-4 border border-white">Total Items</th>
-              <th class="py-4 px-4 border border-white">Action</th>
+              <th class="py-4 px-1 border border-white">NO.</th>
+              <th class="py-4 border border-white">ORDER NUMBER</th>
+              <th class="py-4 border border-white">RECIEPT IMAGE</th>
+              <th class="py-4 border border-white">QTY OF ITEM</th>
+                <th class="py-4 border border-white">TOTAL PRICE</th>
+              <th class="py-4 px-4 border border-white">ACTION</th>
             </tr>
           </thead>
           <tbody id="inventoryTableBody">
@@ -34,7 +34,6 @@
               <td class="py-3 px-4 border border-white">{{ $data->Order_Info_id ?? 'null' }}</td>
               <td class="py-3 px-4 border border-white">{{ $data->Order_number ?? 'null' }}</td>
               <td class="py-3 px-4 border border-white"><img src="{{ asset('storage/' .$data->Reciept_image) }}" alt="Shop Logo" class="h-10 w-12 rounded"></td>
-              <td class="py-3 px-4 border border-white">{{ number_format($data->Total_Price, 2) ?? 'null' }}</td>
               <td class="relative py-3 px-4 border border-white group">
                 {{ $order_inf_counts[$data->Order_Info_id] ?? '0' }}
                 <span class="absolute left-0 transform -translate-x-1/2 bottom-full mb-2 text-white text-xs rounded-lg px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
@@ -76,6 +75,7 @@
                     </table>
                 </span>
               </td>
+              <td class="py-3 px-4 border border-white">{{ number_format($data->Total_Price, 2) ?? 'null' }}</td>
               <td class="py-3 border border-white">
                 <button class="relative bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white py-2 px-4 rounded-md focus:outline-none transition duration-150 ease-in-out group">
                   <i class="fas fa-edit fa-xs"></i>
