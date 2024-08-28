@@ -2,28 +2,28 @@
 <div id="popupItem" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center {{ $errors->any() ? '' : 'hidden' }} z-20">
     <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
-            <h2 class="text-2xl font-bold text-white mb-2">Add New Items</h2>
+            <h2 class="text-2xl font-bold text-white mb-2">NEW ITEM</h2>
         </div>
         <form id="itemForm" action="{{ route('items.store') }}" method="POST" enctype="multipart/form-data" class="p-6">
             @csrf
             <div class="mb-4">
-                <label for="Item_Khname" class="block text-sm font-medium text-gray-900 mb-1">Item Khmer Name</label>
+                <label for="Item_Khname" class="block text-sm font-medium text-gray-900 mb-1">NAME IN KHMER</label>
                 <input type="text" id="Item_Khname" name="Item_Khname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 @error('Item_Khname') is-invalid @enderror" value="{{ old('Item_Khname') }}">
                 @error('Item_Khname')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="Item_Engname" class="block text-sm font-medium text-gray-900 mb-1">Item English Name</label>
+                <label for="Item_Engname" class="block text-sm font-medium text-gray-900 mb-1">NAME IN ENGLISH</label>
                 <input type="text" id="Item_Engname" name="Item_Engname" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 @error('Item_Engname') is-invalid @enderror" value="{{ old('Item_Engname') }}">
                 @error('Item_Engname')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="Item_Cate_id" class="block text-sm font-medium text-gray-900 mb-1">Select Item Category</label>
+                <label for="Item_Cate_id" class="block text-sm font-medium text-gray-900 mb-1">CATEGORY</label>
                 <select id="Item_Cate_id" name="Item_Cate_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 @error('Item_Cate_id') is-invalid @enderror">
-                    <option value="">Select a category</option>
+                    <option value="">-- CATEGORY --</option>
                     @foreach ($categories as $data)
                         <option value="{{ $data->Item_Cate_id }}" {{ old('Item_Cate_id') == $data->Item_Cate_id ? 'selected' : '' }}>
                             {{ $data->Item_Cate_Khname }}
@@ -35,16 +35,16 @@
                 @enderror
             </div>
             <div class="mb-6">
-                <label for="Expiry_date" class="block text-sm font-medium text-gray-900 mb-1">Expiry Date</label>
+                <label for="Expiry_date" class="block text-sm font-medium text-gray-900 mb-1">EXPIRY DATE</label>
                 <input type="date" id="Expiry_date" name="Expiry_date" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 @error('Expiry_date') is-invalid @enderror" value="{{ old('Expiry_date') }}">
                 @error('Expiry_date')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
             <div class="mb-6">
-                <label for="image" class="block text-sm font-medium text-gray-900 mb-1">Item Image</label>
+                <label for="image" class="block text-sm font-medium text-gray-900 mb-1">IMAGE</label>
                 <div>
-                    <button type="button" class="select-logo" onclick="document.getElementById('image').click()">Browse</button>
+                    <button type="button" class="select-logo" onclick="document.getElementById('image').click()">BROWSE</button>
                     <input type="file" id="image" name="image" class="hidden">
                 </div>
             </div>
