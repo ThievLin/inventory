@@ -5,12 +5,12 @@
 <div class="create-popup-shop hidden fixed inset-0 flex items-center justify-center z-50">
     <div class="bg-white rounded-lg shadow-lg w-[600px] max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
-            <h2 class="text-2xl font-bold text-white">Create Shop</h2>
+            <h2 class="text-2xl font-bold text-white">NEW SHOP</h2>
         </div>
         <form  action="{{ route('setting.store') }}" method="POST" enctype="multipart/form-data" id="create-shop-form" class="space-y-4 px-6 py-2">
             @csrf
             <div class="relative text-center">
-                <label for="S_logo" class="block mb-1 font-semibold">Shop Picture:</label>
+                <label for="S_logo" class="block mb-1 font-semibold">LOGO:</label>
                 <div class="relative inline-block">
                     <img src="images/shop.jpg" class="h-32 w-32 rounded-full" alt="Profile">
                     <div class="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 rounded-full">
@@ -24,7 +24,7 @@
            {{-- create shop --}}
             <div class="p-2 w-full text-start">
                 <div class="mb-4">
-                    <label for="S_name" class="block mb-1">Shop Name:</label>
+                    <label for="S_name" class="block mb-1">NAME:</label>
                     <input type="text" id="S_name" name="S_name" class="w-full border border-gray-300 rounded-md p-2">
                 </div>
             </div>
