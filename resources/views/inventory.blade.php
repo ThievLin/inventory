@@ -31,12 +31,12 @@
         <table class="min-w-full bg-white border-collapse text-center">
           <thead>
             <tr class="bg-primary text-primary-foreground text-lg">
-              <th class="py-4 px-4 border border-white">Item Name</th>
-              <th class="py-4 px-4 border border-white">Category</th>
-              <th class="py-4 px-4 border border-white">Total StockIn</th>
-              <th class="py-4 px-4 border border-white">Total In Hand</th>
+              <th class="py-4 px-4 border border-white">ITEM NAME</th>
+              <th class="py-4 px-4 border border-white">CATEGORY</th>
+              <th class="py-4 px-4 border border-white">TOTAL ORDERING</th>
+              <th class="py-4 px-4 border border-white">QTY IN HAND</th>
               <th class="py-4 px-4 border border-white">UOM</th>
-              <th class="py-4 px-4 border border-white">Expired Date</th>
+              <th class="py-4 px-4 border border-white">EXPIRY DATE</th>
             </tr>
           </thead>
           <tbody id="inventoryTableBody">
