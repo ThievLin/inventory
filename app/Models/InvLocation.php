@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class InvLocation extends Model
 {
     use HasFactory;
-    protected $table = 'inv_Location';
+    protected $table = 'inv_location';
     public $timestamps = false;
     protected $primaryKey = 'L_id';
     public $incrementing = true;
