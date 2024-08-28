@@ -40,36 +40,14 @@
                     <table class="min-w-full bg-white border-collapse text-left text-sm border-2 border-gray-500 shadow-2xl">
                         <thead>
                             <tr class="bg-primary text-primary-foreground">
-                                <th class="py-3 px-12 border-2 border-gray-500">ItemName</th>
-                                <th class="py-3 px-4 border-2 border-gray-500">Category</th>
+                                <th class="py-3 px-12 border-2 border-gray-500">NAME</th>
+                                <th class="py-3 px-4 border-2 border-gray-500">CATEGORY</th>
                                 <th class="py-3 px-4 border-2 border-gray-500">UOM</th>
-                                <th class="py-3 px-4 border-2 border-gray-500">ExpiredDate</th>
+                                <th class="py-3 px-4 border-2 border-gray-500">EXPIRY DATE</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm">
                             <tr class="bg-zinc-200 border-2 border-gray-500">
-                                <td class="py-3 px-4 border-2 border-gray-500">ទឹករសជាតិវ៉ានីឡា</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">ម្សៅ</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">Kg</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">0000-00-00</td>
-                            </tr>
-                            <tr class="bg-zinc-200 border-2 border-gray-500">
-                                <td class="py-3 px-4 border-2 border-gray-500">ទឹករសជាតិវ៉ានីឡា</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">ម្សៅ</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">Kg</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">0000-00-00</td>
-                            </tr>
-                            <tr class="bg-zinc-200 border-2 border-gray-500">
-                                <td class="py-3 px-4 border-2 border-gray-500">ទឹករសជាតិវ៉ានីឡា</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">ម្សៅ</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">Kg</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">0000-00-00</td>
-                            </tr>
-                            <tr class="bg-zinc-200 border-2 border-gray-500">
-                                <td class="py-3 px-4 border-2 border-gray-500">ទឹករសជាតិវ៉ានីឡា</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">ម្សៅ</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">Kg</td>
-                                <td class="py-3 px-4 border-2 border-gray-500">0000-00-00</td>
                             </tr>
                         </tbody>
                     </table>
