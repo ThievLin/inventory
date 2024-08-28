@@ -129,6 +129,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
 document.getElementById('addMoreRowBtn').addEventListener('click', function() {
     var itemsContainer = document.getElementById('itemsContainer');
     var currentRowCount = itemsContainer.children.length;
+    var newOption = document.createElement('option');
     addItemRow(currentRowCount + 1);
     if ( document.getElementById('selectnum').text = 6){
         document.getElementById('selectnum').value =+ currentRowCount + 1;
