@@ -11,23 +11,29 @@
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-2">
             <!-- Example Product Card -->
-            @foreach ($invProduct as $data)
+            @foreach ($productIngredients as $data)
             <div class="bg-white p-2 rounded-lg shadow-md flex flex-col">
                 <img src="images/shop.jpg" alt="Hot Vanilla Latte" class="w-full h-20 object-cover rounded-t-lg">
                 <div class="p-2 flex-grow">
-                    <h2 class="text-sm text-gray-800 mb-1 font-semibold">{{$data->Pro_name_eng}}</h2>
-                    <h3 class="text-sm text-gray-700 mb-2">{{$data->Pro_name_kh}}</h3>
+                    <h2 class="text-sm text-gray-800 mb-1 font-semibold">{{$data->Product_Name}}</h2>
                     <h3 class="text-sm text-gray-900 mb-2 font-semibold">ធាតុផ្សំ</h3>
-                    <h3 class="text-sm text-gray-700">ទីកកក</h3>
-                    <h3 class="text-sm text-gray-700">ម្សៅទីកដោះគោ</h3>
-                    <h3 class="text-sm text-gray-700">កាហ្វេ</h3>
+                    <h3 class="text-sm text-gray-700">{{$data->IIQ_name}}</h3>
+                    <h3 class="text-sm text-gray-700">{{$data->Item_Name}}</h3>
+                    <h3 class="text-sm text-gray-700">{{$data->Qty}}{{$data->UOM}}</h3>
                 </div>
                 <div class="mt-auto flex justify-between p-2">
                     <div class="relative group">
-                        <button class="edit-ingredient-btn bg-blue-500 text-white px-3 py-1 rounded cursor-pointer transition duration-300 hover:bg-blue-600">
-                            <i class="fas fa-edit fa-sm"></i>
-                            <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 text-xs text-white bg-gray-600 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Edit</span>
-                        </button>
+                        <!-- Add data attributes here -->
+                        <button class="edit-ingredient-btn bg-blue-500 text-white px-3 py-1 rounded cursor-pointer transition duration-300 hover:bg-blue-600"
+                        data-pro-id="{{ $data->Pro_id }}"
+                        data-IIQ_name="{{$data->IIQ_name}}"
+                        data-product-name="{{$data->Product_Name}}"
+                        data-item-name="{{$data->Item_Name}}"
+                        data-qty="{{$data->Qty}}"
+                        data-uom="{{$data->UOM}}">
+                    <i class="fas fa-edit fa-sm"></i>
+                    <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 text-xs text-white bg-gray-600 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Edit</span>
+                </button>
                     </div>
                     <div class="relative group">
                         <button class="toggle-button px-3 py-1 rounded cursor-pointer transition duration-300" 
@@ -50,6 +56,7 @@
         @include('popups.edit-ingredient-product-popup')
     </div>
 </div>
+
 
 <script>
     function toggleActive(button) {

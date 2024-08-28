@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Storage;
 use App\Models\UOM;
 use App\Models\User;
 use App\Models\Module;
@@ -15,11 +14,14 @@ use App\Models\ExpenseCate;
 use App\Models\InvLocation;
 use App\Models\ProductGroup;
 use Illuminate\Http\Request;
+use App\Models\IngredientQty;
 use App\Models\IteamCategory;
 use App\Models\invProductCate;
+use App\Models\ProductIngredients;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
@@ -38,6 +40,7 @@ class SettingController extends Controller
         $productCate = invProductCate::all();
         $user = User::all();
         $uom = UOM::all();
+        $productIngredients = ProductIngredients::all();
         $invProduct = Products::paginate(12);
         $shop = Invshop::paginate(2);
         $shop_se =Invshop::all();
@@ -47,7 +50,8 @@ class SettingController extends Controller
         $location = InvLocation::all();
         $group = ProductGroup::all();
         $expense = ExpenseCate::all();
-        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','module','moduleInf','uom','shop_se','location','group','expense')); 
+        $ingredientQty = IngredientQty::all();
+        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','module','moduleInf','uom','shop_se','location','group','expense','productIngredients','ingredientQty')); 
 
     }
 
@@ -116,7 +120,7 @@ class SettingController extends Controller
 
         $data = $request->validate([
             'U_name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
+           
             'sys_name' => ['required', 'string', 'max:255'],
             'U_contact' => ['required', 'string', 'max:255'],
             'R_id' => 'required|integer',
@@ -222,6 +226,23 @@ class SettingController extends Controller
         // Redirect or return a response
         return redirect()->back()->with('success', 'Category created successfully!');
     }
+    public function updateIngredients(Request $request, $Pro_id)
+    {
+        
+        // Validate the input data
+        $validatedData = $request->validate([
+            'IIQ_name' => 'required|string|max:255',
+            // Add any other fields you need to validate
+        ]);
+    
+        ProductIngredients::where('Pro_id', $Pro_id)
+            ->update(['IIQ_name' => $validatedData['IIQ_name']]);
+    
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Product(s) updated successfully!');
+    }
+    
+    
     /**
      * Display the specified resource.
      *
@@ -285,7 +306,56 @@ class SettingController extends Controller
         return redirect()->back()->with('success', 'Shop updated successfully!');
     }
     
-
+    public function updateUser(Request $request, $U_id)
+    {
+        // Validate the request data
+        // dd($request->all());
+        $validatedData = $request->validate([
+            'U_name' => 'required|string|max:255',
+            'U_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'R_id' => 'required|integer',
+            'sys_name' => 'required|string|max:255',
+            'U_contact' => 'required|string|max:255',
+            'password' => ['required', 'string', 'min:8'],
+            'newpassword' => 'nullable|string|min:8', // Make new password optional
+        ]);
+    
+        // Find the user record by ID
+        $user = User::findOrFail($U_id);
+        
+     
+        // Update user details
+        $user->U_name = $validatedData['U_name'];
+        $user->R_id = $validatedData['R_id'];
+        $user->sys_name = $validatedData['sys_name'];
+        $user->U_contact = $validatedData['U_contact'];
+    
+        // Handle password update
+        if ($request->filled('newpassword')) {
+            $user->password = bcrypt($request->input('newpassword'));
+        }
+    
+        // Handle the image upload if a new image is provided
+        if ($request->hasFile('U_photo') && $request->file('U_photo')->isValid()) {
+            // Delete the old image if it exists
+            if ($user->U_photo && Storage::disk('public')->exists($user->U_photo)) {
+                Storage::disk('public')->delete($user->U_photo);
+            }
+    
+            // Store the new image and update the U_photo field
+            $photo = $request->file('U_photo');
+            $imagePath = $photo->store('profile_pics', 'public');
+            $user->U_photo = $imagePath;
+        }
+    
+        // Save the updated user record
+        $user->save();
+    
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'User updated successfully!');
+    }
+    
+    
     /**
      * Remove the specified resource from storage.
      *

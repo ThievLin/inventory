@@ -115,3 +115,9 @@ Route::post('/setting/category', [SettingController::class, 'category'])->name('
 Route::post('/setting/product_cate', [SettingController::class, 'product_cate'])->name('setting.product_cate');
 Route::post('/setting/expense_cate', [SettingController::class, 'expense_cate'])->name('setting.expense_cate');
 Route::post('/setting/uom', [SettingController::class, 'uom'])->name('setting.uom');
+
+//Edit product ingredients
+Route::patch('/setting/test/{Pro_id}', [SettingController::class, 'updateIngredients'])->name('setting.updateIngredients');
+//edit user setting
+Route::patch('/setting/user/{U_id}', [SettingController::class, 'updateUser'])->name('setting.updateUser');
+

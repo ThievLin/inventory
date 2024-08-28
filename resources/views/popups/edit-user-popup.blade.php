@@ -7,22 +7,28 @@
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
             <h2 class="text-2xl font-bold text-white">Edit User</h2>
         </div>
-        <form id="edit-user-form" class="space-y-4 px-6 py-2">
+        <form id="edit-user-form" action="{{ route('setting.updateUser', ['U_id' => $data->U_id]) }}" method="POST" enctype="multipart/form-data" class="space-y-4 px-6 py-2">
+            @csrf
+            @method('PATCH')
+
             <div class="relative text-center">
+                <input type="hidden" id="U_id" name="U_id" value="{{ $data->U_id }}">
+
                 <label for="profile-pic" class="block mb-1 font-semibold">Profile Picture:</label>
                 <div class="relative mt-2 h-64 w-64 mx-auto group">
-                    <img src="{{ $data->U_photo ? asset('storage/' . $data->U_photo) : 'images/user.png' }}" class="h-64 w-64 rounded-full" alt="Profile Picture Preview">
-                    <input type="file" id="profile-pic" name="profile_pic" class="hidden">
+                    <img id="profile-pic-preview" src="{{ $data->U_photo ? asset('storage/' . $data->U_photo) : 'images/user.png' }}" class="h-64 w-64 rounded-full" alt="Profile Picture Preview">
+                    <input type="file" id="profile-pic" name="U_photo" class="hidden">
                     <div class="absolute bottom-0 left-0 right-0 h-64 w-64 bg-gray-900 bg-opacity-50 rounded-full flex justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer" onclick="document.getElementById('profile-pic').click();">
                         <i class="fas fa-edit text-white"></i>
                     </div>
                 </div>
             </div>
+            
             <div class="flex px-4">
                 <div class="p-2 w-full">
                     <div class="mb-4">
-                        <label for="U_name" class="block mb-1">Username:</label>
-                        <input type="text" id="U_name" name="U_name" value="{{ $data->U_name }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label for="name" class="block mb-1">Username:</label>
+                        <input type="text" id="name" name="U_name" value="{{ $data->U_name }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="mb-4">
                         <label for="R_id" class="block mb-1">Role:</label>
@@ -43,13 +49,13 @@
                     </div>
                     <div class="mb-4">
                         <label for="U_contact" class="block mb-1">User Contact:</label>
-                        <input type="text" id="U_contact" name="U_contact" value="{{ $data->U_contact }}"  class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="U_contact" name="U_contact" value="{{ $data->U_contact }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
                 <div class="p-2 w-full">
                     <div class="mb-4">
-                        <label for="text" class="block mb-1">Old Password:</label>
-                        <input type="password" id="password" name="password"  value="{{ $data->password }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <label for="password" class="block mb-1">Old Password:</label>
+                        <input type="password" id="password" name="password" value="{{ $data->password }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="mb-4">
                         <label for="newpassword" class="block mb-1">New Password:</label>
@@ -65,38 +71,62 @@
     </div>
 </div>
 
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
     const editPopup = document.querySelector('.edit-popup');
-    const editPopupOverlay = document.querySelector('.edit-popup-overlay');
-    const closePopupButton = document.querySelector('#close-popup');
-    const profilePicInput = document.getElementById('profile-pic');
-    const editButtons = document.querySelectorAll('.edit-button-user');
-    
-    editButtons.forEach(button => button.addEventListener('click', () => {
-        editPopup.classList.remove('hidden');
-        editPopupOverlay.classList.remove('hidden');
-        document.getElementById('username').value = button.dataset.username || '';
-        document.getElementById('role').value = button.dataset.role || '';
-    }));
+    const overlay = document.querySelector('.edit-popup-overlay');
+    const closeBtn = document.getElementById('close-popup');
+    const fileInput = document.getElementById('profile-pic');
+    const previewImage = document.getElementById('profile-pic-preview');
+    const form = document.getElementById('edit-user-form');
 
-    closePopupButton.addEventListener('click', () => {
-        editPopup.classList.add('hidden');
-        editPopupOverlay.classList.add('hidden');
+    document.querySelectorAll('.edit-button-user').forEach(button => {
+        button.addEventListener('click', () => {
+            const userId = button.dataset.U_id;
+            console.log(userId); // Check if this logs the correct value
+            const userName = button.dataset.name || '';
+            const roleId = button.dataset.role || '';
+            const sysName = button.dataset.sysName || '';
+            const userContact = button.dataset.contact || '';
+            const userPhoto = button.dataset.photo ? `{{ asset('storage/') }}/${button.dataset.photo}` : `{{ asset('images/user.png') }}`;
+
+            // Set form action dynamically
+            form.action = `/setting/user/${userId}`;
+            
+            // Populate form fields
+            document.getElementById('U_id').value = userId;
+            document.getElementById('name').value = userName;
+            document.getElementById('R_id').value = roleId;
+            document.getElementById('sys_name').value = sysName;
+            document.getElementById('U_contact').value = userContact;
+
+            // Set the preview image
+            previewImage.src = userPhoto;
+
+            // Show the edit popup
+            editPopup.classList.remove('hidden');
+            overlay.classList.remove('hidden');
+        });
     });
 
-    profilePicInput.addEventListener('change', event => {
-        const reader = new FileReader();
-        reader.onload = () => document.querySelector('.edit-popup img').src = reader.result;
-        reader.readAsDataURL(event.target.files[0]);
+    closeBtn.addEventListener('click', () => {
+        editPopup.classList.add('hidden');
+        overlay.classList.add('hidden');
     });
 
-    document.getElementById('edit-user-form').addEventListener('submit', event => {
-        event.preventDefault();
-        // Handle form submission logic here
+    fileInput.addEventListener('change', event => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => previewImage.src = reader.result;
+            reader.readAsDataURL(file);
+        }
+    });
+
+    form.addEventListener('submit', () => {
         editPopup.classList.add('hidden');
-        editPopupOverlay.classList.add('hidden');
+        overlay.classList.add('hidden');
     });
 });
+
 </script>

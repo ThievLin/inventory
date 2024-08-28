@@ -19,9 +19,16 @@
             <div class="flex justify-center mt-2 space-x-4 relative">
                 <!-- Edit Button -->
                 <div class="relative group">
-                    <button class="bg-blue-600 bg-opacity-100 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition duration-300 edit-button-user" aria-label="Edit User">
-                        <i class="fas fa-edit text-white"></i>
-                    </button>
+                    <button class="bg-blue-600 bg-opacity-100 p-2 rounded-full cursor-pointer hover:bg-opacity-75 transition duration-300 edit-button-user" aria-label="Edit User"
+                    data-U_id="{{ $data->U_id }}"
+                    data-name="{{ $data->U_name }}"
+                    data-role="{{ $data->R_id }}"
+                    data-sys-name="{{ $data->sys_name }}"
+                    data-contact="{{ $data->U_contact }}"
+                    data-photo="{{ $data->U_photo }}"
+                    data-password="{{ $data->password }}">
+                    <i class="fas fa-edit text-white"></i>
+                </button>
                     <div class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 text-white text-xs bg-gray-600 rounded-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-4">
                         Edit
                     </div>
@@ -37,9 +44,11 @@
                         <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-2 text-xs text-white bg-gray-600 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">Active</span>
                     </button>
                 </div>
+                <!-- (Your existing toggle button code) -->
             </div>
         </div>
         @endforeach
+        
     </div>
 
     <!-- Include Popups -->
