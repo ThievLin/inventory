@@ -5,7 +5,7 @@
 <div class="edit-popup hidden fixed inset-0 flex items-center justify-center z-50">
     <div class="bg-white rounded-lg shadow-lg w-lg max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
-            <h2 class="text-2xl font-bold text-white">Edit User</h2>
+            <h2 class="text-2xl font-bold text-white">EDIT USER</h2>
         </div>
         <form id="edit-user-form" action="{{ route('setting.updateUser', ['U_id' => $data->U_id]) }}" method="POST" enctype="multipart/form-data" class="space-y-4 px-6 py-2">
             @csrf
@@ -14,7 +14,7 @@
             <div class="relative text-center">
                 <input type="hidden" id="U_id" name="U_id" value="{{ $data->U_id }}">
 
-                <label for="profile-pic" class="block mb-1 font-semibold">Profile Picture:</label>
+                <label for="profile-pic" class="block mb-1 font-semibold">PHOTO :</label>
                 <div class="relative mt-2 h-64 w-64 mx-auto group">
                     <img id="profile-pic-preview" src="{{ $data->U_photo ? asset('storage/' . $data->U_photo) : 'images/user.png' }}" class="h-64 w-64 rounded-full" alt="Profile Picture Preview">
                     <input type="file" id="profile-pic" name="U_photo" class="hidden">
@@ -27,13 +27,13 @@
             <div class="flex px-4">
                 <div class="p-2 w-full">
                     <div class="mb-4">
-                        <label for="name" class="block mb-1">Username:</label>
+                        <label for="name" class="block mb-1">USERNAME :</label>
                         <input type="text" id="name" name="U_name" value="{{ $data->U_name }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="mb-4">
-                        <label for="R_id" class="block mb-1">Role:</label>
+                        <label for="R_id" class="block mb-1">ROLE :</label>
                         <select id="R_id" name="R_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                            <option value="" disabled>Select a role</option>
+                            <option value="">-- ROLE --</option>
                             @foreach ($role as $role)
                             <option value="{{ $role->R_id }}" {{ $role->R_id == old('R_id', $data->R_id) ? 'selected' : '' }}>
                                 {{ $role->R_type }}
@@ -44,21 +44,21 @@
                 </div>
                 <div class="p-2 w-full">
                     <div class="mb-4">
-                        <label for="sys_name" class="block mb-1">System Name:</label>
+                        <label for="sys_name" class="block mb-1">SYSTEM NAME :</label>
                         <input type="text" id="sys_name" name="sys_name" value="{{ $data->sys_name }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="mb-4">
-                        <label for="U_contact" class="block mb-1">User Contact:</label>
+                        <label for="U_contact" class="block mb-1">CONTACT:</label>
                         <input type="text" id="U_contact" name="U_contact" value="{{ $data->U_contact }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
                 <div class="p-2 w-full">
                     <div class="mb-4">
-                        <label for="password" class="block mb-1">Old Password:</label>
+                        <label for="password" class="block mb-1">OLD PASSWORD :</label>
                         <input type="password" id="password" name="password" value="{{ $data->password }}" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                     <div class="mb-4">
-                        <label for="newpassword" class="block mb-1">New Password:</label>
+                        <label for="newpassword" class="block mb-1">NEW PASSWORD :</label>
                         <input type="password" id="newpassword" name="newpassword" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                     </div>
                 </div>
