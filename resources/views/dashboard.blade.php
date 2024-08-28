@@ -48,8 +48,8 @@
                 <table class="w-full border-collapse">
                     <thead>
                         <tr>
-                            <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Product Name ENG</th>
-                            <th class="border border-yellow-500 p-4 bg-blue-900 text-white">Product Name KH</th>
+                            <th class="border border-yellow-500 p-4 bg-blue-900 text-white">NAME IN ENGLISH</th>
+                            <th class="border border-yellow-500 p-4 bg-blue-900 text-white">NAME IN KHMER</th>
                         </tr>
                     </thead>
                     <tbody>
