@@ -105,7 +105,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
 </div>
 
 @include('popups.create-item-popup')
-
+@include('popups.create-supplier-popup')
 <!-- JavaScript to handle showing/hiding rows based on selection and calculating total price -->
 <script>
     document.getElementById('selectnum').addEventListener('change', function() {
@@ -222,7 +222,7 @@ function updateTotalPrice() {
     totalPriceField.value = totalPrice;
 }
 
-function handleItemSelect(event) {
+function handleSelect(event) {
     var selectedValue = event.target.value;
     if (selectedValue === 'createnewITEM') {
         togglePopup('popupItem');
