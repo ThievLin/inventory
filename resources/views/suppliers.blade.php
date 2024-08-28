@@ -20,11 +20,11 @@
         <table class="min-w-full bg-white border-collapse">
           <thead>
             <tr class="bg-primary text-primary-foreground text-lg">
-              <th class="py-4 px-4 border border-white">Sup ID</th>
-              <th class="py-4 px-4 border border-white">Sup Name</th>
-              <th class="py-4 px-4 border border-white">Sup Contact</th>
-              <th class="py-4 px-4 border border-white">Sup Address</th>
-              <th class="py-4 px-4 border border-white">Action</th>
+              <th class="py-4 px-4 border border-white">NO.</th>
+              <th class="py-4 px-4 border border-white">NAME</th>
+              <th class="py-4 px-4 border border-white">CONTACT</th>
+              <th class="py-4 px-4 border border-white">ADDRESS</th>
+              <th class="py-4 px-4 border border-white">ACTION</th>
             </tr>
           </thead>
           <tbody id="inventoryTableBody">
