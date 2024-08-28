@@ -26,15 +26,13 @@
                 <!-- Shop Select -->
                 <select name="shop" class="py-2 px-4 bg-gray-100 rounded-lg border border-gray-300 flex-1 min-w-[150px]" required>
                     <option value="" disabled selected>Select shop</option>
-                    <option value="PU CAFÉ">PU CAFÉ</option>
-                    <option value="HOMETOWN CAFÉ">HOMETOWN CAFÉ</option>
+                    <option value="BSI">BSI</option>
                 </select>
         
                 <!-- Location Select -->
                 <select name="location" class="py-2 px-4 bg-gray-100 rounded-lg border border-gray-300 flex-1 min-w-[150px]" required>
                     <option value="" disabled selected>Select location</option>
-                    <option value="PU01">PU01</option>
-                    <option value="1ST BRANCH">1ST BRANCH</option>
+                    <option value="BSI">BSI</option>
                 </select>
         
                 <!-- Product Select -->
