@@ -5,13 +5,13 @@
 <div class="edit-popup-shop hidden fixed inset-0 flex items-center justify-center z-50">
     <div class="bg-white rounded-lg shadow-lg w-[600px] max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-4 py-3">
-            <h2 class="text-2xl font-bold text-white">Edit Shop</h2>
+            <h2 class="text-2xl font-bold text-white">EDIT SHOP</h2>
         </div>
         <form id="editshopForm" class="space-y-3 px-6 py-2" method="POST" enctype="multipart/form-data">
             @csrf <!-- Laravel CSRF token -->
             <input type="hidden" name="_method" value="PATCH"> <!-- Method Spoofing -->
             
-            <label class="block mb-1 font-semibold text-center text-lg">Shop Image:</label>
+            <label class="block mb-1 font-semibold text-center text-lg">LOGO :</label>
             <div class="relative">
                 <img src="images/shop.jpg" id="shop-pic-preview" class="mt-2 h-48 w-full rounded-md mx-auto object-cover shadow-lg" alt="Shop Picture Preview">
                 <input type="file" id="shop-pic" class="hidden" name="S_logo">
@@ -21,7 +21,7 @@
             </div>
             <div class="py-2 w-full text-start">
                 <div class="mb-3">
-                    <label for="shop-name" class="block mb-1">Shop Name:</label>
+                    <label for="shop-name" class="block mb-1">NAME :</label>
                     <input type="text" id="shop-name" name="S_name" class="w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="flex justify-between space-x-3 mb-3">
