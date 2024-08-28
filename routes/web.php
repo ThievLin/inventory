@@ -121,3 +121,4 @@ Route::patch('/setting/test/{Pro_id}', [SettingController::class, 'updateIngredi
 //edit user setting
 Route::patch('/setting/user/{U_id}', [SettingController::class, 'updateUser'])->name('setting.updateUser');
 
+

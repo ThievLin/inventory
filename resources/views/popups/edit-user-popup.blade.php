@@ -82,8 +82,8 @@
 
     document.querySelectorAll('.edit-button-user').forEach(button => {
         button.addEventListener('click', () => {
-            const userId = button.dataset.U_id;
-            console.log(userId); // Check if this logs the correct value
+            const userId = button.dataset.u_id;  // Note: dataset property names are case-insensitive and converted to lowercase.
+            console.log(userId); // Debugging: Check if this logs the correct user ID
             const userName = button.dataset.name || '';
             const roleId = button.dataset.role || '';
             const sysName = button.dataset.sysName || '';

@@ -117,18 +117,17 @@ class SettingController extends Controller
         return redirect()->back()->with('success', 'Location created successfully!');
     }
     public function user(Request $request) {
-
         $data = $request->validate([
             'U_name' => ['required', 'string', 'max:255'],
-           
             'sys_name' => ['required', 'string', 'max:255'],
             'U_contact' => ['required', 'string', 'max:255'],
             'R_id' => 'required|integer',
             'S_id' => 'required|integer',
             'L_id' => 'required|integer',
-            // 'U_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'password' => ['required', 'string', 'min:8'], 
+            'U_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
-        // dd($request->all());
+    
         // Handle the file upload
         $photoPath = null;
         if ($request->hasFile('U_photo')) {
@@ -137,23 +136,24 @@ class SettingController extends Controller
                 $photoPath = $photo->store('user_photos', 'public');
             }
         }
-        
+    
         // Create the user
         User::create([
             'U_name' => $data['U_name'],
             'R_id' => $data['R_id'],
             'U_contact' => $data['U_contact'],
             'sys_name' => $data['sys_name'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['password']), // Hash and save the password
             'S_id' => $data['S_id'],
             'L_id' => $data['L_id'],
             'U_photo' => $photoPath,
-            'status' => '', // This field seems to be required but isn't being set. Verify if needed.
+            'status' => 'active', // Set the status as needed
         ]);
-        
-        // Redirect back with success message
+    
+        // Redirect back with a success message
         return redirect()->back()->with('success', 'User created successfully!');
     }
+    
     
     public function category(Request $request){
         // Validate the input data
@@ -274,42 +274,32 @@ class SettingController extends Controller
      */
     public function update(Request $request, $S_id)
     {
-       
         // Validate the input data
         $validatedData = $request->validate([
             'S_name' => 'required|string|max:255',
             'S_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-   
-        // Find the shop record by ID
         $shop = Invshop::findOrFail($S_id);
-        // Update the shop name
         $shop->S_name = $validatedData['S_name'];
-    
-        // Handle the image upload if a new image is provided
         if ($request->hasFile('S_logo') && $request->file('S_logo')->isValid()) {
             // Delete the old image if it exists
             if ($shop->S_logo && Storage::disk('public')->exists($shop->S_logo)) {
                 Storage::disk('public')->delete($shop->S_logo);
-            }
-    
+            }  
             // Store the new image and update the S_logo field
             $s_logo = $request->file('S_logo');
             $imagePath = $s_logo->store('logos', 'public');
             $shop->S_logo = $imagePath;
-        }
-    
+        }    
         // Save the updated shop record
         $shop->save();
     
         // Redirect or return a response
         return redirect()->back()->with('success', 'Shop updated successfully!');
-    }
-    
+    } 
     public function updateUser(Request $request, $U_id)
     {
         // Validate the request data
-        // dd($request->all());
         $validatedData = $request->validate([
             'U_name' => 'required|string|max:255',
             'U_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -317,7 +307,7 @@ class SettingController extends Controller
             'sys_name' => 'required|string|max:255',
             'U_contact' => 'required|string|max:255',
             'password' => ['required', 'string', 'min:8'],
-            'newpassword' => 'nullable|string|min:8', // Make new password optional
+            'newpassword' => 'nullable|string|min:8', 
         ]);
     
         // Find the user record by ID
