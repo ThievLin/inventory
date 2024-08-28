@@ -2,18 +2,18 @@
 <div id="profileModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden z-20">
     <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4 mb-6">
-            <h2 class="text-2xl font-bold text-white mb-2">Edit Profile</h2>
+            <h2 class="text-2xl font-bold text-white mb-2">EDIT PROFILE</h2>
         </div>
         <form action="{{ route('home.update', ['U_id' => Auth::user()->U_id]) }}" method="POST" enctype="multipart/form-data" class="p-6">
             @csrf
             @method('PATCH')
             <div class="mb-4">
-                <label for="U_name" class="block text-sm font-medium text-gray-900 mb-2">User Name:</label>
+                <label for="U_name" class="block text-sm font-medium text-gray-900 mb-2">USERNAME :</label>
                 <input type="text" id="U_name" name="U_name" class="form-control w-full border border-gray-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500" value="{{ Auth::user()->U_name }}" required>
             </div>
             <div class="form-group">
                 <div>
-                    <button type="button" class="select-logo" onclick="document.getElementById('U_photo').click()">Browse</button>
+                    <button type="button" class="select-logo" onclick="document.getElementById('U_photo').click()">BROWSE</button>
                     <input type="file" id="U_photo" name="U_photo" style="display:none">
                 </div>
             </div>
