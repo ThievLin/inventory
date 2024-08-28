@@ -20,12 +20,12 @@
         <table class="min-w-full bg-white border-collapse">
           <thead>
             <tr class="bg-primary text-primary-foreground text-lg">
-              <th class="py-4 px-4 border border-white">Addons ID</th>
-              <th class="py-4 px-4 border border-white">Addons Name</th>
-              <th class="py-4 px-4 border border-white">Percentage</th>
-              <th class="py-4 px-4 border border-white">Qty</th>
+              <th class="py-4 px-4 border border-white">NO.</th>
+              <th class="py-4 px-4 border border-white">NAME</th>
+              <th class="py-4 px-4 border border-white">PERCENTAGE</th>
+              <th class="py-4 px-4 border border-white">QTY</th>
               <th class="py-4 px-4 border border-white">UOM</th>
-              <th class="py-4 px-4 border border-white">Action</th>
+              <th class="py-4 px-4 border border-white">ACTION</th>
             </tr>
           </thead>
           <tbody id="inventoryTableBody">
