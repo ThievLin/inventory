@@ -45,9 +45,10 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Sup_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">SUPPLIER</label>
-                    <select id="Sup_id" name="Sup_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <select id="Sup_id" name="Sup_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)" required>
+                       <option value="">-- SUPPLIER --</option>
+                        <option value="createnewSUPPLIER">++ CREATE NEW ++</option>
                         @foreach ($Supplier as $data)
-                        <option value="">--SUPPLIER--</option>
                         <option value="{{ $data->Sup_id }}">
                             {{ $data->Sup_name }}
                         </option>
@@ -105,7 +106,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
 </div>
 
 @include('popups.create-item-popup')
-
+@include('popups.create-supplier-popup')
 <!-- JavaScript to handle showing/hiding rows based on selection and calculating total price -->
 <script>
     document.getElementById('selectnum').addEventListener('change', function() {
@@ -131,12 +132,25 @@ document.getElementById('addMoreRowBtn').addEventListener('click', function() {
     var currentRowCount = itemsContainer.children.length;
     var newOption = document.createElement('option');
     addItemRow(currentRowCount + 1);
+
+    if ( document.getElementById('selectnum').text = 6){
+        document.getElementById('selectnum').value =+ currentRowCount + 1;
+        document.getElementById('selectnum').text =+ currentRowCount + 1;
+        newOption.value = document.getElementById('selectnum').text;
+        newOption.innerText = currentRowCount + 1;
+        document.getElementById('selectnum').appendChild(newOption);
+        document.getElementById('selectnum').value = newOption.value;
+    }else{
+        document.getElementById('selectnum').value =+ currentRowCount + 1;
+        document.getElementById('selectnum').text =+ currentRowCount + 1;
+    }
 });
 
 document.getElementById('subtractRowBtn').addEventListener('click', function() {
     var itemsContainer = document.getElementById('itemsContainer');
     if (itemsContainer.children.length > 0) {
         itemsContainer.removeChild(itemsContainer.lastElementChild);
+        document.getElementById('selectnum').value =+ itemsContainer.children.length;
     }
 });
 
@@ -145,9 +159,9 @@ function addItemRow(index) {
         <div class="item-row w-full flex">
             <div class="w-full sm:w-1/5 px-2 mb-6">
                 <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM NAME</label>
-                <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleItemSelect(event)">
+                <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)">
                     <option value="">--ITEM--</option>
-                    <option value="createButton">Create Item</option>
+                    <option value="createnewITEM">-- CREATE NEW --</option>
                     @foreach ($items as $data)
                     <option value="{{ $data->Item_id }}">
                         {{ $data->Item_Khname }}
@@ -211,10 +225,12 @@ function updateTotalPrice() {
     totalPriceField.value = totalPrice;
 }
 
-function handleItemSelect(event) {
+function handleSelect(event) {
     var selectedValue = event.target.value;
-    if (selectedValue === 'createButton') {
+    if (selectedValue === 'createnewITEM') {
         togglePopup('popupItem');
+    }else if (selectedValue === 'createnewSUPPLIER') {
+        togglePopup('popupSupplier');
     }
 }
 
