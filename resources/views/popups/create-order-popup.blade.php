@@ -32,7 +32,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                 <h3 class="w-full text-lg font-bold text-gray-800 mb-2">ORDER INFORMATION</h3>
                 <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="Order_number" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER NUMBER/label>
+                    <label for="Order_number" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER NUMBER</label>
                     <input type="text" id="Order_number" name="Order_number" value="{{ $orderNumber ?? '' }}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" readonly >
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
