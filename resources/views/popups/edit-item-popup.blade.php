@@ -39,8 +39,8 @@
                 <img id="imagePreview" src="" alt="Image Preview" class="h-20 w-24 rounded hidden mt-2">
               </div>
             <div class="flex justify-end">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none mr-2">Save Change</button>
-                <button type="button" id="cancelEdit" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md focus:outline-none">Cancel</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none mr-2">UPDATE</button>
+                <button type="button" id="cancelEdit" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md focus:outline-none">CANCEL</button>
             </div>
         </form>
     </div>
