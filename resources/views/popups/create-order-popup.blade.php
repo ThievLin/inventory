@@ -98,8 +98,8 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                 <button type="button" id="addMoreRowBtn" class="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-4 rounded focus:outline-none focus:ring-2 focus:ring-green-400 hidden"><i class="fas fa-plus-circle"></i></button>
             </div>
             <div class="flex justify-end">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mr-2">Save</button>
-                <button type="button" onclick="window.location.reload();" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">Cancel</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mr-2">SAVE</button>
+                <button type="button" onclick="window.location.reload();" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">CANCEL</button>
             </div>
         </form>
     </div>
