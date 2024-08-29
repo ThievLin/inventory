@@ -24,16 +24,16 @@
               <th class="py-4 border border-white">ORDER NUMBER</th>
               <th class="py-4 border border-white">RECIEPT IMAGE</th>
               <th class="py-4 border border-white">QTY OF ITEM</th>
-                <th class="py-4 border border-white">TOTAL PRICE</th>
+              <th class="py-4 border border-white">TOTAL PRICE</th>
               <th class="py-4 px-4 border border-white">ACTION</th>
             </tr>
           </thead>
           <tbody id="inventoryTableBody">
             @foreach ($order_inf as $data)
-            <tr class="{{ $loop->index % 2 === 0 ? 'bg-zinc-200' : 'bg-zinc-300' }} text-base {{ $loop->first ? 'border-t-4' : '' }} text-center border-white">
+            <tr class="{{ $loop->index % 2 === 0 ? 'bg-zinc-200' : 'bg-zinc-300' }} text-base {{ $loop->first ? 'border-t-4' : '' }} text-center border-white order-row" data-order-id="{{ $data->Order_Info_id }}">
               <td class="py-3 px-4 border border-white">{{ $data->Order_Info_id ?? 'null' }}</td>
               <td class="py-3 px-4 border border-white">{{ $data->Order_number ?? 'null' }}</td>
-              <td class="py-3 px-4 border border-white"><img src="{{ asset('storage/' .$data->Reciept_image) }}" alt="Shop Logo" class="h-10 w-12 rounded"></td>
+              <td class="py-3 px-4 border border-white"><img src="{{ asset('storage/' . $data->Reciept_image) }}" alt="Shop Logo" class="h-10 w-12 rounded"></td>
               <td class="relative py-3 px-4 border border-white group">
                 {{ $order_inf_counts[$data->Order_Info_id] ?? '0' }}
                 <span class="absolute left-0 transform -translate-x-1/2 bottom-full mb-2 text-white text-xs rounded-lg px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
@@ -41,14 +41,12 @@
                         <thead>
                             <tr class="bg-primary text-primary-foreground">
                                 <th class="py-3 px-12 border-2 border-gray-500">NAME</th>
-                                <th class="py-3 px-4 border-2 border-gray-500">CATEGORY</th>
                                 <th class="py-3 px-4 border-2 border-gray-500">UOM</th>
-                                <th class="py-3 px-4 border-2 border-gray-500">EXPIRY DATE</th>
+                                <th class="py-3 px-12 border-2 border-gray-500">EXPIRY DATE</th>
                             </tr>
                         </thead>
-                        <tbody class="text-sm">
-                            <tr class="bg-zinc-200 border-2 border-gray-500">
-                            </tr>
+                        <tbody class="text-sm" id="itemDetails-{{ $data->Order_Info_id }}">
+                            <!-- Content will be populated by JavaScript -->
                         </tbody>
                     </table>
                 </span>
@@ -63,7 +61,6 @@
                   <i class="fas fa-trash-alt fa-xs"></i>
                   <span class="absolute left-1/2 transform -translate-x-1/2 bottom-full mb-1 px-2 py-1 text-xs text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">Delete</span>
                 </button>
-
               </td>
             </tr>
             @endforeach
@@ -91,7 +88,42 @@
       });
     });
 
-  const createButton = document.getElementById('createButton');
+    // Display related records when hovering over a row
+    document.querySelectorAll('.order-row').forEach(row => {
+        row.addEventListener('mouseenter', function() {
+            let orderId = this.getAttribute('data-order-id');
+            let detailsElement = document.getElementById(`itemDetails-${orderId}`);
+            
+            // Clear existing details
+            detailsElement.innerHTML = '';
+
+            // Filter and display related items
+            @foreach ($groupedOrders as $orderId => $orders)
+          
+                if (orderId == '{{ $orderId }}') {
+                    let html = '';
+                    @foreach ($orders as $order)
+
+                        html += `
+                            <tr class="bg-zinc-200 border-2 border-gray-500">
+                                <td class="py-2 px-4 border-2 border-gray-500">{{ $order->item->Item_Khname }}</td>
+                                <td class="py-2 px-4 border-2 border-gray-500">{{ $order->uom->UOM_name }}</td>
+                                <td class="py-2 px-4 border-2 border-gray-500">{{ $order->item->Expiry_date }}</td>
+                            </tr>
+                        `;
+                    @endforeach
+                    detailsElement.innerHTML = html;
+                }
+            @endforeach
+        });
+
+        row.addEventListener('mouseleave', function() {
+            let orderId = this.getAttribute('data-order-id');
+            let detailsElement = document.getElementById(`itemDetails-${orderId}`);
+            detailsElement.innerHTML = '';
+        });
+    });
+    const createButton = document.getElementById('createButton');
   const popupForm = document.getElementById('popupOrder');
   const closePopup = document.getElementById('closeOrderPopup');
 

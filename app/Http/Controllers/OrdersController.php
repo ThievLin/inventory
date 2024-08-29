@@ -34,13 +34,15 @@ class OrdersController extends Controller
         $currency = Currency::all();
         $order = Orders::all();
         $order_inf = OrderInfor::all();
-        $inventory=Inventory::all();
-        $categories = IteamCategory::all();
+        $inventory = Inventory::all();
+        $categories = IteamCategory::all();     
         $order_inf_counts = $order->groupBy('Order_Info_id')->map(function ($group) {
             return $group->count();
         });
-        return view('orders', compact('Supplier','items','uom','order_inf','categories','order_inf_counts','currency','inventory')); 
-   
+    
+        $groupedOrders = $order->groupBy('Order_Info_id');
+    
+        return view('orders', compact('Supplier', 'items', 'uom', 'order_inf', 'categories', 'order_inf_counts', 'currency', 'inventory', 'groupedOrders')); 
     }
 
     /**

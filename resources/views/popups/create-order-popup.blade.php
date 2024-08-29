@@ -24,30 +24,28 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
 <div id="popupOrder" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center hidden z-20">
     <div class="bg-white rounded-lg shadow-lg max-w-5xl w-full mx-4 max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
-            <h2 class="text-2xl font-bold text-white mb-2 sm:text-2xl">NEW ORDER</h2>
+            <h2 class="text-2xl font-bold text-white mb-2 sm:text-2xl">Add New Order</h2>
         </div>
         <form class="p-6 sm:p-6" method="POST" action="{{ route('orders.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-wrap -mx-2 mb-4">
-                <h3 class="w-full text-lg font-bold text-gray-800 mb-2">ORDER INFORMATION</h3>
+                <h3 class="w-full text-lg font-bold text-gray-800 mb-2">Order Info</h3>
                 <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="Order_number" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER NUMBER/label>
+                    <label for="Order_number" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Order Number</label>
                     <input type="text" id="Order_number" name="Order_number" value="{{ $orderNumber ?? '' }}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" readonly >
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="Reciept_image" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">RECIEPT IMAGE</label>
+                    <label for="Reciept_image" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Receipt Image</label>
                     <input type="file" id="Reciept_image" name="Reciept_image" class="text-sm border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="Total_Price" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">TOTAL PRICE</label>
+                    <label for="Total_Price" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Total Price</label>
                     <input type="number" id="Total_Price" name="Total_Price" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" step="any">
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="Sup_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">SUPPLIER</label>
-                    <select id="Sup_id" name="Sup_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"  onchange="handleSelect(event)" required>
-                        <option value="">-- SUPPLIER --</option>
-                        <option value="createnewSUPPLIER">++ CREATE NEW ++</option>
+                    <label for="Sup_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Supplier</label>
+                    <select id="Sup_id" name="Sup_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         @foreach ($Supplier as $data)
                         <option value="{{ $data->Sup_id }}">
                             {{ $data->Sup_name }}
@@ -56,17 +54,17 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                     </select>
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="inc_VAT" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">VAT</label>
+                    <label for="inc_VAT" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Inc VAT</label>
                     <input type="checkbox" id="inc_VAT" name="inc_VAT" class="h-6 w-6 ml-10 border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="w-full sm:w-1/5 px-2 mb-8">
-                    <label for="order_date" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER DATE</label>
+                    <label for="order_date" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Order Date</label>
                     <input type="date" id="order_date" name="order_date" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="Currency_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">CURRENCY</label>
+                    <label for="Currency_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Currency</label>
                     <select id="Currency_id" name="Currency_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option value="">-- CURRENCY --</option>
+
                         @foreach ($currency as $data)
                         <option value="{{ $data->Currency_id }}">
                             {{ $data->Currency_name }}
@@ -75,18 +73,19 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                     </select>
                 </div>                         
                 <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">QTY OF ITEM</label>
+                    <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Order Number</label>
                     <select id="selectnum" name="selectnum" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option value="">-- QTY OF ITEM --</option>
+                        <option value="">Select number</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
+                        <option value="6">6</option>
                     </select>
                 </div>
             </div>
-            <h3 class="w-full text-xl font-bold text-gray-800 mb-2">ITEM LIST</h3>
+            <h3 class="w-full text-xl font-bold text-gray-800 mb-2">Items</h3>
             <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
             <div id="itemsContainer" class="flex flex-wrap -mx-2 mb-2">
                 <!-- Item rows will be appended here -->
@@ -98,14 +97,14 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
             </div>
             <div class="flex justify-end">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mr-2">Save</button>
-                <button type="button" onclick="togglePopup('popupOrder')" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">Cancel</button>
+                <button type="button" onclick="window.location.reload();" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">Cancel</button>
             </div>
         </form>
     </div>
 </div>
 
 @include('popups.create-item-popup')
-@include('popups.create-supplier-popup')
+
 <!-- JavaScript to handle showing/hiding rows based on selection and calculating total price -->
 <script>
     document.getElementById('selectnum').addEventListener('change', function() {
@@ -130,24 +129,12 @@ document.getElementById('addMoreRowBtn').addEventListener('click', function() {
     var itemsContainer = document.getElementById('itemsContainer');
     var currentRowCount = itemsContainer.children.length;
     addItemRow(currentRowCount + 1);
-    if ( document.getElementById('selectnum').text = 6){
-        document.getElementById('selectnum').value =+ currentRowCount + 1;
-        document.getElementById('selectnum').text =+ currentRowCount + 1;
-        newOption.value = document.getElementById('selectnum').text;
-        newOption.innerText = currentRowCount + 1;
-        document.getElementById('selectnum').appendChild(newOption);
-        document.getElementById('selectnum').value = newOption.value;
-    }else{
-        document.getElementById('selectnum').value =+ currentRowCount + 1;
-        document.getElementById('selectnum').text =+ currentRowCount + 1;
-    }
 });
 
 document.getElementById('subtractRowBtn').addEventListener('click', function() {
     var itemsContainer = document.getElementById('itemsContainer');
     if (itemsContainer.children.length > 0) {
         itemsContainer.removeChild(itemsContainer.lastElementChild);
-        document.getElementById('selectnum').value =+ itemsContainer.children.length;
     }
 });
 
@@ -155,10 +142,10 @@ function addItemRow(index) {
     var itemRow = `
         <div class="item-row w-full flex">
             <div class="w-full sm:w-1/5 px-2 mb-6">
-                <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM NAME</label>
-                <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)">
-                    <option value="">-- ITEM --</option>
-                    <option value="createnewITEM">-- CREATE NEW --</option>
+                <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select Item</label>
+                <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleItemSelect(event)">
+                    <option value="">Select Item</option>
+                    <option value="createButton">Create Item</option>
                     @foreach ($items as $data)
                     <option value="{{ $data->Item_id }}">
                         {{ $data->Item_Khname }}
@@ -167,13 +154,13 @@ function addItemRow(index) {
                 </select>
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
-                <label for="QtyItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM QTY</label>
+                <label for="QtyItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Qty Items</label>
                 <input type="number" id="QtyItem${index}" name="QtyItem${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
-                <label for="inputSelectUOM${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">UOM</label>
+                <label for="inputSelectUOM${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Select UOM</label>
                 <select id="inputSelectUOM${index}" name="inputSelectUOM${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">-- UOM --</option>
+                    <option value="">Select UOM</option>
                     @foreach ($uom as $data)
                     <option value="{{ $data->UOM_id }}">
                         {{ $data->UOM_name }}
@@ -182,15 +169,15 @@ function addItemRow(index) {
                 </select>
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
-                <label for="Item_Qty${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER QTY</label>
+                <label for="Item_Qty${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Qty Price</label>
                 <input type="number" id="Item_Qty${index}" name="Item_Qty${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
             </div>
             <div class="w-full sm:w-1/5 px-2 mb-8">
-                <label for="price${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">PRICE</label>
+                <label for="price${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Price</label>
                 <input type="number" id="price${index}" name="price${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" step="any" oninput="updateTotalPrice()">
             </div>
                 <div class="w-full sm:w-1/5 px-2 mb-8">
-                    <label for="expired_Date${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">EXPIRY DATE</label>
+                    <label for="expired_Date${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">Expired Date</label>
                     <input type="date" id="expired_Date${index}" name="expired_Date${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
         </div>
@@ -222,12 +209,10 @@ function updateTotalPrice() {
     totalPriceField.value = totalPrice;
 }
 
-function handleSelect(event) {
+function handleItemSelect(event) {
     var selectedValue = event.target.value;
-    if (selectedValue === 'createnewITEM') {
+    if (selectedValue === 'createButton') {
         togglePopup('popupItem');
-    }else if (selectedValue === 'createnewSUPPLIER') {
-        togglePopup('popupSupplier');
     }
 }
 
@@ -235,4 +220,10 @@ function togglePopup(popupId) {
         const popup = document.getElementById(popupId);
         popup.classList.toggle('hidden');
     }
+
+document.getElementById('closeItemPopup').addEventListener('click', function() {
+    togglePopup('popupItem');
+});
+
+
 </script>

@@ -1,4 +1,4 @@
-
+<!-- Popup container -->
 <div id="popupItem" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center {{ $errors->any() ? '' : 'hidden' }} z-20">
     <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
@@ -58,7 +58,14 @@
 
 <script>
     document.getElementById('closeItemPopup').addEventListener('click', function() {
+        // Hide the popup
         document.getElementById('popupItem').classList.add('hidden');
+        
+        // Clear the form data
+        document.getElementById('itemForm').reset();
+        
+        // Clear file input
+        document.getElementById('image').value = '';
     });
 
     // Display the popup if validation errors are present
@@ -81,6 +88,4 @@
         font-size: 0.875rem;
         margin-top: 0.25rem;
     }
-
-
 </style>

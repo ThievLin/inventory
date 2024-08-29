@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\UOM;
+use App\Models\Items;
 use App\Models\Invshop;
 use App\Models\OrderInfor;
 use App\Models\InvLocation;
@@ -31,4 +33,14 @@ class Orders extends Model
     {
         return $this->belongsTo(OrderInfor::class, 'Order_Info_id', 'Order_Info_id');
     }
+
+    public function item()
+    {
+        return $this->belongsTo(Items::class, 'Item_id', 'Item_id');
+    }
+    public function uom()
+    {
+        return $this->belongsTo(UOM::class, 'UOM_id', 'UOM_id');
+    }
 }
+

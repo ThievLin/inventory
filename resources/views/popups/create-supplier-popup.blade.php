@@ -1,3 +1,4 @@
+<!-- Popup container -->
 <div id="popupSupplier" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center {{ $errors->any() ? '' : 'hidden' }} z-20">
     <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
@@ -13,7 +14,7 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="Sup_contact" class="block text-sm font-medium text-gray-900 mb-1">CONTRACT</label>
+                <label for="Sup_contact" class="block text-sm font-medium text-gray-900 mb-1">CONTACT</label>
                 <input type="text" id="Sup_contact" name="Sup_contact" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 @error('Sup_contact') is-invalid @enderror" value="{{ old('Sup_contact') }}">
                 @error('Sup_contact')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -36,7 +37,11 @@
 
 <script>
     document.getElementById('closeSupplierPopup').addEventListener('click', function() {
+        // Hide the popup
         document.getElementById('popupSupplier').classList.add('hidden');
+        
+        // Clear the form data
+        document.getElementById('supplierForm').reset();
     });
 
     // Focus the first invalid input if any errors are present

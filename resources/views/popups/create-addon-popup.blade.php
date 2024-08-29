@@ -50,6 +50,11 @@
 <script>
     document.getElementById('cancelCre').addEventListener('click', function() {
         document.getElementById('popupcreate').classList.add('hidden');
+        document.getElementById('AddonForm').reset();    
+        const invalidFields = document.querySelectorAll('.is-invalid');
+        invalidFields.forEach(field => field.classList.remove('is-invalid'));
+        const errorMessages = document.querySelectorAll('.invalid-feedback');
+        errorMessages.forEach(message => message.textContent = '');
     });
 
     // Display the popup if validation errors are present

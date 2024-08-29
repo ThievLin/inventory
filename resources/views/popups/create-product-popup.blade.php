@@ -13,7 +13,7 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="Pro_name_kh" class="block text-sm font-medium text-gray-900 mb-1">NAME IN KHMER/label>
+                <label for="Pro_name_kh" class="block text-sm font-medium text-gray-900 mb-1">NAME IN KHMER</label>
                 <input type="text" id="Pro_name_kh" name="Pro_name_kh" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" >
                 @error('Pro_name_kh')
                     <span class="invalid-feedback">{{ $message }}</span>
@@ -49,7 +49,12 @@
 </div>
 <script>
     document.getElementById('cancelCre').addEventListener('click', function() {
-        document.getElementById('popupcreate').classList.add('hidden');
+        document.getElementById('popupcreate').classList.add('hidden');   
+        document.getElementById('productForm').reset();    
+        const invalidFields = document.querySelectorAll('.is-invalid');
+        invalidFields.forEach(field => field.classList.remove('is-invalid'));
+        const errorMessages = document.querySelectorAll('.invalid-feedback');
+        errorMessages.forEach(message => message.textContent = '');
     });
 
     // Display the popup if validation errors are present

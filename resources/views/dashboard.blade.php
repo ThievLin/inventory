@@ -23,18 +23,25 @@
 
             <!-- STOCK ON HAND SECTION -->
             <div class="border-2 border-yellow-500 rounded-lg p-10 w-full shadow-lg bg-white mt-4">
-              <h2 class="text-xl font-bold text-center mb-4 text-yellow-600">STOCK ON HAND</h2>
-              <div class="border-t-2 border-yellow-500 my-6"></div>
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
-                  @foreach ($invView as $data)
-                  <div class="border border-yellow-500 rounded-lg p-4 bg-gray-100">
-                      <p class="text-sm font-bold mb-2">{{$data->Item_Name}}</p>
-                      <p class="text-xs text-gray-700">{{$data->Total_StockIn ?? 'null'}}</p>
-                  </div>
-                  @endforeach
-              </div>
-              <div class="border-t-2 border-yellow-500 my-6"></div>
-          </div>
+                <h2 class="text-xl font-bold text-center mb-4 text-yellow-600">STOCK ON HAND</h2>
+                <div class="border-t-2 border-yellow-500 my-6"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+                    @foreach ($invView as $data)
+                    <div class="border border-yellow-500 rounded-lg p-4 bg-gray-100">
+                        <p class="text-sm font-bold mb-2">{{ $data->Item_Name }}</p>
+                        <p class="text-xs text-gray-700">
+                            @if($data->Total_StockIn > 1000)
+                                {{ $data->Total_StockIn / 1000 }} kg
+                            @else
+                                {{ $data->Total_StockIn }} g
+                            @endif
+                        </p>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="border-t-2 border-yellow-500 my-6"></div>
+            </div>
+            
           
         </div>
         
