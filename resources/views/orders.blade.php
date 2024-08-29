@@ -36,13 +36,13 @@
               <td class="flex items-center justify-center py-3 px-4 border border-white"><img src="{{ asset('storage/' . $data->Reciept_image) }}" alt="Shop Logo" class="h-10 w-12 rounded"></td>
               <td class="relative py-3 px-4 border border-white group">
                 {{ $order_inf_counts[$data->Order_Info_id] ?? '0' }}
-                <span class="absolute left-0 transform -translate-x-1/2 bottom-full mb-2 text-white text-xs rounded-lg px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
+                <span class="absolute left-0 transform -translate-x-1/2 bottom-full mb-2 text-white text-xs rounded-lg px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-1 pointer-events-none group-hover:pointer-events-auto">
                     <table class="min-w-full bg-white border-collapse text-left text-sm border-2 border-gray-500 shadow-2xl">
                         <thead>
                             <tr class="bg-primary text-primary-foreground">
                                 <th class="py-3 px-12 border-2 border-gray-500">NAME</th>
-                                <th class="py-3 px-4 border-2 border-gray-500">UOM</th>
-                                <th class="py-3 px-12 border-2 border-gray-500">EXPIRY DATE</th>
+                                <th class="py-3 px-4 border-2 border-gray-500">QTY</th>
+                                <th class="py-3 px-12 border-2 border-gray-500">UOM</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm" id="itemDetails-{{ $data->Order_Info_id }}">
