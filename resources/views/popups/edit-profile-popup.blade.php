@@ -21,8 +21,8 @@
                 <img src="{{ Auth::user()->U_photo ? asset('storage/' . Auth::user()->U_photo) : asset('images/user.jpg') }}"  class="w-32 h-32 object-cover rounded-lg" alt="Image Preview">
             </div>
             <div class="flex justify-end space-x-4">
-                <button type="button" class="bg-gray-500 text-white rounded-md px-4 py-2 hover:bg-gray-600" id="closeModal">Cancel</button>
-                <button type="submit" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600">Save Changes</button>
+                <button type="submit" class="bg-blue-500 text-white rounded-md px-4 py-2 hover:bg-blue-600">UPDATE</button>
+                <button type="button" class="bg-gray-500 text-white rounded-md px-4 py-2 hover:bg-gray-600" id="closeModal">CANCEL</button>
             </div>
         </form>
     </div>
