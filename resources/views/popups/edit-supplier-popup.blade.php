@@ -21,8 +21,8 @@
         <input type="text" id="editSupAddress" name="Sup_address" value="{{ $data->Sup_address }}" class="mt-1 p-2 border border-gray-300 rounded-md w-full">
       </div>
       <div class="flex justify-end">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none mr-2">Save Changes</button>
-        <button type="button" id="cancelEdit" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md focus:outline-none">Cancel</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none mr-2">UPDATE</button>
+        <button type="button" id="cancelEdit" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md focus:outline-none">CANCEL</button>
       </div>
     </div>
   </form>
