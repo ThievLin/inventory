@@ -24,14 +24,8 @@
                 <th class="py-4 px-4 border border-white">NO.</th>
                 <th class="py-4 px-4 border border-white">
                   <a href="{{ url('/products?sortColumn=Pro_name_eng&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . $searchTerm) }}">
-                    ENGLISH NAME
+                    NAME
                     <i class="fas fa-xs {{ request('sortColumn') == 'Pro_name_eng' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
-                  </a>
-                </th>
-                <th class="py-4 px-4 border border-white">
-                  <a href="{{ url('/products?sortColumn=Pro_name_kh&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . $searchTerm) }}">
-                    KHMER NAME
-                    <i class="fas fa-xs {{ request('sortColumn') == 'Pro_name_kh' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
                   </a>
                 </th>
                 <th class="py-4 px-4 border border-white">
@@ -40,6 +34,7 @@
                     <i class="fas fa-xs {{ request('sortColumn') == 'category' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
                   </a>
                 </th>
+                <th class="py-4 px-4 border border-white">GROUP</th>
                 <th class="py-4 px-4 border border-white">IMAGE</th>
                 <th class="py-4 px-4 border border-white">ACTION</th>
               </tr>
@@ -48,9 +43,9 @@
               @foreach ($products as $data)
               <tr class="{{ $loop->index % 2 === 0 ? 'bg-zinc-200' : 'bg-zinc-300' }} text-base {{ $loop->first ? 'border-t-4' : '' }} text-center border-white">
                 <td class="text-center py-3 px-4 border border-white">{{ $data->Pro_id ?? 'null' }}</td>
-                <td class="text-center py-3 px-4 border border-white">{{ $data->Pro_name_eng ?? 'null' }}</td>
-                <td class="text-center py-3 px-4 border border-white">{{ $data->Pro_name_kh ?? 'null' }}</td>
-                <td class="text-center py-3 px-4 border border-white">{{ $data->productCategory->Cate_Khname ?? 'null' }}</td>
+                 <td class="text-center py-3 px-4 border border-white">{{ $data->Pro_name_kh . '    ' . $data->Pro_name_eng ?? 'null' }}</td>
+                <td class="text-center py-3 px-4 border border-white">{{ $data->productCategory->Cate_Khname . '    ' . $data->productCategory->Cate_Engname ?? 'null' }}</td>
+                <td class="text-center py-3 px-4 border border-white"></td>
                 <td class="flex items-center justify-center py-3 px-4 border border-white">
                   @if($data->image)
                       <img src="{{ asset('storage/' . $data->image) }}" alt="Item Image" class="h-10 w-12 rounded">
