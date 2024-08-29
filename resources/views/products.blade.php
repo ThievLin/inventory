@@ -51,7 +51,7 @@
                 <td class="text-center py-3 px-4 border border-white">{{ $data->Pro_name_eng ?? 'null' }}</td>
                 <td class="text-center py-3 px-4 border border-white">{{ $data->Pro_name_kh ?? 'null' }}</td>
                 <td class="text-center py-3 px-4 border border-white">{{ $data->productCategory->Cate_Khname ?? 'null' }}</td>
-                <td class="py-3 px-4 border border-white">
+                <td class="flex items-center justify-center py-3 px-4 border border-white">
                   @if($data->image)
                       <img src="{{ asset('storage/' . $data->image) }}" alt="Item Image" class="h-10 w-12 rounded">
                   @else
