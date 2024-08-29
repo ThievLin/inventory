@@ -178,7 +178,7 @@ class OrdersController extends Controller
             <tr class="' . $rowClass . ' text-base ' . $borderClass . ' text-center border-white">
                 <td class="py-3 px-4 border border-white">' . ($data->Order_Info_id ?? 'null') . '</td>
                 <td class="py-3 px-4 border border-white">' . ($data->Order_number ?? 'null') . '</td>
-                <td class="py-3 px-4 border border-white"><img src="' . asset('storage/' . $data->Reciept_image) . '" alt="Shop Logo" class="h-10 w-12 rounded"></td>
+                <td class="flex items-center justify-center py-3 px-4 border border-white"><img src="' . asset('storage/' . $data->Reciept_image) . '" alt="Shop Logo" class="h-10 w-12 rounded"></td>
                 <td class="py-3 px-4 border border-white">' . ($data->Total_Price ?? 'null') . '</td>
                 <td class="py-3 px-4 border border-white">' . ( $order_inf_counts[$data->Order_Info_id] ?? '0') . '</td>
                 <td class="py-3 border border-white">
