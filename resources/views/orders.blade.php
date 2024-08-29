@@ -33,7 +33,7 @@
             <tr class="{{ $loop->index % 2 === 0 ? 'bg-zinc-200' : 'bg-zinc-300' }} text-base {{ $loop->first ? 'border-t-4' : '' }} text-center border-white order-row" data-order-id="{{ $data->Order_Info_id }}">
               <td class="py-3 px-4 border border-white">{{ $data->Order_Info_id ?? 'null' }}</td>
               <td class="py-3 px-4 border border-white">{{ $data->Order_number ?? 'null' }}</td>
-              <td class="py-3 px-4 border border-white"><img src="{{ asset('storage/' . $data->Reciept_image) }}" alt="Shop Logo" class="h-10 w-12 rounded"></td>
+              <td class="flex items-center justify-center py-3 px-4 border border-white"><img src="{{ asset('storage/' . $data->Reciept_image) }}" alt="Shop Logo" class="h-10 w-12 rounded"></td>
               <td class="relative py-3 px-4 border border-white group">
                 {{ $order_inf_counts[$data->Order_Info_id] ?? '0' }}
                 <span class="absolute left-0 transform -translate-x-1/2 bottom-full mb-2 text-white text-xs rounded-lg px-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 pointer-events-none group-hover:pointer-events-auto">
