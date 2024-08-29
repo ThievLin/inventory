@@ -33,7 +33,7 @@
             <tr class="{{ $loop->index % 2 === 0 ? 'bg-zinc-200' : 'bg-zinc-300' }} text-base {{ $loop->first ? 'border-t-4' : '' }} text-center border-white">
               <td class="text-center py-3 px-4 border border-white">{{ $data->Addons_id ?? 'null' }}</td>
               <td class="text-center py-3 px-4 border border-white">{{ $data->Addons_name ?? 'null' }}</td>
-              <td class="text-center py-3 px-4 border border-white">{{ $data->Percentage ?? 'null' }}</td>
+              <td class="text-center py-3 px-4 border border-white">{{ $data->Percentage * 100 . '%' ?? 'null' }}</td>
               <td class="text-center py-3 px-4 border border-white">{{ $data->Qty ?? 'null' }}</td>
               <td class="text-center py-3 px-4 border border-white">{{ $data->uom->UOM_name ?? 'null' }}</td>
               <td class="py-3 border border-white">
