@@ -23,14 +23,8 @@
             <tr class="bg-primary text-primary-foreground text-lg">
               <th class="py-4 px-4 border border-white">NO.</th>
               <th class="py-4 px-4 border border-white">
-                <a href="{{ url('/items?sortColumn=Item_Khname&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
-                  KHMER NAME
-                  <i class="fas fa-xs {{ request('sortColumn') == 'Item_Khname' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
-                </a>
-              </th>
-              <th class="py-4 px-4 border border-white">
                 <a href="{{ url('/items?sortColumn=Item_Engname&sortOrder=' . (request('sortOrder') == 'asc' ? 'desc' : 'asc') . '&search=' . request('search')) }}">
-                  ENGLISH NAME
+                  NAME
                   <i class="fas fa-xs {{ request('sortColumn') == 'Item_Engname' ? (request('sortOrder') == 'asc' ? 'fa-sort-alpha-up' : 'fa-sort-alpha-down') : 'fa-sort-alpha-down' }}"></i>
                 </a>
               </th>
@@ -49,9 +43,8 @@
             @foreach ($items as $data)
             <tr class="{{ $loop->index % 2 === 0 ? 'bg-zinc-200' : 'bg-zinc-300' }} text-base {{ $loop->first ? 'border-t-4' : '' }} text-center border-white">
               <td class="text-center py-3 px-4 border border-white">{{ $data->Item_id ?? 'null' }}</td>
-              <td class="text-center py-3 px-4 border border-white">{{ $data->Item_Khname ?? 'null' }}</td>
-              <td class="text-center py-3 px-4 border border-white">{{ $data->Item_Engname ?? 'null' }}</td>
-              <td class="text-center py-3 px-4 border border-white">{{ $data->iteamCategory->Item_Cate_Khname ?? 'null' }}</td>
+              <td class="text-center py-3 px-4 border border-white">{{ $data->Item_Khname .'    '. $data->Item_Engname?? 'null' }}</td>
+              <td class="text-center py-3 px-4 border border-white">{{ $data->iteamCategory->Item_Cate_Khname .'    '. $data->iteamCategory->Item_Cate_Engname ?? 'null' }}</td>
               <td class="text-center py-3 px-4 border border-white">{{ $data->Expiry_date ?? 'null' }}</td>
               <td class="flex items-center justify-center py-3 px-4 border border-white">
                 @if($data->image)
