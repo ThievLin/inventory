@@ -67,7 +67,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                     <label for="Currency_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">CURRENCY</label>
                     <select id="Currency_id" name="Currency_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         @foreach ($currency as $data)
-                        <option value="">--CURRENCY--</option>
+                        <option value="">-- CURRENCY --</option>
                         <option value="{{ $data->Currency_id }}">
                             {{ $data->Currency_name }}
                         </option>
@@ -160,7 +160,7 @@ function addItemRow(index) {
             <div class="w-full sm:w-1/5 px-2 mb-6">
                 <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM NAME</label>
                 <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)">
-                    <option value="">--ITEM--</option>
+                    <option value="">-- ITEM --</option>
                     <option value="createnewITEM">-- CREATE NEW --</option>
                     @foreach ($items as $data)
                     <option value="{{ $data->Item_id }}">
@@ -176,7 +176,7 @@ function addItemRow(index) {
             <div class="w-full sm:w-1/5 px-2 mb-8">
                 <label for="inputSelectUOM${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">UOM</label>
                 <select id="inputSelectUOM${index}" name="inputSelectUOM${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">--UOM--</option>
+                    <option value="">-- UOM --</option>
                     @foreach ($uom as $data)
                     <option value="{{ $data->UOM_id }}">
                         {{ $data->UOM_name }}
