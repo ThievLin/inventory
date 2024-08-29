@@ -31,19 +31,19 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
             <div class="flex flex-wrap -mx-2 mb-4">
                 <h3 class="w-full text-lg font-bold text-gray-800 mb-2"> ORDER INFORMATION</h3>
                 <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
-                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Order_number" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER NUMBER</label>
                     <input type="text" id="Order_number" name="Order_number" value="{{ $orderNumber ?? '' }}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" readonly >
                 </div>
-                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Reciept_image" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">RECIEPT IMAGE</label>
                     <input type="file" id="Reciept_image" name="Reciept_image" class="text-sm border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 </div>
-                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Total_Price" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">TOTAL PRICE</label>
                     <input type="number" id="Total_Price" name="Total_Price" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" step="any">
                 </div>
-                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Sup_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">SUPPLIER</label>
                     <select id="Sup_id" name="Sup_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)" required>
                        <option value="">-- SUPPLIER --</option>
@@ -55,15 +55,15 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                         @endforeach
                     </select>
                 </div>
-                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="inc_VAT" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1"> VAT</label>
                     <input type="checkbox" id="inc_VAT" name="inc_VAT" class="h-6 w-6 ml-10 border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
-                <div class="w-full sm:w-1/5 px-2 mb-8">
+                <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
                     <label for="order_date" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER DATE</label>
                     <input type="date" id="order_date" name="order_date" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
-                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="Currency_id" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">CURRENCY</label>
                     <select id="Currency_id" name="Currency_id" class="text-sm sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         @foreach ($currency as $data)
@@ -74,7 +74,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                         @endforeach
                     </select>
                 </div>                         
-                <div class="w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
+                <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">QTY OF ITEM</label>
                     <select id="selectnum" name="selectnum" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                         <option value="">-- QTY OF ITEM --</option>
@@ -157,7 +157,7 @@ document.getElementById('subtractRowBtn').addEventListener('click', function() {
 function addItemRow(index) {
     var itemRow = `
         <div class="item-row w-full flex">
-            <div class="w-full sm:w-1/5 px-2 mb-6">
+            <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-6">
                 <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM NAME</label>
                 <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)">
                     <option value="">-- ITEM --</option>
@@ -169,11 +169,11 @@ function addItemRow(index) {
                     @endforeach
                 </select>
             </div>
-            <div class="w-full sm:w-1/5 px-2 mb-8">
+            <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
                 <label for="QtyItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM QTY</label>
                 <input type="number" id="QtyItem${index}" name="QtyItem${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
-            <div class="w-full sm:w-1/5 px-2 mb-8">
+            <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
                 <label for="inputSelectUOM${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">UOM</label>
                 <select id="inputSelectUOM${index}" name="inputSelectUOM${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">-- UOM --</option>
@@ -184,15 +184,15 @@ function addItemRow(index) {
                     @endforeach
                 </select>
             </div>
-            <div class="w-full sm:w-1/5 px-2 mb-8">
+            <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
                 <label for="Item_Qty${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ORDER QTY</label>
                 <input type="number" id="Item_Qty${index}" name="Item_Qty${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="updateTotalPrice()">
             </div>
-            <div class="w-full sm:w-1/5 px-2 mb-8">
+            <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
                 <label for="price${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">PRICE</label>
                 <input type="number" id="price${index}" name="price${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" step="any" oninput="updateTotalPrice()">
             </div>
-                <div class="w-full sm:w-1/5 px-2 mb-8">
+                <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
                     <label for="expired_Date${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">EXPIRY DATE</label>
                     <input type="date" id="expired_Date${index}" name="expired_Date${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
