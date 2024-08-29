@@ -46,8 +46,8 @@
             </div>
         </div>
         <div class="flex justify-end">
-            <button type="button" id="closeEditPopup" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md focus:outline-none mr-2">Cancel</button>
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none">Save Change</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none">UPDATE</button>
+            <button type="button" id="closeEditPopup" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md focus:outline-none mr-2">CANCEL</button>
         </div>
       </form>
     </div>
