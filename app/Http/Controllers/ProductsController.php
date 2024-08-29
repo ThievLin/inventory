@@ -196,7 +196,7 @@ class ProductsController extends Controller
               <td class="py-3 px-4 border border-white">' . ($data->Pro_name_eng ?? 'null') . '</td>
               <td class="py-3 px-4 border border-white">' . ($data->Pro_name_kh ?? 'null') . '</td>
               <td class="py-3 px-4 border border-white">' . ($data->productCategory->Cate_Khname ?? 'null' ) . '</td>
-              <td class="py-3 px-4 border border-white">' . ( $data->image ?? 'null') . '</td>
+              <td class="flex items-center justify-center py-3 px-4 border border-white">' . ( $data->image ?? 'null') . '</td>
               <td class="py-3 border border-white">
                 <button class="relative bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white py-2 px-4 rounded-md focus:outline-none transition duration-150 ease-in-out group" onclick="openEditPopup(' . $data->Sup_id . ', \'' . $data->Sup_name . '\', \'' . $data->Sup_contact . '\', \'' . $data->Sup_address . '\')">
                   <i class="fas fa-edit fa-xs"></i>
