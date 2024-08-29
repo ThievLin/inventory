@@ -183,7 +183,7 @@ public function update(Request $request, $id)
               <td class="py-3 px-4 border border-white">' . ($data->Item_Engname ?? 'null') . '</td>
               <td class="py-3 px-4 border border-white">' . ($data->iteamCategory->Item_Cate_Khname ?? 'null') . '</td>
               <td class="py-3 px-4 border border-white">' . ($data->Expiry_date ?? 'null') . '</td>
-              <td class="py-3 px-4 border border-white">' . ($data->image ?? 'null') . '</td>
+              <td class="flex items-center justify-center py-3 px-4 border border-white">' . ($data->image ?? 'null') . '</td>
               <td class="py-3 border border-white">
                 <button class="relative bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white py-2 px-4 rounded-md focus:outline-none transition duration-150 ease-in-out group editButton">
                   <i class="fas fa-edit fa-xs"></i>
