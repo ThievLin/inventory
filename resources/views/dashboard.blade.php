@@ -30,10 +30,14 @@
                     <div class="border border-yellow-500 rounded-lg p-4 bg-gray-100">
                         <p class="text-sm font-bold mb-2">{{ $data->Item_Name }}</p>
                         <p class="text-xs text-gray-700">
-                            @if($data->Total_In_Hand > 1000)
+                            @if($data->Total_In_Hand >= 1000 && $data->UOM =='g')
                                 {{ $data->Total_In_Hand / 1000 }} kg
-                            @else
+                            @elseif($data->Total_In_Hand < 1000 && $data->UOM =='g')
                                 {{ $data->Total_In_Hand }} g
+                            @elseif($data->Total_In_Hand >= 1000 && $data->UOM== 'ml')
+                            {{ $data->Total_In_Hand / 1000 }} L
+                            @elseif($data->Total_In_Hand < 1000 && $data->UOM =='ml')
+                            {{ $data->Total_In_Hand }} ml
                             @endif
                         </p>
                     </div>
