@@ -30,10 +30,10 @@
                     <div class="border border-yellow-500 rounded-lg p-4 bg-gray-100">
                         <p class="text-sm font-bold mb-2">{{ $data->Item_Name }}</p>
                         <p class="text-xs text-gray-700">
-                            @if($data->Total_StockIn > 1000)
-                                {{ $data->Total_StockIn / 1000 }} kg
+                            @if($data->Total_In_Hand > 1000)
+                                {{ $data->Total_In_Hand / 1000 }} kg
                             @else
-                                {{ $data->Total_StockIn }} g
+                                {{ $data->Total_In_Hand }} g
                             @endif
                         </p>
                     </div>
