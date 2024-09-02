@@ -9,6 +9,7 @@ $menuItems = [
     ['route' => '/products', 'icon' => 'fas fa-cube', 'label' => 'Menu', 'roles' => [1,4,2]],
     ['route' => '/add-ons', 'icon' => 'fas fa-puzzle-piece', 'label' => 'Add-ons', 'roles' => [1,4,2]],
     ['route' => '/reports', 'icon' => 'fas fa-file-alt', 'label' => 'Reports', 'roles' => [1, 3, 4,2]],
+    ['route' => '/expense', 'icon' => 'fas fa-file-alt', 'label' => 'Expense', 'roles' => [1, 3, 4,2]],
     ['route' => '/accounting', 'icon' => 'fas fa-calculator', 'label' => 'Profit / Lose', 'roles' => [1,2]],
     ['route' => '/setting', 'icon' => 'fas fa-cog', 'label' => 'Settings', 'roles' => [1,2]],
 ];
