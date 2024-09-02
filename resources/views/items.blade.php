@@ -17,7 +17,7 @@
     </div>
     <div class="w-full md:w-4/5 border-2 border-bsicolor p-2 font-times">
       <div class="overflow-x-auto">
-        <h4 class="text-center font-bold pb-4 text-lg">ITEMS INFORMATION</h4>
+        <h4 class="text-center font-bold pb-4 text-lg">MATERIALS INFORMATION</h4>
         <table class="min-w-full bg-white border-collapse">
           <thead>
             <tr class="bg-primary text-primary-foreground text-lg">
