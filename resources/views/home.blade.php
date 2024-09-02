@@ -6,11 +6,10 @@ $menuItems = [
     ['route' => '/items', 'icon' => 'fas fa-shopping-basket', 'label' => 'Items', 'roles' => [1, 3, 2 ]],
     ['route' => '/orders', 'icon' => 'fas fa-shopping-cart', 'label' => 'Orders', 'roles' => [1, 3, 2 ]],
     ['route' => '/pos', 'icon' => 'fas fa-cash-register', 'label' => 'POS', 'roles' => [1,4 ,2]],
-    ['route' => '/products', 'icon' => 'fas fa-cube', 'label' => 'Products', 'roles' => [1,4,2]],
+    ['route' => '/products', 'icon' => 'fas fa-cube', 'label' => 'Menu', 'roles' => [1,4,2]],
     ['route' => '/add-ons', 'icon' => 'fas fa-puzzle-piece', 'label' => 'Add-ons', 'roles' => [1,4,2]],
-    ['route' => '/sales', 'icon' => 'fas fa-chart-bar', 'label' => 'Sales', 'roles' => [1,4,2]],
     ['route' => '/reports', 'icon' => 'fas fa-file-alt', 'label' => 'Reports', 'roles' => [1, 3, 4,2]],
-    ['route' => '/accounting', 'icon' => 'fas fa-calculator', 'label' => 'Accounting', 'roles' => [1,2]],
+    ['route' => '/accounting', 'icon' => 'fas fa-calculator', 'label' => 'Profit / Lose', 'roles' => [1,2]],
     ['route' => '/setting', 'icon' => 'fas fa-cog', 'label' => 'Settings', 'roles' => [1,2]],
 ];
 @endphp
@@ -49,9 +48,9 @@ $menuItems = [
             <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-md shadow-lg border-2 border-bsicolor z-10">
                 <div class="py-1">
                     <a href="dashboard" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900">Dashboard</a>
-                    <a href="setting" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900">Settings</a>
-                    <a href="account" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900">Account</a>
-                    <a href="#" class="block px-5 py-3 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b-2 border-bsicolor" id="editProfile">Profile</a>
+                    
+                    <a href="#" class="block px-5 py-3 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 id="editProfile">Profile</a>
+                    <a href="setting" class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900 border-b-2 border-bsicolor"">Settings</a>
                     <a class="block px-4 py-2 text-lg text-gray-700 hover:bg-gray-100 hover:text-gray-900" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}
                     </a>
