@@ -1,7 +1,7 @@
 <div id="popupcreate" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center hidden z-20">
     <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-screen overflow-y-auto">
         <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
-            <h2 class="text-2xl font-bold text-white mb-2">NEW PRODUCT</h2>
+            <h2 class="text-2xl font-bold text-white mb-2">NEW MENU</h2>
         </div>
         <form id="productForm" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="p-6">
             @csrf
