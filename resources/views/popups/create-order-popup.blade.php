@@ -75,9 +75,9 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                     </select>
                 </div>                         
                 <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
-                    <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">QTY OF ITEM</label>
+                    <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">QTY OF MATERIAL</label>
                     <select id="selectnum" name="selectnum" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option value="0" disabled selected>-- QTY OF ITEM --</option>
+                        <option value="0" disabled selected>-- QTY OF MATERIAL --</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -86,7 +86,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                     </select>
                 </div>
             </div>
-            <h3 class="w-full text-xl font-bold text-gray-800 mb-2">ITEM LIST</h3>
+            <h3 class="w-full text-xl font-bold text-gray-800 mb-2">MATERIAL LIST</h3>
             <div class="w-full h-0.5 bg-bsicolor rounded-sm mb-4"></div>
             <div id="itemsContainer" class="flex flex-wrap -mx-2 mb-2">
                 <!-- Item rows will be appended here -->
@@ -157,9 +157,9 @@ function addItemRow(index) {
     var itemRow = `
         <div class="item-row w-full flex">
             <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-6">
-                <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM NAME</label>
+                <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">MATERIAL NAME</label>
                 <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)">
-                    <option value="" disabled selected>-- ITEM --</option>
+                    <option value="" disabled selected>-- MATERIAL --</option>
                     <option value="createnewITEM">-- CREATE NEW --</option>
                     @foreach ($items as $data)
                     <option value="{{ $data->Item_id }}">
@@ -169,7 +169,7 @@ function addItemRow(index) {
                 </select>
             </div>
             <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
-                <label for="QtyItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM QTY</label>
+                <label for="QtyItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">MATERIAL QTY</label>
                 <input type="number" id="QtyItem${index}" name="QtyItem${index}" class="border border-gray-300 rounded-md px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
             <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
