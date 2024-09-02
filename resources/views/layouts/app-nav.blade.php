@@ -5,7 +5,7 @@ $navItems = [
     ['route' => 'items', 'label' => 'MATERIALS', 'roles' => [1, 3]],
     ['route' => 'orders', 'label' => 'ORDER', 'roles' => [1, 3]],
     ['route' => 'pos', 'label' => 'POS', 'roles' => [1, 2, 4]],
-    ['route' => 'products', 'label' => 'PRODUCT', 'roles' => [1, 2, 4]],
+    ['route' => 'products', 'label' => 'MENU', 'roles' => [1, 2, 4]],
     ['route' => 'add-ons', 'label' => 'ADD-ONS', 'roles' => [1, 2, 4]],
     ['route' => 'reports', 'label' => 'REPORTS', 'roles' => [1, 3, 4]],
     ['route' => 'accounting', 'label' => 'PROFIT / LOSE', 'roles' => [1, 3, 4]],
