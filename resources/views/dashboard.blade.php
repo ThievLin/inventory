@@ -8,22 +8,22 @@
                 <div class="border-2 border-yellow-500 rounded-lg p-14 text-center shadow-lg">
                     <h2 class="text-xl font-bold mb-2">DAILY SALE</h2>
                     <div class="border-t-2 border-yellow-500 my-6 mt-1"></div>
-                    <p class="text-xl font-bold">{{ number_format($totalDailySales, 2) }}</p>
+                    <p class="text-xl font-bold">{{ number_format($totalDailySales, 2) . 'USD' }}</p>
                 </div>
                 <div class="border-2 border-yellow-500 rounded-lg p-14 text-center shadow-lg">
-                    <h2 class="text-xl font-bold">TOP PRODUCT</h2>
+                    <h2 class="text-xl font-bold">TOP MENU</h2>
                     <div class="border-t-2 border-yellow-500 my-6 mt-1"></div>
                     @if ($topProduct)
                         <p class="text-xl font-bold">{{ $topProduct->Product_name_eng }}: {{ $topProduct->total_qty }}</p>
                     @else
-                        <p class="text-xl font-bold">No products sold today</p>
+                        <p class="text-xl font-bold">Not yet have sale transaction today</p>
                     @endif
                 </div>
             </div>
 
             <!-- STOCK ON HAND SECTION -->
             <div class="border-2 border-yellow-500 rounded-lg p-10 w-full shadow-lg bg-white mt-4">
-                <h2 class="text-xl font-bold text-center mb-4 text-yellow-600">STOCK ON HAND</h2>
+                <h2 class="text-xl font-bold text-center mb-4 text-yellow-600">STOCK IN HAND</h2>
                 <div class="border-t-2 border-yellow-500 my-6"></div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
                     @foreach ($invView as $data)
@@ -51,7 +51,7 @@
         
         <!-- PRODUCT LIST SECTION -->
         <div class="border-2 border-yellow-500 rounded-lg p-3 bg-white shadow-lg w-full">
-            <h2 class="text-2xl font-bold text-center mb-4">PRODUCT LIST</h2>
+            <h2 class="text-2xl font-bold text-center mb-4">MENU LIST</h2>
             <div class="border-t-2 border-yellow-500 my-4 " ></div>
             
             <!-- Scrollable container for the table -->
