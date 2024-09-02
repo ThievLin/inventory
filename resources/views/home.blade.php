@@ -3,7 +3,7 @@ $menuItems = [
     ['route' => '/dashboard', 'icon' => 'fas fa-chart-line', 'label' => 'Dashboard', 'roles' => [1,2]],
     ['route' => '/inventory', 'icon' => 'fas fa-boxes', 'label' => 'Inventory', 'roles' => [1, 3, 2]],
     ['route' => '/suppliers', 'icon' => 'fas fa-truck', 'label' => 'Suppliers', 'roles' => [1, 3, 2]],
-    ['route' => '/items', 'icon' => 'fas fa-shopping-basket', 'label' => 'Items', 'roles' => [1, 3, 2 ]],
+    ['route' => '/items', 'icon' => 'fas fa-shopping-basket', 'label' => 'Material', 'roles' => [1, 3, 2 ]],
     ['route' => '/orders', 'icon' => 'fas fa-shopping-cart', 'label' => 'Orders', 'roles' => [1, 3, 2 ]],
     ['route' => '/pos', 'icon' => 'fas fa-cash-register', 'label' => 'POS', 'roles' => [1,4 ,2]],
     ['route' => '/products', 'icon' => 'fas fa-cube', 'label' => 'Menu', 'roles' => [1,4,2]],
