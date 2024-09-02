@@ -77,7 +77,7 @@ $orderNumber = 'inv_' . str_replace('/', '-', $date) . '_' . str_pad($sequence, 
                 <div class="flex flex-col items-center w-full sm:w-1/2 md:w-1/5 px-2 mb-4">
                     <label for="selectnum" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">QTY OF ITEM</label>
                     <select id="selectnum" name="selectnum" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <option value="">-- QTY OF ITEM --</option>
+                        <option value="" disabled selected>-- QTY OF ITEM --</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -159,7 +159,7 @@ function addItemRow(index) {
             <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-6">
                 <label for="inputSelectItem${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">ITEM NAME</label>
                 <select id="inputSelectItem${index}" name="inputSelectItem${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="handleSelect(event)">
-                    <option value="">-- ITEM --</option>
+                    <option value="" disabled selected>-- ITEM --</option>
                     <option value="createnewITEM">-- CREATE NEW --</option>
                     @foreach ($items as $data)
                     <option value="{{ $data->Item_id }}">
@@ -175,7 +175,7 @@ function addItemRow(index) {
             <div class="flex flex-col items-center w-full sm:w-1/5 px-2 mb-8">
                 <label for="inputSelectUOM${index}" class="block text-lg sm:text-sm font-medium text-gray-900 mb-1">UOM</label>
                 <select id="inputSelectUOM${index}" name="inputSelectUOM${index}" class="text-lg sm:text-sm font-medium border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">-- UOM --</option>
+                    <option value="" disabled selected>-- UOM --</option>
                     @foreach ($uom as $data)
                     <option value="{{ $data->UOM_id }}">
                         {{ $data->UOM_name }}
