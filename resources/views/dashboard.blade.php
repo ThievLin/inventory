@@ -8,7 +8,7 @@
                 <div class="border-2 border-yellow-500 rounded-lg p-14 text-center shadow-lg">
                     <h2 class="text-xl font-bold mb-2">DAILY SALE</h2>
                     <div class="border-t-2 border-yellow-500 my-6 mt-1"></div>
-                    <p class="text-xl font-bold">{{ number_format($totalDailySales, 2) . 'USD' }}</p>
+                    <p class="text-xl font-bold">{{ number_format($totalDailySales, 2) . '    USD' }}</p>
                 </div>
                 <div class="border-2 border-yellow-500 rounded-lg p-14 text-center shadow-lg">
                     <h2 class="text-xl font-bold">TOP MENU</h2>
