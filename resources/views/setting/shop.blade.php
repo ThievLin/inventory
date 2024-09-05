@@ -28,7 +28,6 @@
                     <div class="flex flex-col items-start p-4 bg-gray-200 rounded-lg m-2 w-full">
                         <h2 class="text-lg font-medium mb-4">Address :</h2>
                         <p class="text-gray-600 mb-4">{{ $location->L_address }}</p>
-                        <a href="#" class="text-blue-500">Manage your location</a>
                     </div>
                     @endforeach
                 </div>
