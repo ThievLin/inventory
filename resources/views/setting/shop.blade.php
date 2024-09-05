@@ -1,9 +1,9 @@
 <div class="max-w-screen-lg mx-auto">
     <div class="relative flex flex-col md:flex-row justify-between items-center w-full md:w-4/5">
-        <a href="#" id="createShopButton" class="bg-primary text-primary-foreground py-1 px-4 rounded-lg md:mb-3 sm:mb-2 text-sm">CREATE</a>
+        <a href="#" id="createShopButton" class="bg-primary text-primary-foreground py-1 px-4 rounded-lg md:mb-3 sm:mb-2 text-sm">CREATE NEW</a>
         <div id="dropdownMenu" class="hidden absolute bg-white shadow-lg rounded-lg mt-32 z-10 w-52 border-2 border-gray-400">
-            <a href="#" id="createShopLink" class="block px-4 py-2 text-gray-500 border-b-2 border-gray-400 hover:bg-gray-200 hover:rounded-t-lg">Create Shop</a>
-            <a href="#" id="createLocationLink" class="block px-4 py-2 text-gray-500 hover:bg-gray-200 hover:rounded-b-lg">Create Location</a>
+            <a href="#" id="createShopLink" class="block px-4 py-2 text-gray-500 border-b-2 border-gray-400 hover:bg-gray-200 hover:rounded-t-lg">SHOP</a>
+            <a href="#" id="createLocationLink" class="block px-4 py-2 text-gray-500 hover:bg-gray-200 hover:rounded-b-lg">LOCATION</a>
         </div>
     </div>
     <div id="shop-container" class="grid gap-6">
