@@ -12,12 +12,16 @@ class ProductIngredients extends Model
     public $timestamps = false;
     protected $fillable = [
         'Pro_id',
-        'Product_Name',
-        'Product_Category',
-        'Item_Name',
+        'Product_ENGName',
+        'Product_KHName',
+        'IIQ_name',
+        'IIQ_name_kh',
+        'Product_Category_ENG',
+        'Product_Category_KH',
+        'Item_ENGName',
+        'Item_KHName',
         'Qty',
         'UOM',
-        'IIQ_name'
     ];
 }
 
