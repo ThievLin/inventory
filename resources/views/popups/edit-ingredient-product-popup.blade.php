@@ -10,7 +10,7 @@
                 <label for="Item_Engname" class="block text-2xl font-bold text-gray-900 text-center mb-1"></label>
             </div>
             <div class="mb-4">
-                <label class="block text-md font-semibold text-gray-900 mb-1">ធាតុផ្សំ</label>
+                <label class="block text-md font-semibold text-gray-900 mb-1">INGREDIENT</label>
                 <select id="IIQ_name" name="IIQ_name" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1">
                     <option value=""></option>
                     @foreach ($ingredientQty as $data)
