@@ -1,6 +1,6 @@
 <div class="bg-gray-100">
     <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-4">Product List</h1>
+        <h1 class="text-3xl font-bold mb-4">DETAIL INGRENDIENT INFORMATION</h1>
         <div class="relative flex w-full md:w-auto">
             <form id="searchForm" method="GET" class="w-full md:w-auto flex items-center relative">
                 <input id="searchInput" type="text" placeholder="Search..." class="border border-input rounded-full py-1 px-4 pl-10 w-full md:w-auto focus:outline-none focus:ring-2 focus:ring-primary" required />
@@ -9,23 +9,21 @@
                 </button>
             </form>
         </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-2">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 mt-2">
             <!-- Example Product Card -->
             @foreach ($productIngredients as $data)
             <div class="bg-white p-2 rounded-lg shadow-md flex flex-col">
                 <img src="images/shop.jpg" alt="Hot Vanilla Latte" class="w-full h-20 object-cover rounded-t-lg">
                 <div class="p-2 flex-grow">
-                    <h2 class="text-sm text-gray-800 mb-1 font-semibold">{{$data->Product_Name}}</h2>
-                    <h3 class="text-sm text-gray-900 mb-2 font-semibold">ធាតុផ្សំ</h3>
-                    <h3 class="text-sm text-gray-700">{{$data->IIQ_name}}</h3>
-                    <h3 class="text-sm text-gray-700">{{$data->Item_Name}}</h3>
-                    <h3 class="text-sm text-gray-700">{{$data->Qty}}{{$data->UOM}}</h3>
+                    <h2 class="text-sm text-gray-800 mb-1 font-semibold">{{$data->Product_ENGName}}</h2>
+                    <h3 class="text-sm text-gray-900 mb-2 font-semibold"><u>Ingredients</u></h3>
+                    <h3 class="text-sm text-gray-700">{{$data->Item_ENGName . '	' . $data->Qty . '	' . $data->UOM}}</h3>
                 </div>
                 <div class="mt-auto flex justify-between p-2">
                     <div class="relative group">
                         <!-- Add data attributes here -->
                         <button class="edit-ingredient-btn bg-blue-500 text-white px-3 py-1 rounded cursor-pointer transition duration-300 hover:bg-blue-600"
-                        data-pro-id="{{ $data->Pro_id }}"
+                        data-pro-id="{{ $data->IPI_id }}"
                         data-IIQ_name="{{$data->IIQ_name}}"
                         data-product-name="{{$data->Product_Name}}"
                         data-item-name="{{$data->Item_Name}}"
