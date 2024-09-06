@@ -11,9 +11,9 @@
                 <label for="Item_Engname" class="block text-2xl font-bold text-gray-900 text-center mb-1"></label>
             </div>
             <div class="mb-4">
-                <label class="block text-md font-semibold text-gray-900 mb-1">ធាតុផ្សំ</label>
+                <label class="block text-md font-semibold text-gray-900 mb-1">INGREDIENT</label>
                 <select id="IIQ_name" name="IIQ_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1" onchange="handleSelect(event)">
-                    <option value=""  disabled selected>Select an Ingredient</option>
+                    <option value=""  disabled selected>-- INGREDIENT --</option>
                     <option value="createnewITEM">++ CREATE NEW ING ++</option>
                     @foreach ($ingredientQty as $data)
                     <option value="{{ $data->IIQ_id }}">
@@ -23,8 +23,8 @@
                 </select>
             </div>
             <div class="text-end">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Save Change</button>
-                <button type="button" id="closeEditIngredientPopup" class="bg-gray-300 hover:bg-gray-400 text-gray-900 px-4 py-2 rounded-md ml-2 focus:outline-none">Cancel</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">SAVE</button>
+                <button type="button" id="closeEditIngredientPopup" class="bg-gray-300 hover:bg-gray-400 text-gray-900 px-4 py-2 rounded-md ml-2 focus:outline-none">CANCEL</button>
             </div>
         </form>
     </div>
