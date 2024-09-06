@@ -7,38 +7,39 @@
         <form id="itemForm" action="{{ route('setting.createIng') }}" method="POST" enctype="multipart/form-data" class="p-6">
             @csrf
             <div class="mb-4">
+                <label for="Item_Engname" class="block text-sm font-medium text-gray-900 mb-1">MATERIAL</label>
+                <select id="Item_Engname" name="Item_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="" disabled selected>-- MATERIAL --</option>
+                    <option value="">++ CREATE NEW ++</option>
+                    @foreach ($item as $data)
+                        <option value="{{ $data->Item_id }}">{{ $data->Item_Engname }}</option> 
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-4">
                 <label for="Qty" class="block text-sm font-medium text-gray-900 mb-1">QTY</label>
                 <input type="text" id="Qty" name="Qty" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 @error('Item_Engname') is-invalid @enderror"  oninput="updateTotalPrice()">
                 @error('Qty')
                     <span class="invalid-feedback">{{ $message }}</span>
                 @enderror
             </div>
-            <div class="mb-4">
-                <label for="Item_Engname" class="block text-sm font-medium text-gray-900 mb-1">Select UOM</label>
-                <select id="Item_Engname" name="Item_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="" disabled selected> UOM NAME </option>
-                    @foreach ($item as $data)
-                        <option value="{{ $data->Item_id }}">{{ $data->Item_Engname }}</option> 
-                    @endforeach
-                </select>
-            </div>
 
             <div class="mb-4">
-                <label for="UOM_abb" class="block text-sm font-medium text-gray-900 mb-1">Select UOM</label>
+                <label for="UOM_abb" class="block text-sm font-medium text-gray-900 mb-1">UNIT OF MEASURE</label>
                 <select id="UOM_abb" name="UOM_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="" disabled selected>UOM NAME</option>
+                    <option value="" disabled selected>-- UOM --</option>
                     @foreach ($uom as $data)
                         <option value="{{ $data->UOM_id }}">{{ $data->UOM_abb }}</option> 
                     @endforeach
                 </select>
             </div>
             <div class="mb-4">
-                <label for="price" class="block text-sm font-medium text-gray-900 mb-1">Price</label>
+                <label for="price" class="block text-sm font-medium text-gray-900 mb-1">FULL NAME</label>
                 <input type="text" id="price" name="IIQ_name" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" readonly>
             </div>
             <div class="text-end">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">Save</button>
-                <button type="button" id="closeItemPopup" class="bg-gray-300 hover:bg-gray-400 text-gray-900 px-4 py-2 rounded-md ml-2 focus:outline-none">Cancel</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">ADD</button>
+                <button type="button" id="closeItemPopup" class="bg-gray-300 hover:bg-gray-400 text-gray-900 px-4 py-2 rounded-md ml-2 focus:outline-none">CANCEL</button>
             </div>
         </form>
     </div>
