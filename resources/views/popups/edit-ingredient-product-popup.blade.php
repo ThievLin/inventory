@@ -1,31 +1,17 @@
-<div id="EditIngredientPopup" class="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center hidden z-60">
-    <div class="bg-white rounded-lg shadow-lg max-w-xl w-full max-h-screen overflow-y-auto">
-        <div class="bg-gradient-to-b from-blue-500 to-blue-400 rounded-t-lg px-6 py-4">
-            <h2 class="text-2xl font-bold text-white mb-2 text-center">EDIT INGREDIENT</h2>
-        </div>
-        <form action="/setting/${proId}" method="POST" enctype="multipart/form-data" class="p-6">
+<!-- Popup for editing ingredients -->
+<div id="EditIngredientPopup" class="fixed inset-0 flex items-center justify-center hidden">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-1/2 relative"> <!-- Added 'relative' for positioning -->
+        <button id="closePopupButton" class="absolute top-0 right-0 mt-4 mr-4 text-gray-500">
+            <i class="fas fa-times"></i>
+        </button>
+        <h2 class="text-2xl font-bold mb-4">Edit Ingredients</h2>
+        <form id="editIngredientForm" method="POST">
             @csrf
             @method('PATCH')
-            <input type="hidden" id="IPI_id" name="IPI_id" value="">
-            <div class="mb-4 flex justify-center">
-                <label for="Item_Engname" class="block text-2xl font-bold text-gray-900 text-center mb-1"></label>
-            </div>
-            <div class="mb-4">
-                <label class="block text-md font-semibold text-gray-900 mb-1">INGREDIENT</label>
-                <select id="IIQ_name" name="IIQ_id" class="border border-gray-300 rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 mb-1" onchange="handleSelect(event)">
-                    <option value=""  disabled selected>-- INGREDIENT --</option>
-                    <option value="createnewITEM">++ CREATE NEW ING ++</option>
-                    @foreach ($ingredientQty as $data)
-                    <option value="{{ $data->IIQ_id }}">
-                        {{ $data->IIQ_name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="text-end">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">SAVE</button>
-                <button type="button" id="closeEditIngredientPopup" class="bg-gray-300 hover:bg-gray-400 text-gray-900 px-4 py-2 rounded-md ml-2 focus:outline-none">CANCEL</button>
-            </div>
+            <input type="hidden" name="Pro_id" id="Pro_id">
+            <div id="ingredientsContainer"></div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Changes</button>
+            <button type="button" id="closeEditIngredientPopup" class="bg-gray-300 hover:bg-gray-400 text-gray-900 px-4 py-2 rounded-md ml-2 focus:outline-none">Cancel</button>
         </form>
     </div>
 </div>
@@ -79,4 +65,4 @@ function togglePopup(popupId) {
         popup.classList.toggle('hidden');
     }
 }
-</script>
+</script> 
