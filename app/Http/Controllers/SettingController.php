@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UOM;
 use App\Models\User;
+use App\Models\Items;
 use App\Models\Module;
 use App\Models\InvRole;
 use App\Models\Invshop;
@@ -12,6 +13,7 @@ use App\Models\Products;
 use App\Models\SysModule;
 use App\Models\ExpenseCate;
 use App\Models\InvLocation;
+use App\Models\IngredientRe;
 use App\Models\ProductGroup;
 use Illuminate\Http\Request;
 use App\Models\IngredientQty;
@@ -40,7 +42,8 @@ class SettingController extends Controller
         $productCate = invProductCate::all();
         $user = User::all();
         $uom = UOM::all();
-        $productIngredients = ProductIngredients::all();
+        $item = Items::all();
+        $productIngredients = ProductIngredients::all()->groupBy('Pro_id');
         $invProduct = Products::paginate(12);
         $shop = Invshop::paginate(2);
         $shop_se =Invshop::all();
@@ -51,7 +54,7 @@ class SettingController extends Controller
         $group = ProductGroup::all();
         $expense = ExpenseCate::all();
         $ingredientQty = IngredientQty::all();
-        return view('setting', compact('itemCate','productCate','user','invProduct','shop','role','module','moduleInf','uom','shop_se','location','group','expense','productIngredients','ingredientQty')); 
+        return view('setting', compact('item','itemCate','productCate','user','invProduct','shop','role','module','moduleInf','uom','shop_se','location','group','expense','productIngredients','ingredientQty')); 
 
     }
 
@@ -226,22 +229,56 @@ class SettingController extends Controller
         // Redirect or return a response
         return redirect()->back()->with('success', 'Category created successfully!');
     }
-    public function updateIngredients(Request $request, $Pro_id)
+    public function updateIngredients(Request $request, $IPI_id)
     {
-        
         // Validate the input data
         $validatedData = $request->validate([
-            'IIQ_name' => 'required|string|max:255',
-            // Add any other fields you need to validate
+            'IIQ_id' => 'required|array',
+            'IIQ_id.*' => 'required|integer', 
         ]);
     
-        ProductIngredients::where('Pro_id', $Pro_id)
-            ->update(['IIQ_name' => $validatedData['IIQ_name']]);
+        // Find all products by Pro_id
+        $products = IngredientRe::where('Pro_id', $request->Pro_id)->get();
     
-        // Redirect or return a response
-        return redirect()->back()->with('success', 'Product(s) updated successfully!');
+        // Check if any products exist
+        if ($products->isEmpty()) {
+            return redirect()->back()->with('error', 'No products found with this Pro_id.');
+        }
+    
+        // Loop through each IIQ_id and update the corresponding products
+        foreach ($products as $key => $product) {
+            // Check if the key exists in the IIQ_id array to avoid errors
+            if (isset($validatedData['IIQ_id'][$key])) {
+                $product->IIQ_id = $validatedData['IIQ_id'][$key];
+                $product->save();
+            }
+        }
+        return redirect()->back()->with('success', 'Products updated successfully!');
     }
     
+
+// public function updateIngredients(Request $request, $IPI_id)
+// {
+//     // Validate the input data
+//     $validatedData = $request->validate([
+//         'IIQ_id' => 'required|array', // Ensure it's an array
+//         'IIQ_id.*' => 'integer', // Validate each array item as an integer
+//     ]);
+
+//     // Find the product by its ID
+//     $product = IngredientRe::where('IPI_id', $IPI_id)->firstOrFail();
+
+//     // Check if the product exists
+//     if (!$product) {
+//         return redirect()->back()->with('error', 'Product not found.');
+//     }
+//     $product->IIQ_id = json_encode($validatedData['IIQ_id']); // Store as JSON
+//     dd( $product->IIQ_id);
+//     $product->save();
+
+//     // Redirect or return a response
+//     return redirect()->back()->with('success', 'Product updated successfully!');
+// }
     
     /**
      * Display the specified resource.
@@ -286,7 +323,6 @@ class SettingController extends Controller
             if ($shop->S_logo && Storage::disk('public')->exists($shop->S_logo)) {
                 Storage::disk('public')->delete($shop->S_logo);
             }  
-            // Store the new image and update the S_logo field
             $s_logo = $request->file('S_logo');
             $imagePath = $s_logo->store('logos', 'public');
             $shop->S_logo = $imagePath;
@@ -345,6 +381,25 @@ class SettingController extends Controller
         return redirect()->back()->with('success', 'User updated successfully!');
     }
     
+    public function createIng(Request $request){
+        $validatedData = $request->validate([
+            'Qty' => 'required|integer',
+            'Item_id' => 'required|integer',
+            'UOM_id' =>'required|integer',
+            'IIQ_name' => ['required', 'string', 'max:255'],
+      
+        ]);        
+        // Create the item category record in the database
+        IngredientQty::create([
+            'Qty' => $validatedData['Qty'],
+            'Item_id' =>  $validatedData['Item_id'], 
+            'UOM_id' => $validatedData['UOM_id'],
+            'IIQ_name' =>  $validatedData['IIQ_name'], 
+            'status' => 'Active',
+        ]);   
+        // Redirect or return a response
+        return redirect()->back()->with('success', 'Category created successfully!');
+    }
     
     /**
      * Remove the specified resource from storage.
